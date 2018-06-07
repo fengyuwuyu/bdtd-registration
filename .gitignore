@@ -1,0 +1,15 @@
+*.log
+.metadata/
+Servers/
+.recommenders
+.classpath
+.springBeans
+.settings
+.project
+
+.idea
+.iml
+/out
+logs/
+test-output
+alert_log
