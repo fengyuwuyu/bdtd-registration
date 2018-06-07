@@ -13,3 +13,5 @@ Servers/
 logs/
 test-output
 alert_log
+.factorypath
+target/
