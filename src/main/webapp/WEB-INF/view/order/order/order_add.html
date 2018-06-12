@@ -13,7 +13,8 @@
                 </div>
 
                 <div class="col-sm-6">
-                            <#input id="createTime" name="下单时间" underline="true"/>
+                            <#input id="createTime" name="下单时间" underline="true" type="datetime"
+								clickFun="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})" />
                             <#input id="userName" name="下单用户名称" underline="true"/>
                             <#input id="userPhone" name="下单用户电话" underline="true"/>
                 </div>

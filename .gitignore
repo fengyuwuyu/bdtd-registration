@@ -15,3 +15,5 @@ test-output
 alert_log
 .factorypath
 target/
+/*.factorypath
+.apt_generated

@@ -83,6 +83,13 @@ spring:
     db-name: card_medical
     filters: log4j,wall,mergeStat
 
+card:
+  datasource:
+      username: sa
+      password: sa
+      url:  jdbc:sqlserver://localhost:1433;DatabaseName=card
+      driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+      
 #flowable数据源和多数据源配置
 guns:
   flowable:

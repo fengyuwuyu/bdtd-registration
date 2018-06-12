@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.baomidou.mybatisplus.mapper.EntityWrapper;
+import com.baomidou.mybatisplus.mapper.Wrapper;
 import com.bdtd.card.registration.modular.order.service.IOrderService;
 import com.bdtd.card.registration.modular.system.model.Order;
 import com.stylefeng.guns.core.base.controller.BaseController;
@@ -50,6 +52,7 @@ public class OrderController extends BaseController {
     @RequestMapping("/order_update/{orderId}")
     public String orderUpdate(@PathVariable Integer orderId, Model model) {
         Order order = orderService.selectById(orderId);
+        System.out.println(order.getCreateTime());
         model.addAttribute("item",order);
         LogObjectHolder.me().set(order);
         return PREFIX + "order_edit.html";
@@ -60,8 +63,10 @@ public class OrderController extends BaseController {
      */
     @RequestMapping(value = "/list")
     @ResponseBody
-    public Object list(String condition) {
-        return orderService.selectList(null);
+    public Object list(@RequestParam(required = false) String goodsName) {
+    	Wrapper<Order> wrapper = new EntityWrapper<Order>();
+    	wrapper.like("goods_name", goodsName);
+        return orderService.selectList(wrapper);
     }
 
     /**

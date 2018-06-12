@@ -94,7 +94,7 @@ Order.delete = function () {
  */
 Order.search = function () {
     var queryData = {};
-    queryData['condition'] = $("#condition").val();
+    queryData['goodsName'] = $("#goodsName").val();
     Order.table.refresh({query: queryData});
 };
 
