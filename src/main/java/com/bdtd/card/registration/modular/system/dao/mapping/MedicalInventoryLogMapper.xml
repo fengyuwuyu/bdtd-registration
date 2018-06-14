@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bdtd.card.registration.modular.system.dao.MedicalInventoryLogMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.bdtd.card.registration.modular.system.model.MedicalInventoryLog">
+        <id column="id" property="id" />
+        <result column="medical_name" property="medicalName" />
+        <result column="spell" property="spell" />
+        <result column="producer" property="producer" />
+        <result column="specification" property="specification" />
+        <result column="unit" property="unit" />
+        <result column="produce_batch_num" property="produceBatchNum" />
+        <result column="produce_date" property="produceDate" />
+        <result column="expire_date" property="expireDate" />
+        <result column="price" property="price" />
+        <result column="amount" property="amount" />
+        <result column="inbound_channel" property="inboundChannel" />
+        <result column="log_date" property="logDate" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, medical_name AS medicalName, spell, producer, specification, unit, produce_batch_num AS produceBatchNum, produce_date AS produceDate, expire_date AS expireDate, price, amount, inbound_channel AS inboundChannel, log_date AS logDate
+    </sql>
+
+</mapper>

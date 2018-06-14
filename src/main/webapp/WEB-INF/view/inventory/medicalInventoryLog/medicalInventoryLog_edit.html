@@ -1,0 +1,40 @@
+@layout("/common/_container.html"){
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <div class="form-horizontal">
+
+            <input type="hidden" id="id" value="${item.id}">
+
+            <div class="row">
+                <div class="col-sm-6 b-r">
+                            <#input id="id" name="" value="${item.id}" underline="true"/>
+                            <#input id="medicalName" name="" value="${item.medicalName}" underline="true"/>
+                            <#input id="spell" name="" value="${item.spell}" underline="true"/>
+                            <#input id="producer" name="" value="${item.producer}" underline="true"/>
+                            <#input id="specification" name="" value="${item.specification}" underline="true"/>
+                            <#input id="unit" name="" value="${item.unit}" underline="true"/>
+                            <#input id="produceBatchNum" name="" value="${item.produceBatchNum}" />
+                </div>
+
+                <div class="col-sm-6">
+                            <#input id="produceDate" name="" value="${item.produceDate}" underline="true"/>
+                            <#input id="expireDate" name="" value="${item.expireDate}" underline="true"/>
+                            <#input id="price" name="" value="${item.price}" underline="true"/>
+                            <#input id="amount" name="" value="${item.amount}" underline="true"/>
+                            <#input id="inboundChannel" name="" value="${item.inboundChannel}" underline="true"/>
+                            <#input id="logDate" name="" value="${item.logDate}" />
+                </div>
+            </div>
+
+            <div class="row btn-group-m-t">
+                <div class="col-sm-10">
+                    <#button btnCss="info" name="提交" id="ensure" icon="fa-check" clickFun="MedicalInventoryLogInfoDlg.editSubmit()"/>
+                    <#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="MedicalInventoryLogInfoDlg.close()"/>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/inventory/medicalInventoryLog/medicalInventoryLog_info.js"></script>
+@}

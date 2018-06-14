@@ -86,8 +86,8 @@ spring:
 card:
   datasource:
       username: sa
-      password: sa
-      url:  jdbc:sqlserver://localhost:1433;DatabaseName=card
+      password: BDtd1234!
+      url:  jdbc:sqlserver://172.16.2.179:1433;DatabaseName=scm_main
       driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
       
 #flowable数据源和多数据源配置

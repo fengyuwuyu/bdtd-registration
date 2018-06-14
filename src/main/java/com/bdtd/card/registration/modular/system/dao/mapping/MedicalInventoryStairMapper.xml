@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bdtd.card.registration.modular.system.dao.MedicalInventoryStairMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.bdtd.card.registration.modular.system.model.MedicalInventoryStair">
+        <id column="id" property="id" />
+        <result column="medical_name" property="medicalName" />
+        <result column="spell" property="spell" />
+        <result column="producer" property="producer" />
+        <result column="specification" property="specification" />
+        <result column="unit" property="unit" />
+        <result column="remark" property="remark" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, medical_name AS medicalName, spell, producer, specification, unit, remark
+    </sql>
+
+</mapper>
