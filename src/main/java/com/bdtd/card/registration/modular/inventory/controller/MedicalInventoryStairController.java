@@ -85,9 +85,11 @@ public class MedicalInventoryStairController extends BaseController {
 	public Object list(String condition) {
 		List<Map<String, Object>> dictMap = medicalInventoryStairService.selectMaps(null);
 		List<DictWrapperEntity> dictwrapperEntities = new ArrayList<DictWrapperEntity>();
-		dictwrapperEntities.add(new DictWrapperEntity(parentName, fieldName, replaceFieldName));
-		dictCacheFactory.wrapper(dictMap, dictwrapperEntities );
-		return medicalInventoryStairService.selectList(null);
+		dictwrapperEntities.add(new DictWrapperEntity(DictConsts.MEDICAL_UNIT, "unit", "unitStr"));
+		dictwrapperEntities.add(new DictWrapperEntity(DictConsts.MEDICAL_SPECIFICATION, "specification", "specificationStr"));
+		dictwrapperEntities.add(new DictWrapperEntity(DictConsts.MEDICAL_PRODUCER, "producer", "producerStr"));
+		dictCacheFactory.wrapper(dictMap, dictwrapperEntities);
+		return dictMap;
 	}
 
 	/**
