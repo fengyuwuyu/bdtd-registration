@@ -15,7 +15,7 @@ import java.io.Serializable;
  * </p>
  *
  * @author lilei123
- * @since 2018-06-14
+ * @since 2018-06-15
  */
 @TableName("bdtd_medical_inventory_stair")
 public class MedicalInventoryStair extends Model<MedicalInventoryStair> {
@@ -36,7 +36,7 @@ public class MedicalInventoryStair extends Model<MedicalInventoryStair> {
     /**
      * 生产商
      */
-    private String producer;
+    private Integer producer;
     /**
      * 规格
      */
@@ -75,11 +75,11 @@ public class MedicalInventoryStair extends Model<MedicalInventoryStair> {
         this.spell = spell;
     }
 
-    public String getProducer() {
+    public Integer getProducer() {
         return producer;
     }
 
-    public void setProducer(String producer) {
+    public void setProducer(Integer producer) {
         this.producer = producer;
     }
 

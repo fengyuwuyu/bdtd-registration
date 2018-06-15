@@ -1,14 +1,13 @@
 package com.bdtd.card.registration.modular.system.model;
 
 import java.io.Serializable;
+import java.sql.Date;
 
 import com.baomidou.mybatisplus.enums.IdType;
-import java.util.Date;
 import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.activerecord.Model;
 import com.baomidou.mybatisplus.annotations.TableName;
-import java.io.Serializable;
 
 /**
  * <p>
@@ -47,7 +46,7 @@ public class MedicalInventorySecondLevel extends Model<MedicalInventorySecondLev
      * 进货渠道
      */
     @TableField("inbound_channel")
-    private String inboundChannel;
+    private Integer inboundChannel;
 
 
     public Integer getId() {
@@ -114,11 +113,11 @@ public class MedicalInventorySecondLevel extends Model<MedicalInventorySecondLev
         this.unit = unit;
     }
 
-    public String getInboundChannel() {
+    public Integer getInboundChannel() {
         return inboundChannel;
     }
 
-    public void setInboundChannel(String inboundChannel) {
+    public void setInboundChannel(Integer inboundChannel) {
         this.inboundChannel = inboundChannel;
     }
 

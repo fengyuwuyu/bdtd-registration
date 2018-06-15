@@ -14,15 +14,15 @@ var MedicalInventorySecondLevel = {
 MedicalInventorySecondLevel.initColumn = function () {
     return [
         {field: 'selectItem', radio: true},
-            {title: '', field: 'id', visible: true, align: 'center', valign: 'middle'},
-            {title: '', field: 'parentId', visible: true, align: 'center', valign: 'middle'},
+            {title: 'id', field: 'id', visible: true, align: 'center', valign: 'middle'},
+            {title: '药品名称', field: 'medicalName', visible: true, align: 'center', valign: 'middle'},
             {title: '生产批号', field: 'produceBatchNum', visible: true, align: 'center', valign: 'middle'},
-            {title: '', field: 'createDate', visible: true, align: 'center', valign: 'middle'},
-            {title: '', field: 'expireDate', visible: true, align: 'center', valign: 'middle'},
-            {title: '', field: 'price', visible: true, align: 'center', valign: 'middle'},
+            {title: '生产日期', field: 'createDate', visible: true, align: 'center', valign: 'middle'},
+            {title: '过期时间', field: 'expireDate', visible: true, align: 'center', valign: 'middle'},
+            {title: '价格', field: 'price', visible: true, align: 'center', valign: 'middle'},
             {title: '库存数量', field: 'inventoryNum', visible: true, align: 'center', valign: 'middle'},
-            {title: '', field: 'unit', visible: true, align: 'center', valign: 'middle'},
-            {title: '进货渠道', field: 'inboundChannel', visible: true, align: 'center', valign: 'middle'}
+            {title: '单位', field: 'unitStr', visible: true, align: 'center', valign: 'middle'},
+            {title: '进货渠道', field: 'inboundChannelStr', visible: true, align: 'center', valign: 'middle'}
     ];
 };
 
@@ -50,7 +50,7 @@ MedicalInventorySecondLevel.openAddMedicalInventorySecondLevel = function () {
         area: ['800px', '420px'], //宽高
         fix: false, //不固定
         maxmin: true,
-        content: Feng.ctxPath + '/medicalInventorySecondLevel/medicalInventorySecondLevel_add'
+        content: Feng.ctxPath + '/medicalInventorySecondLevel/medicalInventorySecondLevel_add/' + $('#medicalInventoryStairId').val()
     });
     this.layerIndex = index;
 };
@@ -67,6 +67,34 @@ MedicalInventorySecondLevel.openMedicalInventorySecondLevelDetail = function () 
             fix: false, //不固定
             maxmin: true,
             content: Feng.ctxPath + '/medicalInventorySecondLevel/medicalInventorySecondLevel_update/' + MedicalInventorySecondLevel.seItem.id
+        });
+        this.layerIndex = index;
+    }
+};
+
+MedicalInventorySecondLevel.putInStorage = function () {
+    if (this.check()) {
+        var index = layer.open({
+            type: 2,
+            title: '入库管理页面',
+            area: ['800px', '420px'], //宽高
+            fix: false, //不固定
+            maxmin: true,
+            content: Feng.ctxPath + '/medicalInventorySecondLevel/putInStorage/' + MedicalInventorySecondLevel.seItem.id
+        });
+        this.layerIndex = index;
+    }
+};
+
+MedicalInventorySecondLevel.putInStorage = function () {
+    if (this.check()) {
+        var index = layer.open({
+            type: 2,
+            title: '出库管理页面',
+            area: ['800px', '420px'], //宽高
+            fix: false, //不固定
+            maxmin: true,
+            content: Feng.ctxPath + '/medicalInventorySecondLevel/outOfStorage/' + MedicalInventorySecondLevel.seItem.id
         });
         this.layerIndex = index;
     }
@@ -103,7 +131,8 @@ MedicalInventorySecondLevel.search = function () {
 
 $(function () {
     var defaultColunms = MedicalInventorySecondLevel.initColumn();
-    var table = new BSTable(MedicalInventorySecondLevel.id, "/medicalInventorySecondLevel/list", defaultColunms);
+    var medicalInventoryStairId = $('#medicalInventoryStairId').val();
+    var table = new BSTable(MedicalInventorySecondLevel.id, "/medicalInventorySecondLevel/list/" + medicalInventoryStairId, defaultColunms);
     table.setPaginationType("client");
     MedicalInventorySecondLevel.table = table.init();
 });

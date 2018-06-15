@@ -20,4 +20,7 @@
         id, parent_id AS parentId, produce_batch_num AS produceBatchNum, create_date AS createDate, expire_date AS expireDate, price, inventory_num AS inventoryNum, unit, inbound_channel AS inboundChannel
     </sql>
 
+	<update id="storage">
+		update bdtd_medical_inventory_second_level set  inventory_num += #{count} where id = #{id}
+	</update>
 </mapper>

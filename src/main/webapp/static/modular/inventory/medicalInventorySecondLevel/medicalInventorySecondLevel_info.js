@@ -53,7 +53,8 @@ MedicalInventorySecondLevelInfoDlg.collectData = function() {
     .set('price')
     .set('inventoryNum')
     .set('unit')
-    .set('inboundChannel');
+    .set('inboundChannel')
+    .set('medicalInventoryStairId');
 }
 
 /**
@@ -86,6 +87,36 @@ MedicalInventorySecondLevelInfoDlg.editSubmit = function() {
 
     //提交信息
     var ajax = new $ax(Feng.ctxPath + "/medicalInventorySecondLevel/update", function(data){
+        Feng.success("修改成功!");
+        window.parent.MedicalInventorySecondLevel.table.refresh();
+        MedicalInventorySecondLevelInfoDlg.close();
+    },function(data){
+        Feng.error("修改失败!" + data.responseJSON.message + "!");
+    });
+    ajax.set(this.medicalInventorySecondLevelInfoData);
+    ajax.start();
+}
+
+MedicalInventorySecondLevelInfoDlg.putInStorage = function() {
+	this.clearData();
+	this.set('id').set('inventoryNum', Math.abs(parseInt($('#inventoryNum').val())));
+	
+	var ajax = new $ax(Feng.ctxPath + "/medicalInventorySecondLevel/storage", function(data){
+        Feng.success("修改成功!");
+        window.parent.MedicalInventorySecondLevel.table.refresh();
+        MedicalInventorySecondLevelInfoDlg.close();
+    },function(data){
+        Feng.error("修改失败!" + data.responseJSON.message + "!");
+    });
+    ajax.set(this.medicalInventorySecondLevelInfoData);
+    ajax.start();
+}
+
+MedicalInventorySecondLevelInfoDlg.outOfStorage = function() {
+	this.clearData();
+	this.set('id').set('inventoryNum', Math.abs(parseInt($('#inventoryNum').val())) * -1);
+	
+	var ajax = new $ax(Feng.ctxPath + "/medicalInventorySecondLevel/storage", function(data){
         Feng.success("修改成功!");
         window.parent.MedicalInventorySecondLevel.table.refresh();
         MedicalInventorySecondLevelInfoDlg.close();

@@ -9,7 +9,7 @@ import com.baomidou.mybatisplus.mapper.BaseMapper;
  * </p>
  *
  * @author lilei123
- * @since 2018-06-14
+ * @since 2018-06-15
  */
 public interface MedicalInventoryStairMapper extends BaseMapper<MedicalInventoryStair> {
 

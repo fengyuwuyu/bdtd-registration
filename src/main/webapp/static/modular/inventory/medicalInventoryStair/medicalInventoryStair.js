@@ -17,9 +17,9 @@ MedicalInventoryStair.initColumn = function () {
             {title: 'ID号', field: 'id', visible: true, align: 'center', valign: 'middle'},
             {title: '药品名称', field: 'medicalName', visible: true, align: 'center', valign: 'middle'},
             {title: '拼音', field: 'spell', visible: true, align: 'center', valign: 'middle'},
-            {title: '生产商', field: 'producer', visible: true, align: 'center', valign: 'middle'},
-            {title: '规格', field: 'specification', visible: true, align: 'center', valign: 'middle'},
-            {title: '单位', field: 'unit', visible: true, align: 'center', valign: 'middle'},
+            {title: '生产商', field: 'producerStr', visible: true, align: 'center', valign: 'middle'},
+            {title: '规格', field: 'specificationStr', visible: true, align: 'center', valign: 'middle'},
+            {title: '单位', field: 'unitStr', visible: true, align: 'center', valign: 'middle'},
             {title: '备注', field: 'remark', visible: true, align: 'center', valign: 'middle'}
     ];
 };
@@ -65,6 +65,23 @@ MedicalInventoryStair.openMedicalInventoryStairDetail = function () {
             fix: false, //不固定
             maxmin: true,
             content: Feng.ctxPath + '/medicalInventoryStair/medicalInventoryStair_update/' + MedicalInventoryStair.seItem.id
+        });
+        this.layerIndex = index;
+    }
+};
+
+/**
+ * 打开查看药品二级管理详情
+ */
+MedicalInventoryStair.medicalInventorySecondLevelDetail = function () {
+    if (this.check()) {
+        var index = layer.open({
+            type: 2,
+            title: '二级药品管理',
+            area: ['1200px', '600px'], //宽高
+            fix: false, //不固定
+            maxmin: true,
+            content: Feng.ctxPath + '/medicalInventorySecondLevel/' + MedicalInventoryStair.seItem.id
         });
         this.layerIndex = index;
     }

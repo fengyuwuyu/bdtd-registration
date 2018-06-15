@@ -4,21 +4,22 @@
         <div class="form-horizontal">
 
             <input type="hidden" id="id" value="">
+            <input type="hidden" id="medicalInventoryStairId" name="medicalInventoryStairId" value="${medicalInventoryStairId}" />
 
             <div class="row">
                 <div class="col-sm-6 b-r">
-                            <#input id="id" name="" underline="true"/>
-                            <#input id="parentId" name="" underline="true"/>
                             <#input id="produceBatchNum" name="生产批号" underline="true"/>
-                            <#input id="createDate" name="" underline="true"/>
-                            <#input id="expireDate" name=""/>
+                            <#input id="createDate" name="生产日期" underline="true" type="date"
+								clickFun="laydate({istime: false, format: 'YYYY-MM-DD'})"/>
+                            <#input id="expireDate" name="过期时间" underline="true" type="date"
+								clickFun="laydate({istime: false, format: 'YYYY-MM-DD'})"/>
+                            <#input id="price" name="价格"/>
                 </div>
 
                 <div class="col-sm-6">
-                            <#input id="price" name="" underline="true"/>
                             <#input id="inventoryNum" name="库存数量" underline="true"/>
-                            <#input id="unit" name="" underline="true"/>
-                            <#input id="inboundChannel" name="进货渠道" underline="true"/>
+                            <#select id="unit" name="单位" underline="true" itemList="${unitDictList}"></#select>
+                            <#select id="inboundChannel" name="进货渠道" itemList="${inboundChannelDictList}"></#select>
                 </div>
             </div>
 

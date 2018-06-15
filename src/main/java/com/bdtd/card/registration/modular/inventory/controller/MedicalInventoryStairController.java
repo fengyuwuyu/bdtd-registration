@@ -12,12 +12,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.baomidou.mybatisplus.mapper.EntityWrapper;
+import com.bdtd.card.registration.modular.inventory.service.IMedicalInventorySecondLevelService;
 import com.bdtd.card.registration.modular.inventory.service.IMedicalInventoryStairService;
+import com.bdtd.card.registration.modular.system.model.MedicalInventorySecondLevel;
 import com.bdtd.card.registration.modular.system.model.MedicalInventoryStair;
 import com.stylefeng.guns.core.base.controller.BaseController;
+import com.stylefeng.guns.core.base.tips.Tip;
 import com.stylefeng.guns.core.cache.DictCacheFactory;
 import com.stylefeng.guns.core.consts.DictConsts;
 import com.stylefeng.guns.core.log.LogObjectHolder;
+import com.stylefeng.guns.core.module.BdtdError;
 import com.stylefeng.guns.core.wrapper.DictWrapperEntity;
 import com.stylefeng.guns.modular.system.model.Dict;
 
@@ -37,7 +42,8 @@ public class MedicalInventoryStairController extends BaseController {
 	private IMedicalInventoryStairService medicalInventoryStairService;
 	@Autowired
 	private DictCacheFactory dictCacheFactory;
-
+	@Autowired
+	private IMedicalInventorySecondLevelService medicalInventorySecondLevelService;
 	/**
 	 * 跳转到药品管理首页
 	 */
@@ -108,6 +114,12 @@ public class MedicalInventoryStairController extends BaseController {
 	@RequestMapping(value = "/delete")
 	@ResponseBody
 	public Object delete(@RequestParam Integer medicalInventoryStairId) {
+		EntityWrapper<MedicalInventorySecondLevel> wrapper = new EntityWrapper<MedicalInventorySecondLevel>();
+		wrapper.eq("parent_id", medicalInventoryStairId);
+		int count = medicalInventorySecondLevelService.selectCount(wrapper);
+		if (count > 0) {
+			return new Tip(BdtdError.DELETE_CASCADE_ERROR);
+		}
 		medicalInventoryStairService.deleteById(medicalInventoryStairId);
 		return SUCCESS_TIP;
 	}

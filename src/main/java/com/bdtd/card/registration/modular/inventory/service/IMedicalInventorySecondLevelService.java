@@ -13,4 +13,6 @@ import com.baomidou.mybatisplus.service.IService;
  */
 public interface IMedicalInventorySecondLevelService extends IService<MedicalInventorySecondLevel> {
 
+	void storage(Integer id, Long count);
+
 }

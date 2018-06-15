@@ -9,18 +9,18 @@
             <div class="row">
                 <div class="col-sm-6 b-r">
                 			<#input id="medicalName" name="药品名称" value="${medicalName}" underline="true" disabled="disabled" />
-                            <#input id="produceBatchNum" name="生产批号" value="${item.produceBatchNum}" underline="true"/>
+                            <#input id="produceBatchNum" name="生产批号" value="${item.produceBatchNum}" underline="true" disabled="disabled" />
                             <#input id="createDate" name="生产日期" underline="true" type="date" value="${item.createDate}"
-								clickFun="laydate({istime: false, format: 'YYYY-MM-DD'})"/>
+								clickFun="laydate({istime: false, format: 'YYYY-MM-DD'})" disabled="disabled" />
                             <#input id="expireDate" name="过期时间" underline="true" type="date" value="${item.expireDate}"
-								clickFun="laydate({istime: false, format: 'YYYY-MM-DD'})"/>
+								clickFun="laydate({istime: false, format: 'YYYY-MM-DD'})" disabled="disabled" />
                 </div>
 
                 <div class="col-sm-6">
-                            <#input id="price" name="价格" value="${item.price}" underline="true"/>
-                            <#input id="inventoryNum" name="库存数量" value="${item.inventoryNum}" underline="true"/>
-                            <#select id="unit" name="单位" underline="true" itemList="${unitDictList}" value="${item.unit}"></#select>
-                            <#select id="inboundChannel" name="进货渠道" itemList="${inboundChannelDictList}" value="${item.inboundChannel}"></#select>
+                            <#input id="price" name="价格" value="${item.price}" underline="true" disabled="disabled" />
+                            <#input id="inventoryNum" name="出库数量" value="${item.inventoryNum}" underline="true"/>
+                            <#select id="unit" name="单位" underline="true" itemList="${unitDictList}" value="${item.unit}" disabled="disabled" ></#select>
+                            <#select id="inboundChannel" name="进货渠道" itemList="${inboundChannelDictList}" value="${item.inboundChannel}" disabled="disabled" ></#select>
                 </div>
             </div>
 
