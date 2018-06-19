@@ -1,12 +1,14 @@
 package com.bdtd.card.registration.modular.inventory.service.impl;
 
-import com.bdtd.card.registration.modular.system.model.MedicalInventorySecondLevel;
-import com.bdtd.card.registration.modular.system.dao.MedicalInventorySecondLevelMapper;
-import com.bdtd.card.registration.modular.inventory.service.IMedicalInventorySecondLevelService;
-import com.baomidou.mybatisplus.service.impl.ServiceImpl;
+import javax.annotation.Resource;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.baomidou.mybatisplus.service.impl.ServiceImpl;
+import com.bdtd.card.registration.modular.inventory.service.IMedicalInventorySecondLevelService;
+import com.stylefeng.guns.modular.system.dao.MedicalInventorySecondLevelMapper;
+import com.stylefeng.guns.modular.system.model.MedicalInventorySecondLevel;
 
 /**
  * <p>
@@ -17,13 +19,14 @@ import org.springframework.stereotype.Service;
  * @since 2018-06-14
  */
 @Service
+@Transactional
 public class MedicalInventorySecondLevelServiceImpl extends ServiceImpl<MedicalInventorySecondLevelMapper, MedicalInventorySecondLevel> implements IMedicalInventorySecondLevelService {
 
-	@Autowired
+	@Resource
 	private MedicalInventorySecondLevelMapper medicalInventorySecondLevelMapper;
 	
-	@Override
 	public void storage(Integer id, Long count) {
+		this.baseMapper.selectById(id);
 		medicalInventorySecondLevelMapper.storage(id, count);
 	}
 

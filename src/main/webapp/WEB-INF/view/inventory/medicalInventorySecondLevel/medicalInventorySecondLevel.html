@@ -27,10 +27,10 @@
                                 <#button name="删除" icon="fa-remove" clickFun="MedicalInventorySecondLevel.delete()" space="true"/>
                             @}
                             @if(shiro.hasPermission("/medicalInventorySecondLevel/putInStorage")){
-                                <#button name="入库" icon="fa-remove" clickFun="MedicalInventorySecondLevel.putInStorage()" space="true"/>
+                                <#button name="入库" icon="fa-remove" clickFun="MedicalInventorySecondLevel.openPutInStorage()" space="true"/>
                             @}
                             @if(shiro.hasPermission("/medicalInventorySecondLevel/putInStorage")){
-                                <#button name="出库" icon="fa-remove" clickFun="MedicalInventorySecondLevel.outOfStorage()" space="true"/>
+                                <#button name="出库" icon="fa-remove" clickFun="MedicalInventorySecondLevel.openOutOfStorage()" space="true"/>
                             @}
                         </div>
                         <#table id="MedicalInventorySecondLevelTable"/>

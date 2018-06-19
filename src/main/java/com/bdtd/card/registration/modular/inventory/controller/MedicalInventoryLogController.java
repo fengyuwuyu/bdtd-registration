@@ -9,9 +9,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.bdtd.card.registration.modular.inventory.service.IMedicalInventoryLogService;
-import com.bdtd.card.registration.modular.system.model.MedicalInventoryLog;
 import com.stylefeng.guns.core.base.controller.BaseController;
 import com.stylefeng.guns.core.log.LogObjectHolder;
+import com.stylefeng.guns.modular.system.model.MedicalInventoryLog;
 
 /**
  * 药品出入库记录控制器

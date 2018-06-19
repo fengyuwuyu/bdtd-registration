@@ -17,8 +17,6 @@ import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.mapper.Wrapper;
 import com.bdtd.card.registration.modular.inventory.service.IMedicalInventorySecondLevelService;
 import com.bdtd.card.registration.modular.inventory.service.IMedicalInventoryStairService;
-import com.bdtd.card.registration.modular.system.model.MedicalInventorySecondLevel;
-import com.bdtd.card.registration.modular.system.model.MedicalInventoryStair;
 import com.stylefeng.guns.core.base.controller.BaseController;
 import com.stylefeng.guns.core.base.tips.Tip;
 import com.stylefeng.guns.core.cache.DictCacheFactory;
@@ -27,6 +25,8 @@ import com.stylefeng.guns.core.log.LogObjectHolder;
 import com.stylefeng.guns.core.module.BdtdError;
 import com.stylefeng.guns.core.wrapper.DictWrapperEntity;
 import com.stylefeng.guns.modular.system.model.Dict;
+import com.stylefeng.guns.modular.system.model.MedicalInventorySecondLevel;
+import com.stylefeng.guns.modular.system.model.MedicalInventoryStair;
 
 /**
  * 药品二级库存管理控制器
@@ -91,7 +91,7 @@ public class MedicalInventorySecondLevelController extends BaseController {
     /**
      * 跳转到修改药品二级库存管理
      */
-    @RequestMapping("/medicalInventorySecondLevel_putInStorage/{medicalInventorySecondLevelId}")
+    @RequestMapping("/putInStorage/{medicalInventorySecondLevelId}")
     public String medicalInventorySecondLevelPutInStorage(@PathVariable Integer medicalInventorySecondLevelId, Model model) {
         MedicalInventorySecondLevel medicalInventorySecondLevel = medicalInventorySecondLevelService.selectById(medicalInventorySecondLevelId);
         model.addAttribute("item",medicalInventorySecondLevel);
@@ -110,7 +110,7 @@ public class MedicalInventorySecondLevelController extends BaseController {
     /**
      * 跳转到修改药品二级库存管理
      */
-    @RequestMapping("/medicalInventorySecondLevel_outOfStorage/{medicalInventorySecondLevelId}")
+    @RequestMapping("/outOfStorage/{medicalInventorySecondLevelId}")
     public String medicalInventorySecondLevelOutOfStorage(@PathVariable Integer medicalInventorySecondLevelId, Model model) {
         MedicalInventorySecondLevel medicalInventorySecondLevel = medicalInventorySecondLevelService.selectById(medicalInventorySecondLevelId);
         model.addAttribute("item",medicalInventorySecondLevel);

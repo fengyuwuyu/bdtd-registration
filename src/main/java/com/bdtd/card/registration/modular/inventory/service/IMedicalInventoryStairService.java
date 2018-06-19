@@ -1,7 +1,7 @@
 package com.bdtd.card.registration.modular.inventory.service;
 
-import com.bdtd.card.registration.modular.system.model.MedicalInventoryStair;
 import com.baomidou.mybatisplus.service.IService;
+import com.stylefeng.guns.modular.system.model.MedicalInventoryStair;
 
 /**
  * <p>

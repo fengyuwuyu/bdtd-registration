@@ -72,7 +72,7 @@ MedicalInventorySecondLevel.openMedicalInventorySecondLevelDetail = function () 
     }
 };
 
-MedicalInventorySecondLevel.putInStorage = function () {
+MedicalInventorySecondLevel.openPutInStorage = function () {
     if (this.check()) {
         var index = layer.open({
             type: 2,
@@ -86,7 +86,7 @@ MedicalInventorySecondLevel.putInStorage = function () {
     }
 };
 
-MedicalInventorySecondLevel.putInStorage = function () {
+MedicalInventorySecondLevel.openOutOfStorage = function () {
     if (this.check()) {
         var index = layer.open({
             type: 2,

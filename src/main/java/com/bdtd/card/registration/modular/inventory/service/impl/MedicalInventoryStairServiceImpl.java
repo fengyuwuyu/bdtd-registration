@@ -1,10 +1,11 @@
 package com.bdtd.card.registration.modular.inventory.service.impl;
 
-import com.bdtd.card.registration.modular.system.model.MedicalInventoryStair;
-import com.bdtd.card.registration.modular.system.dao.MedicalInventoryStairMapper;
-import com.bdtd.card.registration.modular.inventory.service.IMedicalInventoryStairService;
-import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
+
+import com.baomidou.mybatisplus.service.impl.ServiceImpl;
+import com.bdtd.card.registration.modular.inventory.service.IMedicalInventoryStairService;
+import com.stylefeng.guns.modular.system.dao.MedicalInventoryStairMapper;
+import com.stylefeng.guns.modular.system.model.MedicalInventoryStair;
 
 /**
  * <p>

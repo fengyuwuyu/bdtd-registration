@@ -18,7 +18,7 @@
 
                 <div class="col-sm-6">
                             <#input id="price" name="价格" value="${item.price}" underline="true" disabled="disabled" />
-                            <#input id="inventoryNum" name="出库数量" value="${item.inventoryNum}" underline="true"/>
+                            <#input id="inventoryNum" name="出库数量"  underline="true"/>
                             <#select id="unit" name="单位" underline="true" itemList="${unitDictList}" value="${item.unit}" disabled="disabled" ></#select>
                             <#select id="inboundChannel" name="进货渠道" itemList="${inboundChannelDictList}" value="${item.inboundChannel}" disabled="disabled" ></#select>
                 </div>
@@ -26,7 +26,7 @@
 
             <div class="row btn-group-m-t">
                 <div class="col-sm-10">
-                    <#button btnCss="info" name="提交" id="ensure" icon="fa-check" clickFun="MedicalInventorySecondLevelInfoDlg.editSubmit()"/>
+                    <#button btnCss="info" name="提交" id="ensure" icon="fa-check" clickFun="MedicalInventorySecondLevelInfoDlg.outOfStorage()"/>
                     <#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="MedicalInventorySecondLevelInfoDlg.close()"/>
                 </div>
             </div>
