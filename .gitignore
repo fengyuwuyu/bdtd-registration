@@ -17,3 +17,4 @@ alert_log
 target/
 /*.factorypath
 .apt_generated
+/velocity.log.1
