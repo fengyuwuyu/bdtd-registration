@@ -45,10 +45,16 @@ MedicalInventoryStair.openAddMedicalInventoryStair = function () {
     var index = layer.open({
         type: 2,
         title: '添加药品管理',
-        area: ['800px', '420px'], //宽高
+        area: ['1000px', '600px'], //宽高
         fix: false, //不固定
         maxmin: true,
-        content: Feng.ctxPath + '/medicalInventoryStair/medicalInventoryStair_add'
+        content: Feng.ctxPath + '/medicalInventoryStair/medicalInventoryStair_add',
+        full: function() {
+        	Feng.setSelectWidth();
+        },
+        restore: function() {
+        	Feng.setSelectWidth();
+        }
     });
     this.layerIndex = index;
 };
@@ -121,4 +127,6 @@ $(function () {
     var table = new BSTable(MedicalInventoryStair.id, "/medicalInventoryStair/list", defaultColunms);
     table.setPaginationType("client");
     MedicalInventoryStair.table = table.init();
+    
+//    Feng.setSelectWidth();
 });

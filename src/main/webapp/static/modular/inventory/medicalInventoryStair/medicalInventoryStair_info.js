@@ -59,9 +59,12 @@ MedicalInventoryStairInfoDlg.collectData = function() {
  */
 MedicalInventoryStairInfoDlg.addSubmit = function() {
 
-    this.clearData();
-    this.collectData();
+//    this.clearData();
+//    this.collectData();
 
+	if (!Feng.checkAddForm()) {
+		return;
+	}
     //提交信息
     var ajax = new $ax(Feng.ctxPath + "/medicalInventoryStair/add", function(data){
         Feng.success("添加成功!");
@@ -70,7 +73,7 @@ MedicalInventoryStairInfoDlg.addSubmit = function() {
     },function(data){
         Feng.error("添加失败!" + data.responseJSON.message + "!");
     });
-    ajax.set(this.medicalInventoryStairInfoData);
+    ajax.set($('#addForm').serializeObject());
     ajax.start();
 }
 
@@ -95,5 +98,5 @@ MedicalInventoryStairInfoDlg.editSubmit = function() {
 }
 
 $(function() {
-
+	Feng.setSelectWidth();
 });

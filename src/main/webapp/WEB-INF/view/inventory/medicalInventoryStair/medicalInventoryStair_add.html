@@ -1,21 +1,23 @@
 @layout("/common/_container.html"){
 <div class="ibox float-e-margins">
     <div class="ibox-content">
-        <div class="form-horizontal">
-
+        <!-- <div class="form-horizontal"> -->
+		<form id="addForm" class="form-horizontal">
             <input type="hidden" id="id" value="">
-
+			
             <div class="row">
                 <div class="col-sm-6 b-r">
                             <#input id="medicalName" name="药品名称" underline="true"/>
                             <#input id="spell" name="拼音" underline="true"/>
                             <#select id="producer" name="生产商" underline="true" itemList="${producerDictList}"></#select>
+                            <#input id="spell" name="拼音" class="easyui-validatebox" dataOptions="required:true,validType:['length[6,50]'],missingMessage:'该项不能为空',invalidMessage:'长度为6-50'" underline="true"/>
                 </div>
 
                 <div class="col-sm-6">
                             <#select id="specification" name="规格" underline="true" itemList="${specificationDictList}"></#select>
                             <#select id="unit" name="单位" underline="true" itemList="${unitDictList}"></#select>
-                            <#input id="remark" name="备注" underline="true"/>
+                            <#input id="remark" name="备注" underline="true" underline="true" />
+                            
                 </div>
             </div>
 
@@ -25,7 +27,8 @@
                     <#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="MedicalInventoryStairInfoDlg.close()"/>
                 </div>
             </div>
-        </div>
+        </form>
+       <!--  </div> -->
 
     </div>
 </div>
