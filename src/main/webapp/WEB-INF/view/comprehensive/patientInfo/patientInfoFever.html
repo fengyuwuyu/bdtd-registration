@@ -1,0 +1,59 @@
+@layout("/common/_container.html"){
+<div class="row">
+	<div class="col-sm-12">
+		<div class="ibox float-e-margins">
+			<div class="ibox-content">
+				<div class="row row-lg">
+					<div class="col-sm-12">
+						<form id="searchForm" class="row">
+						  <input type="hidden" name="fever" id="fever" value="1">
+								<div class="col-sm-2">
+									<#NameCon id="userName" name="姓名" />
+								</div>
+								<div class="col-sm-2">
+                                    <#SelectCon id="orgId" name="单位" itemList="${dtDepItemList}" />
+								</div>
+								<div class="col-sm-2">
+									<#NameCon id="userDuty" name="身份" />
+								</div>
+								<div class="col-sm-2">
+									<#TimeCon id="enrolDate" name="入伍时间" isTime="false" pattern="YYYY-MM-DD" />
+								</div>
+                                 <div class="col-sm-2">
+                                    <#SelectCon id="mainDiagnosis" name="主要诊断" itemList="${mainDiagnosisDictList}" emptyValue="true" />
+                                </div>
+                                 <div class="col-sm-2">
+                                    <#SelectCon id="handleType" name="处理方式" itemList="${handleTypeItemList}" />
+                                </div>
+                                 <div class="col-sm-2">
+                                    <#SelectCon id="inhospitalStatus" name="状态" itemList="${inhospitalStatusDictList}" emptyValue="true" />
+                                </div>
+								<div class="col-sm-2">
+									<#input id="beginDate" name="开始时间" type="datetime" clickFun="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})" />
+								</div>
+								<div class="col-sm-2">
+									<#input id="endDate" name="结束时间" type="datetime" clickFun="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})" />
+								</div>
+								<div class="col-sm-2">
+									<#button name="搜索" icon="fa-search" clickFun="PatientInfo.search()" />
+									<#button name="重置" icon="fa-refresh" clickFun="PatientInfo.resetSearchForm()" />
+								</div>
+						</form>
+                         <div class="hidden-xs" id="PatientInHospitalTableToolbar" role="group">
+                            @if(shiro.hasPermission("/comprehensive/feverChart")){
+                             <#button name="统计图" icon="fa-bar-chart" clickFun="PatientInfo.openFeverChart()"/>
+                            @}
+                            @if(shiro.hasPermission("/patientDisabilityRating/exportExcel")){
+                             <#button name="导出" icon="fa-print" clickFun="PatientInfo.exportFeverExcel()" space="true"/>
+                            @}
+                        </div>
+						<#table id="PatientInfoTable" />
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<script src="${ctxPath}/static/modular/common/dtDepCommon.js"></script>
+<script src="${ctxPath}/static/modular/comprehensive/patientInfo/patientInfoFever.js"></script>
+@}

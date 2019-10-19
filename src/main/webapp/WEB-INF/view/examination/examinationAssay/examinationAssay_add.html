@@ -1,0 +1,38 @@
+@layout("/common/_container.html"){
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <form id="addForm" class="form-horizontal">
+
+            <input type="hidden" id="id" value="">
+
+            <div class="row">
+                <div class="col-sm-6 b-r">
+                            <#input id="assayId" name="主键" type="hidden"  underline="true" />
+                            <#input id="liverFunction" name="肝功" type="text" dataOptions="validType:'length[0, 512]'" underline="true" />
+                            <#input id="HBsAg" name="(HBsAg)" type="text" dataOptions="validType:'length[0, 512]'" underline="true" />
+                            <#input id="cholesterol" name="胆固醇" type="text" dataOptions="validType:'length[0, 128]'" underline="true" />
+                            <#input id="triglycerideAlcohol" name="甘油三醇" type="text" dataOptions="validType:'length[0, 128]'" underline="true" />
+                            <#input id="bloodGlucose" name="血糖" type="text" dataOptions="validType:'length[0, 128]'"  />
+                </div>
+
+                <div class="col-sm-6">
+                            <#input id="bloodRoutine" name="血常规" type="text" dataOptions="validType:'length[0, 128]'" underline="true" />
+                            <#input id="urineRoutine" name="尿常规" type="text" dataOptions="validType:'length[0, 128]'" underline="true" />
+                            <#input id="stoolRoutine" name="便常规" type="text" dataOptions="validType:'length[0, 128]'" underline="true" />
+                            <#input id="assayOther" name="其他" type="text" dataOptions="validType:'length[0, 512]'" underline="true" />
+                            <#input id="healthExaminationId" name="体检信息id" type="text" dataOptions="required:true, validType:'number'" underline="true" />
+                </div>
+            </div>
+
+            <div class="row btn-group-m-t">
+                <div class="col-sm-10">
+                    <#button btnCss="info" name="提交" id="ensure" icon="fa-check" clickFun="ExaminationAssayInfoDlg.addSubmit()"/>
+                    <#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="ExaminationAssayInfoDlg.close()"/>
+                </div>
+            </div>
+        </form>
+
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/examination/examinationAssay/examinationAssay_info.js"></script>
+@}

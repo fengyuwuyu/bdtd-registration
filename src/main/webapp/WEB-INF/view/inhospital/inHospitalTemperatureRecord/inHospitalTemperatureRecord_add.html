@@ -1,0 +1,36 @@
+@layout("/common/_container.html"){
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <form id="addForm" class="form-horizontal">
+
+            <input type="hidden" id="inHospitalId" name="inHospitalId" value="${inHospitalId}" />
+
+            <div class="row">
+                <div class="col-sm-12">
+	                <div class="col-sm-4">
+                            <#input id="animalHeat" name="体温" type="text"  />
+	                </div>
+	                <div class="col-sm-4">
+                            <#input id="recordDate" name="日期" type="date" clickFun="laydate({istime: false, format: 'YYYY-MM-DD'})" dataOptions="required:true" value="${now}"/>
+	                </div>
+	                <div class="col-sm-4">
+                            <#select id="time" name="时段" type="text" dataOptions="required:true" itemList="${temperatureItemList}" />
+	                </div>
+                </div>
+
+                <div class="col-sm-6">
+                </div>
+            </div>
+
+            <div class="row btn-group-m-t">
+                <div class="col-sm-10">
+                    <#button btnCss="info" name="提交" id="ensure" icon="fa-check" clickFun="InHospitalTemperatureRecordInfoDlg.addSubmit()"/>
+                    <#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="InHospitalTemperatureRecordInfoDlg.close()"/>
+                </div>
+            </div>
+        </form>
+
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/inhospital/inHospitalTemperatureRecord/inHospitalTemperatureRecord_info.js"></script>
+@}

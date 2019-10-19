@@ -24,7 +24,7 @@ import com.alibaba.druid.pool.DruidDataSource;
 @EnableJpaRepositories(  
         entityManagerFactoryRef="cardEntityManagerFactory",  
         transactionManagerRef="cardTransactionManager",  
-        basePackages= { "com.bdtd.card.registration.scmmain.repository" }) 
+        basePackages= { "com.stylefeng.guns.scmmain.repository" }) 
 public class CardDatabaseConfig {
 	
 	@Autowired
@@ -47,7 +47,7 @@ public class CardDatabaseConfig {
         return builder  
                 .dataSource(cardDataSource())  
                 .properties(getVendorProperties(cardDataSource()))  
-                .packages("com.bdtd.card.registration.scmmain.model") //设置实体类所在位置  
+                .packages("com.stylefeng.guns.scmmain.model") //设置实体类所在位置  
                 .persistenceUnit("cardPersistenceUnit")  
                 .build();  
     }  

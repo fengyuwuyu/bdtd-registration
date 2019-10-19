@@ -1,0 +1,35 @@
+@layout("/common/_container.html"){
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <form id="editForm" class="form-horizontal">
+
+            <input type="hidden" id="id" name="id" value="${item.id}">
+
+            <div class="row">
+                <div class="col-sm-6 b-r">
+                           <#input id="id" name="主键" type="hidden" underline="true"   value="${item.id}" />
+                           <#input id="patientInfoId" name="病患信息id"  underline="true" dataOptions="required:true, validType:'number'"  value="${item.patientInfoId}" />
+                           <#input id="sickRestType" name="病休方式"  underline="true" dataOptions="required:true, validType:'number'"  value="${item.sickRestType}" />
+                            <#input id="sickRestDay" name="病休天数"   dataOptions="required:true, validType:'number'"  value="${item.sickRestDay}" />
+                </div>
+
+                <div class="col-sm-6">
+                            <#input id="beginDate" name="开始时间" underline="true" dataOptions="required:true" type="date" clickFun="laydate({istime: false, format: 'YYYY-MM-DD'})"  value="${item.beginDate}" />
+                            <#input id="noticeInfo" name="注意事项"  underline="true" dataOptions="validType:'length[0, 256]'"  value="${item.noticeInfo}" />
+                            <#input id="createDate" name="创建时间" underline="true" dataOptions="required:true" type="datetime" clickFun="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})"  value="${item.createDate}" />
+                            <#input id="updateDate" name="更新时间"  dataOptions="required:true" type="datetime" clickFun="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})"  value="${item.updateDate}" />
+                </div>
+            </div>
+
+            <div class="row btn-group-m-t">
+                <div class="col-sm-10">
+                    <#button btnCss="info" name="提交" id="ensure" icon="fa-check" clickFun="PatientSickRestInfoDlg.editSubmit()"/>
+                    <#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="PatientSickRestInfoDlg.close()"/>
+                </div>
+            </div>
+        </form>
+
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/treatment/patientSickRest/patientSickRest_info.js"></script>
+@}

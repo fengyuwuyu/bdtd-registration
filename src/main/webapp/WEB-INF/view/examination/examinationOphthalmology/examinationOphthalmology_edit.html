@@ -1,0 +1,37 @@
+@layout("/common/_container.html"){
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <form id="editForm" class="form-horizontal">
+
+            <input type="hidden" id="id" name="id" value="${item.id}">
+
+            <div class="row">
+                <div class="col-sm-6 b-r">
+                           <#input id="ophthalmologyId" name="主键" type="hidden"  underline="true"  value="${item.ophthalmologyId}" />
+                           <#input id="healthExaminationId" name="体检信息id" type="text" dataOptions="required:true, validType:'number'" underline="true"  value="${item.healthExaminationId}" />
+                           <#input id="stereoscopicVision" name="立体视觉" type="text" dataOptions="validType:'length[0, 128]'" underline="true"  value="${item.stereoscopicVision}" />
+                           <#input id="colourVision" name="色觉" type="text" dataOptions="validType:'length[0, 128]'" underline="true"  value="${item.colourVision}" />
+                            <#input id="visionRight" name="左" type="text"  underline=""  value="${item.visionRight}" />
+                </div>
+
+                <div class="col-sm-6">
+                            <#input id="visionLeft" name="有" type="text"  underline="true"  value="${item.visionLeft}" />
+                            <#input id="ophthalmologyCheckInfo" name="检查所见" type="text" dataOptions="validType:'length[0, 512]'" underline="true"  value="${item.ophthalmologyCheckInfo}" />
+                            <#input id="ophthalmologyDiagnosis" name="诊断" type="text" dataOptions="validType:'length[0, 512]'" underline="true"  value="${item.ophthalmologyDiagnosis}" />
+                            <#input id="ophthalmologyConclusion" name="结论" type="text" dataOptions="validType:'length[0, 512]'" underline="true"  value="${item.ophthalmologyConclusion}" />
+                            <#input id="ophthalmologySignatureResponsiblePhysician" name="医师签名" type="text" dataOptions="validType:'length[0, 50]'"   value="${item.ophthalmologySignatureResponsiblePhysician}" />
+                </div>
+            </div>
+
+            <div class="row btn-group-m-t">
+                <div class="col-sm-10">
+                    <#button btnCss="info" name="提交" id="ensure" icon="fa-check" clickFun="ExaminationOphthalmologyInfoDlg.editSubmit()"/>
+                    <#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="ExaminationOphthalmologyInfoDlg.close()"/>
+                </div>
+            </div>
+        </form>
+
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/examination/examinationOphthalmology/examinationOphthalmology_info.js"></script>
+@}

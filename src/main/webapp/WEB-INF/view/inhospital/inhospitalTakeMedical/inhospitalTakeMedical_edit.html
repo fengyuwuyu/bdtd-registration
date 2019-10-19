@@ -1,0 +1,44 @@
+@layout("/common/_container.html"){
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <form id="editForm" class="form-horizontal">
+
+            <input type="hidden" id="id" name="id" value="${item.id}">
+
+            <div class="row">
+                <div class="col-sm-6 b-r">
+                           <#input id="id" name="主键" type="hidden"  underline="true"  value="${item.id}" />
+                           <#input id="userNo" name="编号" type="text" dataOptions="required:true, validType:'length[1, 50]'" underline="true"  value="${item.userNo}" />
+                           <#input id="userName" name="姓名" type="text" dataOptions="required:true, validType:'length[1, 50]'" underline="true"  value="${item.userName}" />
+                           <#input id="userSex" name="性别" type="text" dataOptions="required:true, validType:'length[1, 2]'" underline="true"  value="${item.userSex}" />
+                           <#input id="userCard" name="卡号" type="text" dataOptions="validType:'length[0, 50]'" underline="true"  value="${item.userCard}" />
+                           <#input id="age" name="年龄" type="text" dataOptions="required:true, validType:'number'" underline="true"  value="${item.age}" />
+                           <#input id="userDuty" name="身份" type="text" dataOptions="validType:'length[0, 16]'" underline="true"  value="${item.userDuty}" />
+                           <#input id="orgId" name="单位id" type="text"  underline="true"  value="${item.orgId}" />
+                            <#input id="orgName" name="单位" type="text" dataOptions="validType:'length[0, 50]'"   value="${item.orgName}" />
+                </div>
+
+                <div class="col-sm-6">
+                            <#input id="enrolDate" name="入伍时间" type="date" clickFun="laydate({istime: false, format: 'YYYY-MM-DD'})"  underline="true"  value="${item.enrolDate}" />
+                            <#input id="type" name="类型" type="text" dataOptions="required:true, validType:'number'" underline="true"  value="${item.type}" />
+                            <#input id="status" name="状态" type="text" dataOptions="required:true, validType:'number'" underline="true"  value="${item.status}" />
+                            <#input id="mainDiagnosis" name="主要诊断" type="text" dataOptions="required:true, validType:'number'" underline="true"  value="${item.mainDiagnosis}" />
+                            <#input id="physicianNo" name="诊断军医" type="text" dataOptions="validType:'length[0, 20]'" underline="true"  value="${item.physicianNo}" />
+                            <#input id="physicianName" name="诊断军医" type="text" dataOptions="validType:'length[0, 50]'" underline="true"  value="${item.physicianName}" />
+                            <#input id="createDate" name="开药时间" type="datetime" clickFun="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})" dataOptions="required:true" underline="true"  value="${item.createDate}" />
+                            <#input id="takeMedicalDate" name="取药时间" type="datetime" clickFun="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})"  underline=""  value="${item.takeMedicalDate}" />
+                </div>
+            </div>
+
+            <div class="row btn-group-m-t">
+                <div class="col-sm-10">
+                    <#button btnCss="info" name="提交" id="ensure" icon="fa-check" clickFun="InhospitalTakeMedicalInfoDlg.editSubmit()"/>
+                    <#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="InhospitalTakeMedicalInfoDlg.close()"/>
+                </div>
+            </div>
+        </form>
+
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/inhospital/inhospitalTakeMedical/inhospitalTakeMedical_info.js"></script>
+@}

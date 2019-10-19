@@ -1,0 +1,35 @@
+@layout("/common/_container.html"){
+<div class="row">
+	<div class="col-sm-12">
+		<div class="ibox float-e-margins">
+			<div class="ibox-content">
+				<div class="row row-lg">
+					<div class="col-sm-12">
+						<form id="searchForm" class="row">
+							<div class="col-sm-2">
+								<#NameCon id="userLname" name="姓名" />
+							</div>
+							<div class="col-sm-2">
+    <#SelectCon id="orgId" name="单位" itemList="${dtDepItemList}" />
+							</div>
+							<div class="col-sm-2">
+                                <#select id="userDuty" name="身份" itemList="${userDutyItemList}" emptyValue="true" />
+							</div>
+							<div class="col-sm-2">
+								<#TimeCon id="userWorkday" name="入伍时间" isTime="false" pattern="YYYY-MM-DD" />
+							</div>
+							<div class="col-sm-2">
+								<#button name="搜索" icon="fa-search" clickFun="DtUser.search()" />
+								<#button name="重置" icon="fa-refresh" clickFun="DtUser.resetSearchForm()" />
+							</div>
+						</form>
+						<#table id="DtUserTable" />
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<script src="${ctxPath}/static/modular/common/dtDepCommon.js"></script>
+<script src="${ctxPath}/static/modular/comprehensive/dtUser/dtUser.js"></script>
+@}

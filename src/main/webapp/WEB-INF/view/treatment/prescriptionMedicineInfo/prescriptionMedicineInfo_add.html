@@ -1,0 +1,39 @@
+@layout("/common/_container.html"){
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <div class="form-horizontal">
+
+            <input type="hidden" id="id" value="">
+
+            <div class="row">
+                <div class="col-sm-6 b-r">
+                            <#input id="id" name="主键" underline="true"/>
+                            <#input id="medicineId" name="药品id" underline="true"/>
+                            <#input id="medicineName" name="药品" underline="true"/>
+                            <#input id="amount" name="数量" underline="true"/>
+                            <#input id="unit" name="单位" underline="true"/>
+                            <#input id="usage" name="用法"/>
+                </div>
+
+                <div class="col-sm-6">
+                            <#input id="period" name="周期" underline="true"/>
+                            <#input id="dosage" name="用量" underline="true"/>
+                            <#input id="patientPrescriptionId" name="处方id" underline="true"/>
+                            <#input id="type" name="状态" underline="true"/>
+                            <#input id="createDate" name="创建时间" underline="true"/>
+                            <#input id="updateDate" name="更新时间" underline="true"/>
+                </div>
+            </div>
+
+            <div class="row btn-group-m-t">
+                <div class="col-sm-10">
+                    <#button btnCss="info" name="提交" id="ensure" icon="fa-check" clickFun="PrescriptionMedicineInfoInfoDlg.addSubmit()"/>
+                    <#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="PrescriptionMedicineInfoInfoDlg.close()"/>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/treatment/prescriptionMedicineInfo/prescriptionMedicineInfo_info.js"></script>
+@}

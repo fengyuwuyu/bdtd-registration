@@ -1,0 +1,38 @@
+@layout("/common/_container.html"){
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <form id="addForm" class="form-horizontal">
+
+            <input type="hidden" id="id" value="">
+
+            <div class="row">
+                <div class="col-sm-6 b-r">
+                            <#input id="internalId" name="主键" type="hidden"  underline="true" />
+                            <#input id="healthExaminationId" name="体检信息id" type="text" dataOptions="validType:'number'" underline="true" />
+                            <#input id="ecgPath" name="心电图" type="text" dataOptions="validType:'length[0, 256]'" underline="true" />
+                            <#input id="ecgDoctor" name="医师签名" type="text" dataOptions="validType:'length[0, 50]'" underline="true" />
+                            <#input id="chestFluoroscopy" name="胸部透视" type="text" dataOptions="validType:'length[0, 1024]'" underline="true" />
+                            <#input id="cfDoctor" name="医师签名" type="text" dataOptions="validType:'length[0, 50]'"  />
+                </div>
+
+                <div class="col-sm-6">
+                            <#input id="internalIrritabilityHistory" name="既往病史" type="text" dataOptions="validType:'length[0, 1024]'" underline="true" />
+                            <#input id="internalCheckInfo" name="检查所见" type="text" dataOptions="validType:'length[0, 1024]'" underline="true" />
+                            <#input id="internalDiagnosis" name="诊断" type="text" dataOptions="validType:'length[0, 512]'" underline="true" />
+                            <#input id="internalConclusion" name="结论" type="text" dataOptions="validType:'length[0, 512]'" underline="true" />
+                            <#input id="internalSignatureResponsiblePhysician" name="医师签名" type="text" dataOptions="validType:'length[0, 50]'" underline="true" />
+                </div>
+            </div>
+
+            <div class="row btn-group-m-t">
+                <div class="col-sm-10">
+                    <#button btnCss="info" name="提交" id="ensure" icon="fa-check" clickFun="ExaminationInternalMedicineInfoDlg.addSubmit()"/>
+                    <#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="ExaminationInternalMedicineInfoDlg.close()"/>
+                </div>
+            </div>
+        </form>
+
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/examination/examinationInternalMedicine/examinationInternalMedicine_info.js"></script>
+@}

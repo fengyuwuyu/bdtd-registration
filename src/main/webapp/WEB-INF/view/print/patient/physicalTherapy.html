@@ -1,0 +1,150 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>就诊管理系统</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link href="${ctxPath}/static/css/reset.css" rel="stylesheet" type="text/css" />
+    <link href="${ctxPath}/static/css/layout.css" rel="stylesheet" type="text/css" />
+    <style type="text/css">
+        caption { font-size: 20px; }
+        #chufangjian { font-size: 30px; font-weight: normal; text-align: center; }
+        td, th { font-weight: normal; }
+        td, th, tr {
+            box-sizing: border-box;
+            height: 32px;
+            font-size: 14px; 
+        }
+        .bold { font-weight: bold; }
+        
+        .table-bordered td,.table-bordered th {
+            border:1px solid #ddd!important;
+        }
+        
+        .advice, .execute-record {
+            width: 360px;
+            margin-right: 6px;
+        }
+        
+        .execute-record {
+            padding-top: 0;
+        }
+        
+       /*  .execute-record tr, .execute-record td {
+            height: 24px !important;
+        } */
+        
+        .advice thead tr {
+            box-sizing: border-box;
+            height: 64px !important;
+        }
+        
+        .execute-record thead tr {
+            box-sizing: border-box;
+            height: 32px !important;
+        }
+        
+        .advice th, .advice td, .execute-record th, .execute-record td {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <form method="post" id="thisform" class="labelright nomargin">
+        <div class="mainwrapassist notitletoolbar">
+            <table class="wp100">
+                <caption>中国人民解放军66194部队</caption>
+                <tbody>
+                    <tr>
+                        <td colspan="4" id="chufangjian">理疗单</td>
+                    </tr>
+                    <tr>
+                        <td><span>姓名：</span>${patientInfo.userName}</td>
+                        <td><span>性别：</span>${patientInfo.userSex}</td>
+                        <td><span>年龄：</span>${patientInfo.age}</td>
+                        <td><span>单位：</span>${patientInfo.orgName}</td>
+                    </tr>
+                    <tr>
+                        <td><span>诊断：${patientInfo.mainDiagnosis}</span></td>
+                        <td><span>时间：${clinicDate}</span></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" style="vertical-align:top;">
+                            <span>医嘱：</span>
+                            <table class="table-bordered advice">
+                                <thead>
+                                    <tr>
+                                        <th rowspan="2">理疗方式</th>
+                                        <th rowspan="2">开始日期</th>
+                                        <th rowspan="2">次/日</th>
+                                        <th rowspan="2">天数</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @for (physical in physicalTherapyList) {
+                                        <tr>
+                                            <td>${physical.phyrapyType}</td>
+                                            <td>${physical.beginDate}</td>
+                                            <td>${physical.countPerDay}</td>
+                                            <td>${physical.dayCount}</td>
+                                        </tr>
+                                    @}
+                                </tbody>
+                            </table>
+                        </td>
+                        <td colspan="2" style="vertical-align:top;">
+                            <span>执行记录：</span>
+                            <table class="table-bordered execute-record">
+                                <thead>
+                                    <tr>
+                                        <th rowspan="2">理疗方式</th>
+                                        <th rowspan="2">次数</th>
+                                        <th colspan="4">时间</th>
+                                        <th rowspan="2">技师签名</th>
+                                    </tr>
+                                    <tr>
+                                        <th>月</th>
+                                        <th>日</th>
+                                        <th>时：分</th>
+                                        <th>时长</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @for (var i=0; i < count; i++) {
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                    @}
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="bottom-info">
+                <div class="bottom-item">医生签名：${patientInfo.physicianName}</div>
+                <div class="bottom-item">开单日期：${now}</div>
+            </div>
+        </div>
+        <div id="statusbar">
+            <button type="button">打印</button>
+        </div>
+    </form>
+    <script src="${ctxPath}/static/js/jquery.min.js?v=2.1.4"></script>
+    <script type="text/javascript">
+        $("#statusbar button").click(function () {
+        	$("#statusbar").remove(); 
+            window.print();
+        });
+    </script>
+</body>
+</html>

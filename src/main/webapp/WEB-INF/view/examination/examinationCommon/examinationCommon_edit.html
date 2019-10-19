@@ -1,0 +1,36 @@
+@layout("/common/_container.html"){
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <form id="editForm" class="form-horizontal">
+
+            <input type="hidden" id="id" name="id" value="${item.id}">
+
+            <div class="row">
+                <div class="col-sm-6 b-r">
+                           <#input id="commonId" name="主键" type="hidden"  underline="true"  value="${item.commonId}" />
+                           <#input id="upgrowthSituation" name="发育情况" type="text" dataOptions="required:true, validType:'number'" underline="true"  value="${item.upgrowthSituation}" />
+                           <#input id="married" name="婚否" type="text" dataOptions="required:true, validType:'number'" underline="true"  value="${item.married}" />
+                           <#input id="stature" name="身高" type="text" dataOptions="validType:'number'" underline="true"  value="${item.stature}" />
+                            <#input id="weight" name="体重" type="text"  underline=""  value="${item.weight}" />
+                </div>
+
+                <div class="col-sm-6">
+                            <#input id="bloodPressure" name="血压" type="text" dataOptions="validType:'number'" underline="true"  value="${item.bloodPressure}" />
+                            <#input id="commonIrritabilityHistory" name="既往病史" type="text" dataOptions="validType:'length[0, 1024]'" underline="true"  value="${item.commonIrritabilityHistory}" />
+                            <#input id="commonSignatureResponsiblePhysician" name="医师签名" type="text" dataOptions="validType:'length[0, 50]'" underline="true"  value="${item.commonSignatureResponsiblePhysician}" />
+                            <#input id="healthExaminationId" name="体检信息表id" type="text" dataOptions="validType:'number'"   value="${item.healthExaminationId}" />
+                </div>
+            </div>
+
+            <div class="row btn-group-m-t">
+                <div class="col-sm-10">
+                    <#button btnCss="info" name="提交" id="ensure" icon="fa-check" clickFun="ExaminationCommonInfoDlg.editSubmit()"/>
+                    <#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="ExaminationCommonInfoDlg.close()"/>
+                </div>
+            </div>
+        </form>
+
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/examination/examinationCommon/examinationCommon_info.js"></script>
+@}

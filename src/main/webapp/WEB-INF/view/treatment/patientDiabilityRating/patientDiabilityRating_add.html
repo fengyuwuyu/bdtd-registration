@@ -1,0 +1,41 @@
+@layout("/common/_container.html"){
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <form id="addForm" class="form-horizontal">
+
+            <input type="hidden" id="id" value="">
+
+            <div class="row">
+                <div class="col-sm-6 b-r">
+                            <#input id="id" name="主键" type="hidden"  />
+                            <#input id="userNo" name="编号" type="text" dataOptions="required:true, validType:'length[1, 20]'" />
+                            <#input id="userName" name="姓名" type="text" dataOptions="required:true, validType:'length[1, 50]'" />
+                            <#input id="orgId" name="单位" type="text"  />
+                            <#input id="orgName" name="单位" type="text" dataOptions="required:true, validType:'length[1, 50]'" />
+                            <#input id="userDuty" name="身份" type="text" dataOptions="validType:'length[0, 20]'" />
+                            <#input id="disabilityName" name="疾病名称" type="text" dataOptions="required:true, validType:'length[1, 64]'" />
+                </div>
+
+                <div class="col-sm-6">
+                            <#input id="apply" name="是否申请" type="text" dataOptions="required:true, validType:'number'" />
+                            <#input id="applyDate" name="申请时间" type="datetime" clickFun="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})" dataOptions="required:true" />
+                            <#input id="applyRating" name="申请等级" type="text" dataOptions="required:true, validType:'number'" />
+                            <#input id="disabilityResult" name="评残结果" type="text" dataOptions="validType:'number'" />
+                            <#input id="resultDate" name="结果时间" type="datetime" clickFun="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})"  />
+                            <#input id="createDate" name="创建时间" type="datetime" clickFun="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})" dataOptions="required:true" />
+                            <#input id="updateDate" name="更新时间" type="datetime" clickFun="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})" dataOptions="required:true" />
+                </div>
+            </div>
+
+            <div class="row btn-group-m-t">
+                <div class="col-sm-10">
+                    <#button btnCss="info" name="提交" id="ensure" icon="fa-check" clickFun="PatientDiabilityRatingInfoDlg.addSubmit()"/>
+                    <#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="PatientDiabilityRatingInfoDlg.close()"/>
+                </div>
+            </div>
+        </form>
+
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/treatment/patientDiabilityRating/patientDiabilityRating_info.js"></script>
+@}

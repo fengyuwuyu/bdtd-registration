@@ -1,22 +1,30 @@
 @layout("/common/_container.html"){
 <div class="ibox float-e-margins">
     <div class="ibox-content">
-        <div class="form-horizontal">
+        <form id="editForm" class="form-horizontal">
 
-            <input type="hidden" id="id" value="${item.id}">
+            <input type="hidden" id="id" name="id" value="${item.id}">
 
             <div class="row">
                 <div class="col-sm-6 b-r">
-                            <#input id="id" name="ID号" value="${item.id}" underline="true" disabled="disabled" />
-                            <#input id="medicalName" name="药品名称" value="${item.medicalName}" underline="true"/>
-                            <#input id="spell" name="拼音" value="${item.spell}" underline="true"/>
-                            <#select id="producer" name="生产商" underline="true" itemList="${producerDictList}" itemValue="${item.producer}"></#select>
+                             <#input id="medicalName" name="药品名称" underline="true" class="easyui-validatebox" dataOptions="required:true,validType:['length[1,64]']" value="${item.medicalName}"  />
+                            <#input id="spell" name="拼音" underline="true" class="easyui-validatebox" dataOptions="required:true,validType:['length[1, 32]']" value="${item.spell}" />
+                            <#input id="producer" name="生产企业" underline="true" dataOptions="required:true,validType:['length[1, 128]']" value="${item.producer}" />
+                            
                 </div>
 
                 <div class="col-sm-6">
-                            <#select id="specification" name="规格" underline="true" itemList="${specificationDictList}" itemValue="${item.specification}"></#select>
-                            <#select id="unit" name="单位" underline="true" itemList="${unitDictList}" itemValue="${item.unit}"></#select>
-                            <#input id="remark" name="备注" value="${item.remark}" />
+                <div class="input-group col-md-12">
+                                    <div class="input-group-btn" >
+                                        <button data-toggle="dropdown" class="btn btn-white dropdown-toggle" type="button">
+                                                            规格
+                                        </button>
+                                    </div>
+                                    <input id="specification" name="specification" class="easyui-combobox easyui-validatebox" data-options="required:true, valueField: 'id', panelHeight:'auto', maxPanelHeight: '150px', textField: 'name', url: '${ctxPath}/dictSelect/select?id=11'" value="${item.specification}" />   
+                                </div>
+                                <div class="hr-line-dashed"></div>
+                            <#select id="unit" name="单位" underline="true" itemList="${unitDictList}" dataOptions="required:true,validType:['comboxRequired']"  value="${item.unit}"></#select>
+                            <#input id="remark" name="备注" class="easyui-validatebox" dataOptions="validType:['length[0,128]']" value="${item.remark}" />
                 </div>
             </div>
 
@@ -26,7 +34,7 @@
                     <#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="MedicalInventoryStairInfoDlg.close()"/>
                 </div>
             </div>
-        </div>
+        </form>
 
     </div>
 </div>

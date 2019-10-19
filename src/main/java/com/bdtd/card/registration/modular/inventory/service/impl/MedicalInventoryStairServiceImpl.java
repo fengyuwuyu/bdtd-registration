@@ -9,11 +9,11 @@ import com.stylefeng.guns.modular.system.model.MedicalInventoryStair;
 
 /**
  * <p>
- * 药品一级库存表 服务实现类
+ * 药品目录管理 服务实现类
  * </p>
  *
  * @author lilei123
- * @since 2018-06-14
+ * @since 2018-06-28
  */
 @Service
 public class MedicalInventoryStairServiceImpl extends ServiceImpl<MedicalInventoryStairMapper, MedicalInventoryStair> implements IMedicalInventoryStairService {

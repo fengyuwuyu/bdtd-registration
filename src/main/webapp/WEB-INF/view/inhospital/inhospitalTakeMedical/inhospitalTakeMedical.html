@@ -1,0 +1,37 @@
+@layout("/common/_container.html"){
+<div class="row">
+    <div class="col-sm-12">
+        <div class="ibox float-e-margins">
+            <div class="ibox-content">
+                <div class="row row-lg">
+                    <div class="col-sm-12">
+                        <form id="searchForm" class="row">
+                            <div class="col-sm-3">
+                                <#NameCon id="condition" name="名称" />
+                            </div>
+                            <div class="col-sm-3">
+                                <#button name="搜索" icon="fa-search" clickFun="InhospitalTakeMedical.search()"/>
+                                <#button name="重置" icon="fa-refresh" clickFun="InhospitalTakeMedical.resetSearchForm()"/>
+                            </div>
+                        </form>
+                        <div class="hidden-xs" id="InhospitalTakeMedicalTableToolbar" role="group">
+                            @if(shiro.hasPermission("/inhospitalTakeMedical/openPrescription")){
+                                <#button name="处方详情" icon="fa-plus" clickFun="InhospitalTakeMedical.openPrescriptionDetail()"/>
+                            @}
+                            @if(shiro.hasPermission("/inhospitalTakeMedical/delete")){
+                                <#button name="删除" icon="fa-remove" clickFun="InhospitalTakeMedical.delete()" space="true"/>
+                            @}
+                            @if(shiro.hasPermission("/inhospitalTakeMedical/takeMedical")){
+                                <#button name="取药" icon="fa-edit" clickFun="InhospitalTakeMedical.openTakeMedical()" space="true"/>
+                            @}
+                        </div>
+                        <input type="hidden" id="queryType" name="queryType" value="${queryType}">
+                        <#table id="InhospitalTakeMedicalTable"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/inhospital/inhospitalTakeMedical/inhospitalTakeMedical.js"></script>
+@}

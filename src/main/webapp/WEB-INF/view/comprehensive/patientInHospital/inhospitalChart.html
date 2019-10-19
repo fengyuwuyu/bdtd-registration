@@ -1,0 +1,19 @@
+@layout("/common/_container.html"){
+<!-- <div class="row">
+    <div class="col-md-4">
+        <#button name="刷新" icon="fa-refresh" clickFun="PatientInHospitalComprehensiveQuery.drawChart()"/>
+    </div>
+</div> -->
+<div id="cylinderShape" style="height:700px"></div>
+<div class="row">
+    <div class="col-md-5">
+    </div>
+    <div class="col-md-2">
+        <#button name="关闭" icon="fa-close" clickFun="PatientInHospitalComprehensiveQuery.close()"/>
+    </div>
+    <div class="col-md-5">
+    </div>
+</div>
+<script src="${ctxPath}/static/js/echarts.js"></script>
+<script src="${ctxPath}/static/modular/comprehensive/patientInHospital/inhospitalChart.js"></script>
+@}

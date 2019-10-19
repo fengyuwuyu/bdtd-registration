@@ -1,0 +1,37 @@
+@layout("/common/_container.html"){
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <form id="editForm" class="form-horizontal">
+            <div class="row">
+                <div class="col-sm-12">
+	                <div class="col-sm-12">
+	                   <#input id="mainDiagnosis" name="主要诊断" readonly="readonly" value="${item.mainDiagnosis}" underline="true" />
+	                </div>
+	                <div class="col-sm-12">
+	                   <#input id="minorDiagnosis" name="次要诊断" readonly="readonly" value="${item.minorDiagnosis}" underline="true" />
+	                </div>
+	                <div class="col-sm-12">
+	                   <#input id="physicianName" name="诊断军医" readonly="readonly" value="${item.physicianName}" underline="true" />
+	                </div>
+	                <div class="col-sm-12">
+	                   <#input id="clinicDate" name="诊断时间" readonly="readonly" value="${item.clinicDate}" />
+	                </div>
+                </div>
+
+            </div>
+
+            <div class="row btn-group-m-t">
+                <div class="col-sm-12">
+                    <div class="col-sm-5"></div>
+                    <div class="col-sm-2">
+                        <#button btnCss="info" name="确定" id="ensure" icon="fa-check" clickFun="PatientTransferReportInfoDlg.close()"/>
+                    </div>
+                    <div class="col-sm-5"></div>
+                </div>
+            </div>
+        </form>
+
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/transfer/patientTransferReport/patientTransferReport_info.js"></script>
+@}

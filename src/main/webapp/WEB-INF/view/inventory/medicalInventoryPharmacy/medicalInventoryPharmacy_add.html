@@ -1,0 +1,35 @@
+@layout("/common/_container.html"){
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <form id="addForm" class="form-horizontal">
+
+            <input type="hidden" id="id" name="id" >
+            <input type="hidden" id="parentId" name="parentId" />
+
+            <div class="row">
+                <div class="col-sm-6 b-r">
+                      <#input id="medicalNameSearch" name="药品名称" class="easyui-combogrid" underline="true" dataOptions="required:true, validType:'length[1, 64]'" style="width:283px;height:34px" />
+                      <#input id="produceBatchNum" name="生产批号"  underline="true" dataOptions="required:true, validType:'length[1, 32]'" />
+                      <#input id="produceDate" name="生产日期" underline="true" type="date" clickFun="laydate({istime: false, format: 'YYYY-MM-DD'})" />
+                      <#input id="expireDate" name="有效期至" dataOptions="required:true" type="date" clickFun="laydate({istime: false, format: 'YYYY-MM-DD'})" />
+                </div>
+
+                <div class="col-sm-6">
+                      <#input id="price" name="价格"   dataOptions="required:true, validType:'number'" underline="true"  />
+                      <#input id="inventoryNum" name="在库数量"  underline="true" value="0"  />
+                      <#select id="inboundChannel" name="进货渠道"  underline="true" dataOptions="required:true, validType:'number'" itemList="${inboundChannelDictList}" ></#select>
+                </div>
+            </div>
+
+            <div class="row btn-group-m-t">
+                <div class="col-sm-10">
+                    <#button btnCss="info" name="提交" id="ensure" icon="fa-check" clickFun="MedicalInventoryPharmacyInfoDlg.addSubmit()"/>
+                    <#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="MedicalInventoryPharmacyInfoDlg.close()"/>
+                </div>
+            </div>
+        </form>
+
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/inventory/medicalInventoryPharmacy/medicalInventoryPharmacy_info.js"></script>
+@}

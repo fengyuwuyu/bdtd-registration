@@ -1,0 +1,70 @@
+@layout("/common/_container.html"){
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <form id="editForm" class="form-horizontal">
+            <input type="hidden" name="id" value="${item.id}">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="col-sm-4">
+                         <#input id="userNo" name="编号" readonly="readonly" dataOptions="required:true, validType:'length[1, 50]'"  value="${patientInfo.userNo}" />        
+                    </div>
+                    <div class="col-sm-4">
+                       <#input id="userName" name="姓名" readonly="readonly" dataOptions="required:true, validType:'length[1, 50]'"  value="${patientInfo.userName}" />
+                    </div>
+                    <div class="col-sm-4">
+                       <#input id="orgName" name="单位" readonly="readonly" dataOptions="validType:'length[0, 50]'"  value="${patientInfo.orgName}" />
+                    </div>      
+                    <div class="col-sm-4">
+                       <#input id="transferDate" name="转诊时间" value="${item.transferDate}" type="date" clickFun="laydate({istime: false, format: 'YYYY-MM-DD'})"  />
+                    </div>
+                    <div class="col-sm-4">
+                       <#input id="inHospitalDate" name="住院日期"  value="${item.inHospitalDate}" type="date" clickFun="laydate({istime: false, format: 'YYYY-MM-DD'})" />
+                    </div>
+                    <div class="col-sm-4">
+                       <#input id="leaveHospitalDate" name="出院日期"  value="${item.leaveHospitalDate}" type="date" clickFun="laydate({istime: false, format: 'YYYY-MM-DD'})" />
+                    </div>
+                    <div class="col-sm-12">
+                       <#input id="hospitalDiagnosis" name="医院诊断" dataOptions="required: true, validType:'length[0, 128]'"  value="${item.hospitalDiagnosis}" />        
+                    </div>
+                    <div class="col-sm-12">
+                       <#input id="operationName" name="手术名称" dataOptions="validType:'length[0, 128]'"  value="${item.operationName}" />
+                    </div>
+                    <div class="col-sm-12">
+                       <#select id="disposition" name="去向" dataOptions="required: true, validType:'length[0, 128]'" itemList="${dispositionDictList}" value="${item.disposition}" />
+                    </div>
+                    <div class="col-sm-12">
+                       <#input id="treatmentVisit" name="治疗随访" dataOptions="validType:'length[0, 256]'"  value="${item.treatmentVisit}" />
+                    </div>
+                    <div class="col-sm-3">
+                       <#input id="inHospitalInfoDept" name="科室" dataOptions="validType:'length[0, 64]'"  value="${item.inHospitalInfoDept}" />
+                    </div>
+                    <div class="col-sm-3">
+                        <#input id="inHospitalInfoSection" name="病区" dataOptions="validType:'length[0, 64]'"  value="${item.inHospitalInfoSection}" />
+                    </div>
+                    <div class="col-sm-3">
+                        <#input id="inHospitalInfoBed" name="床位" dataOptions="validType:'length[0, 64]'"  value="${item.inHospitalInfoBed}" />
+                    </div>
+                    <div class="col-sm-3">
+                        <#input id="inHospitalInfoPhysician" name="医师" dataOptions="validType:'length[0, 64]'"  value="${item.inHospitalInfoPhysician}" />
+                    </div>
+                    <div class="col-sm-6">
+                        <#input id="escortPeople" name="陪护人" dataOptions="validType:'length[0, 16]'"  value="${item.escortPeople}" />
+                    </div>
+                    <div class="col-sm-6">
+                        <#input id="telephone" name="联系方式" dataOptions="validType:'length[0, 32]'"  value="${item.telephone}" />
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="row btn-group-m-t">
+                <div class="col-sm-10">
+                    <#button btnCss="info" name="关闭" id="ensure" icon="fa-check" clickFun="PatientTransferReportInfoDlg.close()"/>
+                </div>
+            </div>
+        </form>
+
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/transfer/patientTransferReport/patientTransferReport_info1.js"></script>
+@}

@@ -1,0 +1,62 @@
+@layout("/common/_container.html"){
+<div class="row">
+	<div class="col-sm-12">
+		<div class="ibox float-e-margins">
+			<div class="ibox-content">
+				<div class="row row-lg">
+					<div class="col-sm-12">
+						<div id="inHospital" class="easyui-tabs" style="width: 100%; height: 490px">
+							<div title="待住院人员" class="row" style="width: 90%; padding: 0;margin: 0; display: none;">
+                                 <div class="col-sm-12">
+    								<#button name="删除" icon="fa-remove" clickFun="PatientInHospitalInHospital.delete()" />
+								    <#table id="PatientInfoTable" />
+								 </div>
+                                 <div class="col-sm-10">
+                                     <#button btnCss="info" name="提交" id="ensure" icon="fa-check" clickFun="PatientInHospitalInHospital.submitPreInHospital()" />
+                                     <#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="PatientInHospitalInHospital.close()" />
+                                 </div>
+							</div>
+							<div title="转院人员" class="row" style="width: 90%; padding: 0; display: none;">
+							   <div class="col-sm-12">
+							     <form id="searchUserForm" class="col-sm-12">
+                                    <#input id="userName" name="按姓名检索" underline="true" class="easyui-combogrid" dataOptions="required:true" />
+                                </form>
+                                <form id="transferPatientForm" class="col-sm-12">
+                                    <input type="hidden" id="id" name="id" /> 
+                                    <input type="hidden" name="orgId" /> 
+                                    <input type="hidden" id="userNo" name="userNo" />
+                                    <div class="row">
+                                        <div class="col-sm-6 b-r">
+                                            <#input id="userName" name="姓名" underline="true" dataOptions="required:true" readonly="readonly" />
+                                            <#input id="orgName" name="单位" underline="true" readonly="readonly" />
+                                            <#input id="age" name="年龄" readonly="readonly" dataOptions="required:true, validType:'number'" />
+                                        </div>
+
+                                        <div class="col-sm-6">
+                                            <#select id="userSex" name="性别" underline="true" readonly="readonly" dataOptions="required:true,editable:false">
+                                                <option value="男">男</option>
+                                                <option value="女">女</option>
+                                            </#select>
+                                            <#input id="userDuty" name="身份" underline="true" readonly="readonly" dataOptions="required:true" />
+                                            <#input id="enrolDate" name="入伍时间" readonly="readonly" type="date" clickFun="laydate({istime: true, format: 'YYYY-MM-DD'})" />
+                                        </div>
+                                    </div>
+                                </form>
+
+                                <div class="btn-group-m-t col-sm-10">
+                                    <#button btnCss="info" name="提交" id="ensure" icon="fa-check" clickFun="PatientInHospitalInHospital.submitTransferPatient()" />
+                                    <#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="PatientInHospitalInHospital.close()" />
+                                </div>
+							   </div>
+								
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<script src="${ctxPath}/static/modular/common/patientSearchCommon.js"></script>
+<script src="${ctxPath}/static/modular/inhospital/patientInHospital/patientInHospital_inHospital.js"></script>
+@}

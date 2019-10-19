@@ -1,0 +1,33 @@
+@layout("/common/_container.html"){
+<div class="row">
+    <div class="col-sm-12">
+        <div class="ibox float-e-margins">
+            <div class="ibox-content">
+                <div class="row row-lg">
+                    <div class="col-sm-12">
+                        <form id="searchForm" class="row">
+                            <div class="col-sm-3">
+                                <#SelectCon id="depSerial" name="报警部门" itemList="${alertDepItemList}" emptyValue="true" />
+                            </div>
+                            <div class="col-sm-3">
+                                <#button name="搜索" icon="fa-search" clickFun="Fever.search()"/>
+                                <#button name="重置" icon="fa-refresh" clickFun="Fever.resetSearchForm()"/>
+                            </div>
+                        </form>
+                        <div class="hidden-xs" id="FeverTableToolbar" role="group">
+                            @if(shiro.hasPermission("/alertFever/updateConfig")){
+                                <#button name="参数设置" icon="fa-plus" clickFun="Fever.openUpdateConfig()"/>
+                            @}
+                            @if(shiro.hasPermission("/alertFever/detail")){
+                                <#button name="发热详情" icon="fa-detail" clickFun="Fever.openDetail()"/>
+                            @}
+                        </div>
+                        <#table id="FeverTable"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/alert/fever/fever.js"></script>
+@}

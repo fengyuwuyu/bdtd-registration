@@ -1,0 +1,70 @@
+@layout("/common/_container.html"){
+<div class="row">
+    <div class="col-sm-12">
+        <div class="ibox float-e-margins">
+            <div class="ibox-content">
+                <div class="row row-lg">
+                    <div class="col-sm-12">
+                        <form id="searchForm" class="row">
+                            <div class="col-sm-12">
+                                <div class="col-sm-2">
+                                    <#NameCon id="userName" name="姓名" />
+                                </div>
+                                <div class="col-sm-2">
+    <#SelectCon id="orgId" name="单位" itemList="${dtDepItemList}" />
+                                </div>
+                                 <div class="col-sm-2">
+                                    <#select id="userDuty" name="身份" itemList="${userDutyItemList}" emptyValue="true" />
+                                 </div>
+                                 <div class="col-sm-2">
+                                    <#TimeCon id="enrolDate" name="入伍时间" isTime="false" pattern="YYYY-MM-DD" />
+                                 </div>
+                                <div class="col-sm-2">
+                                    <#select id="disposition" name="转诊医院" itemList="${dispositionDictList}" emptyValue="true" />
+                                </div>
+                                <div class="col-sm-2">
+                                    <#SelectCon id="status" name="状态">
+                                        <option></option>
+                                        <option value="3">未回报</option>
+                                        <option value="4">已回报</option>
+                                    </#SelectCon>
+                                </div>
+                            </div>
+                            <div class="col-sm-12">
+                                <div class="col-sm-2">
+                                    <#TimeCon id="transferBeginDate" name="转诊时间起" isTime="false" pattern="YYYY-MM-DD" />
+                                </div>
+                                <div class="col-sm-2">
+                                    <#TimeCon id="transferEndDate" name="转诊时间止" isTime="false" pattern="YYYY-MM-DD" />
+                                </div>
+                                <div class="col-sm-2">
+                                    <#select id="disposition" name="去向" itemList="${dispositionDictList}" emptyValue="true" />
+                                </div>
+                                <div class="col-sm-2">
+                                    <#TimeCon id="leaveHospitalBeginDate" name="出院开始时间" isTime="false" pattern="YYYY-MM-DD" />
+                                </div>
+                                <div class="col-sm-2">
+                                    <#TimeCon id="leaveHospitalEndDate" name="出院结束时间" isTime="false" pattern="YYYY-MM-DD" />
+                                </div>
+                                <div class="col-sm-2">
+                                    <#button name="搜索" icon="fa-search" clickFun="PatientTransferReport.search()" />
+                                    <#button name="重置" icon="fa-refresh" clickFun="PatientTransferReport.clearSearchForm()" />
+                                </div>
+                            </div>
+                        </form>
+                         <div class="hidden-xs" id="PatientInHospitalTableToolbar" role="group">
+                             <#button name="统计图" icon="fa-bar-chart" clickFun="PatientTransferReport.openTransferChart()"/>
+                            @if(shiro.hasPermission("/patientDisabilityRating/exportExcel")){
+                             <#button name="导出" icon="fa-print" clickFun="PatientTransferReport.exportExcel()" />
+                             @}
+                        </div>
+                        <#table id="PatientTransferReportTable"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/common/dtDepCommon.js"></script>
+<script src="${ctxPath}/static/modular/transfer/patientTransferReport/patientTransferReport.js"></script>
+@}

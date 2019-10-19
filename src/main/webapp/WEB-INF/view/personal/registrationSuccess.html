@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>挂号成功</title>
+
+  <link rel="stylesheet" type="text/css" href="${ctxPath}/static/css/common-reset.css">
+  <link rel="stylesheet" type="text/css" href="${ctxPath}/static/css/border.css">
+  <link rel="stylesheet" type="text/css" href="${ctxPath}/static/css/bootstrap.min.bak.css">
+  <link rel="stylesheet" type="text/css" href="${ctxPath}/static/css/personal.css">
+
+  <style>
+    /* #container {
+         height: 100%;
+         width: 100%;
+         background-color: #cacaca;
+     }*/
+    #container {
+      font-family:"Microsoft YaHei";
+    }
+    #header{
+      height: 0;
+      width: 100%;
+      padding-bottom: 9.45%;
+      background: url("${ctxPath}/static/img/personal/header.png") no-repeat;
+      -moz-background-size:100% 100%;
+      background-size:100% 100%;
+    }
+
+    #content {
+      position: relative;
+      height: 0;
+      width: 100%;
+      padding-bottom: 64.53%;
+      background: url("${ctxPath}/static/img/personal/content.png") no-repeat;
+      -moz-background-size:100% 100%;
+      background-size:100% 100%;
+      box-sizing: border-box;
+    }
+
+    #footer {
+      height: 0;
+      width: 100%;
+      line-height: 77px;
+      padding-bottom: 77px;
+      background: url("${ctxPath}/static/img/personal/footer.png") no-repeat;
+      -moz-background-size:100% 100%;
+      background-size:100% 100%;
+      font-size: 26px;
+      color: #eeeeee;
+      box-sizing: border-box;
+    }
+
+    #footer-weather {
+      float: left;
+      padding-left: 53px;
+    }
+
+    #footer-time {
+      float: right;
+      padding-right: 53px;
+    }
+
+    #footer-weather img {
+      padding: 0 8px;
+    }
+
+    .slot-card {
+      position: relative;
+      width: 774px;
+      height: 299px;
+      padding-top: 256px;
+    }
+
+    .slot-card img {
+      display: inline-block;
+      margin-left: 290px;
+    }
+  </style>
+</head>
+<body>
+<input type="hidden" id="userNo" value="${userNo}">
+<div id="container">
+  <div id="header"></div>
+  <div id="content">
+    <div class="slot-card">
+      <a href="#" onclick="">
+        <img src="${ctxPath}/static/img/personal/registration/registration_success.png">
+      </a>
+    </div>
+    
+    <div id="btn-footer">
+        <div class="btn-item-large cancel-btn">
+            <a href="javascript:void(0)" onclick="Personal.goHomePage();">
+                <img src="${ctxPath}/static/img/personal/btn/btn_quit.png">
+            </a>
+        </div>
+        <div class="btn-item-large submit-btn">
+            <a href="javascript:void(0)" onclick="Personal.goRegistration();">
+                <img src="${ctxPath}/static/img/personal/btn/btn_return.png">
+            </a>
+        </div>
+    </div>
+  </div>
+  <div id="footer">
+    <div id="footer-time">
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript" src="${ctxPath}/static/modular/personal/commonPersonal.js"></script>
+<script type="text/javascript" src="${ctxPath}/static/modular/personal/showDate.js"></script>
+<script type="text/javascript">
+    window.onload = function() {
+        setTimeout(() => {
+            window.open(Personal.contextPath + "/personal/homePage", "_self");
+        }, 30000);
+    };
+</script>
+</body>
+</html>

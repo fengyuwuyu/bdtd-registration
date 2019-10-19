@@ -1,0 +1,36 @@
+@layout("/common/_container.html"){
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <form id="editForm" class="form-horizontal">
+
+            <input type="hidden" id="id" name="id" value="${id}">
+            <input type="hidden" name="status" value="9">
+
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="input-group">
+                                    <div class="input-group-btn" >
+                                        <button data-toggle="dropdown" style="height:94px" class="btn btn-white dropdown-toggle" type="button">
+                                                            出院诊断
+                                        </button>
+                                    </div>
+                                    <textarea id="outDiagnosis" name="outDiagnosis" class="form-control easyui-validatebox" underline="true" data-options="required:true, validType:'length[1, 512]'" rows="4" >${item.outDiagnosis}</textarea>
+                                </div>
+                </div>
+                <div class="col-sm-12">
+                    <#input id="leaveHospitalDate" name="出院时间" type="date" dataOptions="required:true" clickFun="laydate({istime: false, format: 'YYYY-MM-DD'})" value="${item.leaveHospitalDate}"  />
+                </div>
+            </div>
+
+            <div class="row btn-group-m-t">
+                <div class="col-sm-10">
+                    <#button btnCss="info" name="提交" id="ensure" icon="fa-check" clickFun="PatientInHospitalInfoDlg.editSubmit()"/>
+                    <#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="PatientInHospitalInfoDlg.close()"/>
+                </div>
+            </div>
+        </form>
+
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/inhospital/patientInHospital/patientInHospital_info.js"></script>
+@}

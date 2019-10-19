@@ -1,0 +1,32 @@
+@layout("/common/_container.html"){
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <form id="addForm" class="form-horizontal">
+
+            <input type="hidden" name="usageStepId" value="${usageStepId}" />
+
+            <div class="row">
+                <div class="col-sm-6 b-r">
+                            <#select id="medicineId" name="药品"  underline="true" dataOptions="required:true" itemList="${prescriptionMedicalItemList}" />
+                            <#input id="amount" name="数量"  underline="true" dataOptions="required:true, validType:'amount'" />
+                            <#select id="doseWay" name="给药途径" itemList="${doseWayDictList}"  dataOptions="required:true, validType:'number'" />
+                </div>
+
+                <div class="col-sm-6">
+                            <#select id="dosage" name="用量" itemList="${dosageDictList}"  underline="true" dataOptions="required:true, validType:'number'" />
+                            <#select id="period" name="次/天" itemList="${periodDictList}" dataOptions="required:true, validType:'number'" />
+                </div>
+            </div>
+
+            <div class="row btn-group-m-t">
+                <div class="col-sm-10">
+                    <#button btnCss="info" name="提交" id="ensure" icon="fa-check" clickFun="PatientUsageStepMedicalInfoDlg.addSubmit()"/>
+                    <#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="PatientUsageStepMedicalInfoDlg.close()"/>
+                </div>
+            </div>
+        </form>
+
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/treatment/patientUsageStepMedical/patientUsageStepMedical_info.js"></script>
+@}

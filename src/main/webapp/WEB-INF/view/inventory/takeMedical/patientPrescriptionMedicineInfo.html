@@ -1,0 +1,24 @@
+@layout("/common/_container.html"){
+<div class="row">
+    <div class="col-sm-12">
+        <div class="ibox float-e-margins">
+            <div class="ibox-content">
+                <div class="row row-lg">
+                    <div class="col-sm-12">
+                        <input type="hidden" id="patientInfoId" value="${patientInfoId}">
+                        <#table id="PatientPrescriptionMedicineInfoTable"/>
+                    </div>
+                    @if (status == 3) {
+                    <div class="col-sm-12">
+                        <div class="hidden-xs" id="PatientInHospitalTableToolbar" role="group">
+                                <#button name="取药" icon="fa-detail" clickFun="PatientPrescriptionMedicineInfo.takeMedical()"/>
+                        </div>
+                    </div>
+                    @}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/inventory/takeMedical/patientPrescriptionMedicineInfo.js"></script>
+@}

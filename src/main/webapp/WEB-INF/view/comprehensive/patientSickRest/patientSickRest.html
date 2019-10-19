@@ -1,0 +1,64 @@
+@layout("/common/_container.html"){
+<div class="row">
+    <div class="col-sm-12">
+        <div class="ibox float-e-margins">
+            <div class="ibox-content">
+                <div class="row row-lg">
+                    <div class="col-sm-12">
+                        <form id="searchForm" class="row">
+                            <div class="col-sm-2">
+                                <#NameCon id="userName" name="姓名" />
+                            </div>
+                            <div class="col-sm-2">
+    <#SelectCon id="orgId" name="单位" itemList="${dtDepItemList}" />
+                            </div>
+                            <div class="col-sm-2">
+                                <#select id="userDuty" name="身份" itemList="${userDutyItemList}" emptyValue="true" />
+                            </div>
+                            <div class="col-sm-2">
+                                <#TimeCon id="enrolDate" name="入伍时间" isTime="false" pattern="YYYY-MM-DD" />
+                            </div>
+                            <div class="col-sm-2">
+                                <#SelectCon id="sickRestType" name="病休方式" itemList="${sickRestTypeItemList}" emptyValue="true" />
+                            </div>
+                            <div class="col-sm-2">
+                                <#SelectCon id="sickRestDay" name="天数" itemList="${sickRestDayItemList}" emptyValue="true" />
+                            </div>
+                            <div class="col-sm-2">
+                               <#SelectCon id="mainDiagnosis" name="主要诊断" itemList="${mainDiagnosisDictList}" emptyValue="true" />
+                            </div>
+                            <div class="col-sm-2">
+                               <#TimeCon id="beginDate" name="开始时间起" isTime="false" pattern="YYYY-MM-DD" />
+                            </div>
+                            <div class="col-sm-2">
+                               <#TimeCon id="endDate" name="开始时间止" isTime="false" pattern="YYYY-MM-DD" />
+                            </div>
+                            <div class="col-sm-2">
+                               <#select id="status" name="状态" emptyValue="true">
+                                   <option value="1">病休中</option>
+                                   <option value="2">已康复</option>
+                               </#select>
+                            </div>
+                            <div class="col-sm-2">
+                                <#button name="搜索" icon="fa-search" clickFun="PatientInHospitalComprehensiveQuery.search()" />
+                                <#button name="重置" icon="fa-refresh" clickFun="PatientInHospitalComprehensiveQuery.resetSearchForm()" />
+                            </div>
+                        </form>
+                         <div class="hidden-xs" id="PatientInHospitalTableToolbar" role="group">
+                            @if(shiro.hasPermission("/comprehensive/sickRestChart")){
+                             <#button name="统计图" icon="fa-bar-chart" clickFun="PatientInHospitalComprehensiveQuery.openSickRestChart()"/>
+                             @}
+                            @if(shiro.hasPermission("/patientDisabilityRating/exportExcel")){
+                             <#button name="导出" icon="fa-print" clickFun="PatientInHospitalComprehensiveQuery.exportExcel()" space="true"/>
+                             @}
+                        </div>
+                        <#table id="PatientSickRestTable"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/common/dtDepCommon.js"></script>
+<script src="${ctxPath}/static/modular/comprehensive/patientSickRest/patientSickRest.js"></script>
+@}

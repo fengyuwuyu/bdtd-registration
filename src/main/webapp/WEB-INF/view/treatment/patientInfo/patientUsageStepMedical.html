@@ -1,0 +1,19 @@
+@layout("/common/_container.html"){
+<div class="row">
+    <div class="col-sm-12">
+        <div class="ibox float-e-margins">
+            <div class="ibox-content">
+                <div class="row row-lg">
+                    <div class="col-sm-12">
+                        <form id="searchForm" class="row">
+                            <input type="hidden" id="usageStepId" name="usageStepId" value="${usageStepId}">
+                        </form>
+                        <#table id="PatientUsageStepMedicalTable"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/treatment/patientUsageStepMedical/patientUsageStepMedical.js"></script>
+@}

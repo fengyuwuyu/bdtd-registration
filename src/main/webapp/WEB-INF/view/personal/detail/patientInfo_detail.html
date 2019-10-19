@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>体检信息详情</title>
+
+  <link rel="stylesheet" type="text/css" href="${ctxPath}/static/css/common-reset.css">
+  <link rel="stylesheet" type="text/css" href="${ctxPath}/static/css/border.css">
+  <link rel="stylesheet" type="text/css" href="${ctxPath}/static/css/tab.css">
+  <link rel="stylesheet" type="text/css" href="${ctxPath}/static/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="${ctxPath}/static/css/flex-layout.css">
+  <link rel="stylesheet" type="text/css" href="${ctxPath}/static/css/personal.css">
+
+  <style>
+    /* #container {
+         height: 100%;
+         width: 100%;
+         background-color: #cacaca;
+     }*/
+    #container {
+      font-family:"Microsoft YaHei";
+    }
+    #header{
+      height: 0;
+      width: 100%;
+      padding-bottom: 9.45%;
+      background: url("${ctxPath}/static/img/personal/header.png") no-repeat;
+      -moz-background-size:100% 100%;
+      background-size:100% 100%;
+    }
+
+    #content {
+      position: relative;
+      height: 0;
+      width: 100%;
+      padding-bottom: 64.53%;
+      background: url("${ctxPath}/static/img/personal/content.png") no-repeat;
+      -moz-background-size:100% 100%;
+      background-size:100% 100%;
+      box-sizing: border-box;
+    }
+
+    .info-bg {
+      position: absolute;
+      width: 91.7%;
+      height: 92.18%;
+      top: 30px;
+      left: 53px;
+      /*background-color: #c4e2c7;*/
+      background-image: url("${ctxPath}/static/img/personal/list_bg.png");
+      -moz-background-size:100% 100%;
+      background-size:100% 100%;
+      border-radius: 12px;
+      box-shadow: 5px 5px 10px #5fa0c4;
+      color: rgb(38, 95, 145);
+    }
+
+    #footer {
+      height: 0;
+      width: 100%;
+      line-height: 77px;
+      padding-bottom: 77px;
+      background: url("${ctxPath}/static/img/personal/footer.png") no-repeat;
+      -moz-background-size:100% 100%;
+      background-size:100% 100%;
+      font-size: 26px;
+      color: #eeeeee;
+      box-sizing: border-box;
+    }
+
+    #footer-weather {
+      float: left;
+      padding-left: 53px;
+    }
+
+    #footer-time {
+      float: right;
+      padding-right: 53px;
+    }
+
+    #footer-weather img {
+      padding: 0 8px;
+    }
+
+    .title {
+      height: 80px;
+      line-height: 80px;
+      width: 100%;
+      text-align: center;
+      font-weight: bold;
+      font-size: 36px;
+      color: rgb(38, 95, 145);
+    }
+
+    .tab {
+      height: 370px;
+      width: 98%;
+      padding-left: 25px;
+      box-sizing: border-box;
+    }
+
+    .btn-footer {
+      position: relative;
+      width: 100%;
+      height: 80px;
+      bottom: -30px;
+      right: 20px;
+    }
+
+    .btn-item {
+      position: relative;
+      float: right;
+      /*padding: 0 25px 10px 0;*/
+    }
+
+    .conclusion {
+      font-size: 22px;
+    }
+    
+    .row-detail {
+        font-size: 22px;
+    }
+
+    img{
+      border-radius: 10px;
+    }
+  </style>
+</head>
+<body>
+<input type="hidden" id="userNo" value="${userNo}">
+<div id="container">
+  <div id="header"></div>
+  <div id="content">
+    <div class="info-bg">
+      <div class="title">
+        <span>门诊信息详情</span>
+      </div>
+      
+      <div class="row-detail">
+          <span class="col-detail-6 underline">就诊次数: ${inTreatmentCount}</span>
+          <span class="col-detail-6 underline">过敏史: ${item.irritabilityHistory}</span>
+      </div>
+      
+      <div class="row-detail">
+          <span class="col-detail-6 underline">病情摘要: ${item.abstractIllness}</span>
+      </div>
+      <div class="row-detail">
+          <span class="col-detail-6 underline">次要诊断: ${item.minorDiagnosis}</span>
+      </div>
+      @if (item.handleType != 0) {
+	      <div class="tab">
+	        <div class="tab-menu">
+	          <ul>
+	            <li class="active">处方</li>
+	              @if (tool.checkHandleType(item.handleType, 2)) {
+    	            <li>门诊处置</li>
+	              @}
+	              @if (tool.checkHandleType(item.handleType, 4)) {
+    	            <li>放射检查</li>
+	              @}
+	              @if (tool.checkHandleType(item.handleType, 32)) {
+    	            <li>病休</li>
+	              @}
+	              @if (tool.checkHandleType(item.handleType, 64)) {
+    	            <li>理疗</li>
+	              @}
+	          </ul>
+	        </div>
+	        <div class="tab-box">
+	           <div class="active">
+                   <span class="row-detail">
+                     <span class="col-detail-6 underline">备注： ${prescriptionInfo.remark}</span>
+                   </span>
+                   <span class="row-detail">
+                      <#table id="PatientPrescriptionMedicineInfoTable"/>
+                   </span>
+               </div>
+	           @if (tool.checkHandleType(item.handleType, 2)) {
+                   <div class="active">
+                   <span class="row-detail">
+                     <#table id="PatientMedicalUsageStepTable"/>
+                   </span>
+                   <span class="row-detail">
+                      <#table id="PatientPrescriptionMedicineInfoTable"/>
+                   </span>
+               </div>
+               @}
+               @if (tool.checkHandleType(item.handleType, 4)) {
+                 <li>放射检查</li>
+               @}
+               @if (tool.checkHandleType(item.handleType, 32)) {
+                 <li>病休</li>
+               @}
+               @if (tool.checkHandleType(item.handleType, 64)) {
+                 <li>理疗</li>
+               @}
+	        </div>
+	      </div>
+      @}
+      
+      <div class="btn-footer">
+        <div class="btn-item btn-return">
+          <a href="#" onclick="Personal.goExaminationRecord();">
+            <img src="${ctxPath}/static/img/personal/btn/btn_return_list.png">
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="footer">
+    <div id="footer-time">
+    </div>
+  </div>
+</div>
+<script type="text/javascript" src="${ctxPath}/static/js/tab.js"></script>
+<script type="text/javascript" src="${ctxPath}/static/modular/personal/commonPersonal.js"></script>
+<script type="text/javascript" src="${ctxPath}/static/modular/personal/showDate.js"></script>
+<script type="text/javascript">
+  switchTab.listen('.tab');
+</script>
+</body>
+</html>

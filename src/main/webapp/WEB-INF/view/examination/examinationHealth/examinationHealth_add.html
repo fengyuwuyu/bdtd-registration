@@ -1,0 +1,309 @@
+@layout("/common/_container.html"){
+
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <form id="addForm" name="addForm" class="form-horizontal">
+
+            <input type="hidden" id="id" value="">
+            <input type="hidden" name="userNo">
+            <input type="hidden" name="age">
+            <input type="hidden" name="userSex">
+            <input type="hidden" name="userDuty">
+            <input type="hidden" name="orgId">
+            <input type="hidden" name="orgName">
+            <input type="hidden" name="enrolDate">
+            <input type="hidden" name="oldFile" id="oldFile">
+
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="col-sm-4">
+                        <#input id="userName" name="姓名" type="text" dataOptions="required:true, validType:'length[1, 50]'" />
+                    </div>
+                    <div class="col-sm-4">
+                        <#input id="examinationDate" name="体检日期" type="date" clickFun="laydate({istime: false, format: 'YYYY-MM-DD'})" dataOptions="required:true" value="${now}"  />
+                    </div>
+                    <div class="col-sm-4">
+                        <#select id="examinationType" name="体检类别" type="text" dataOptions="required:true, validType:'number'" itemList="${examinationTypeDictList}" emptyValue="true" />
+                    </div>
+                </div>
+                <hr class="col-sm-12">
+                <div class="h4">
+                                            体检信息
+                </div>
+                <div class="col-sm-12">
+                    <div id="examinationTabs" class="easyui-tabs" style="width:100%;height:385px;">   
+                    
+					    <div title="一般检查" style="padding:20px;display:none;">   
+			                    <div class="col-sm-2">
+			                        <#select id="upgrowthSituation" name="发育情况" type="text" dataOptions="required:true, validType:'number'" itemList="${upgrouthSituationItemList}" />
+			                    </div>
+			                    <div class="col-sm-5">
+			                        <#input id="stature" name="身高" type="text" dataOptions="validType:'number'" value="cm" />
+			                    </div>
+			                    <div class="col-sm-5">
+			                        <#input id="weight" name="体重" type="text" value="kg" />
+			                    </div>
+			                    <div class="col-sm-6">
+			                        <#input id="bloodPressure" name="血压" type="text" dataOptions="validType:'length[0, 64]'" />
+			                    </div>                    
+			                    <div class="col-sm-3">
+			                        <#select id="bloodType" name="血型" type="text" dataOptions="validType:'number'" itemList="${bloodTypeItemList}" />
+			                    </div>                    
+			                    <div class="col-sm-3">
+			                        <#select id="married" name="婚否" type="text" dataOptions="validType:'number'" itemList="${marriedItemList}" />
+			                    </div>                    
+			                <div class="col-sm-12">
+			                    <#input id="psychology" name="心理检测" type="text" dataOptions="validType:'length[0, 256]'" />
+			                </div>
+			                <div class="col-sm-12">
+			                    <#input id="irritabilityHistory" name="过敏史" style="color:red;" type="text" dataOptions="validType:'length[0, 1024]'" />
+			                </div>
+			                <div class="col-sm-12">
+			                    <#input id="commonIrritabilityHistory" name="既往病史" type="text" dataOptions="validType:'length[0, 1024]'" />
+			                </div>
+			                <br class="col-sm-12">
+			                <div class="col-sm-12">
+			                    <#select itemList="${doctorItemList}" emptyValue="true" id="commonSignatureResponsiblePhysician" name="医师签名" type="text" dataOptions="validType:'length[0, 50]'" />
+			                </div>
+					    </div>   
+					    
+					    
+					    <div title="外科" style="overflow:auto;padding:20px;display:none;">   
+					        <div class="col-sm-12">
+                                <#input id="surgeryIrritabilityHistory" name="既往病史" type="text" dataOptions="validType:'length[0, 1024]'" />
+					        </div>    
+					        <div class="col-sm-12">
+                                <#input id="surgeryCheckInfo" name="检查所见" type="text" dataOptions="validType:'length[0, 1024]'"  />
+					        </div>    
+					        <div class="col-sm-12">
+                                <#input id="surgeryDiagnosis" name="诊断" type="text" dataOptions="validType:'length[0, 512]'" />
+					        </div>    
+					        <div class="col-sm-12">
+                                <#input id="surgeryConclusion" name="结论" type="text" dataOptions="validType:'length[0, 512]'" />
+					        </div>    
+                            <br class="col-sm-12">
+					        <div class="col-sm-12">
+                                <#select itemList="${doctorItemList}" emptyValue="true" id="surgerySignatureResponsiblePhysician" name="医师签名" type="text" dataOptions="validType:'length[0, 50]'" />
+					        </div>    
+					    </div> 
+					    
+					      
+					    <div title="内科" style="padding:20px;display:none;">   
+					       <div class="col-sm-4">
+					           <div class="input-group col-md-12">
+                                    <div class="input-group-btn" >
+                                        <button data-toggle="dropdown" class="btn btn-white dropdown-toggle" type="button">
+                                                                                                            <b>心电图</b>
+                                        </button>
+                                    </div>
+                                    <input id="ecgPath" name="ecgPath" class="form-control easyui-validatebox" />
+                                </div>
+					       </div>      
+                           <div class="col-sm-4">
+                                <#input id="ecgDesc" name="心电图" class="form-control easyui-validatebox" />
+                           </div>       
+					       <div class="col-sm-4">
+                                <#select itemList="${doctorItemList}" emptyValue="true" id="ecgDoctor" name="医师签名" type="text" dataOptions="validType:'length[0, 50]'" />
+					       </div>     
+					       <div class="col-sm-6">
+                                <#input id="chestFluoroscopy" name="胸部透视" type="text" dataOptions="validType:'length[0, 1024]'" />
+					       </div>     
+					       <div class="col-sm-6">
+                                <#select itemList="${doctorItemList}" emptyValue="true" id="cfDoctor" name="医师签名" type="text" dataOptions="validType:'length[0, 50]'"  />
+					       </div>    
+					       <div class="col-sm-12">
+                                <#input id="internalIrritabilityHistory" name="既往病史" type="text" dataOptions="validType:'length[0, 1024]'" />
+					       </div> 
+					       <div class="col-sm-12">
+                                <#input id="internalCheckInfo" name="检查所见" type="text" dataOptions="validType:'length[0, 1024]'" />
+					       </div> 
+					       <div class="col-sm-12">
+                                <#input id="internalDiagnosis" name="诊断" type="text" dataOptions="validType:'length[0, 512]'" />
+					       </div> 
+					       <div class="col-sm-12">
+                                <#input id="internalConclusion" name="结论" type="text" dataOptions="validType:'length[0, 512]'" />
+					       </div> 
+					       <div class="col-sm-12">
+                                <#select itemList="${doctorItemList}" emptyValue="true" id="internalSignatureResponsiblePhysician" name="医师签名" type="text" dataOptions="validType:'length[0, 50]'" />
+					       </div> 
+					       <div class="progress progress-striped" id="progressTipArea" style="margin-top: 20px;">
+                                    <div id="progressBar" style="width: 0%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="0" role="progressbar" class="progress-bar progress-bar-info">
+                                    </div>
+                                </div>
+					    </div>   
+					    
+					    
+					    <div title="B超" style="padding:20px;display:none;">   
+					        <div class="col-sm-12">
+                                <#input id="liver" name="肝" type="text" dataOptions="validType:'length[0, 512]'" />
+					        </div>    
+					        <div class="col-sm-12">
+                                <#input id="gallbladder" name="胆" type="text" dataOptions="validType:'length[0, 512]'" />
+					        </div>    
+					        <div class="col-sm-12">
+                                <#input id="kidney" name="肾" type="text" dataOptions="validType:'length[0, 512]'"  />
+					        </div>    
+					        <div class="col-sm-12">
+                                <#input id="spleen" name="脾" type="text" dataOptions="validType:'length[0, 512]'" />
+					        </div>    
+					        <div class="col-sm-12">
+                                <#input id="bUltrasonicOther" name="其他" type="text" dataOptions="validType:'length[0, 512]'" />
+					        </div>    
+					    </div>   
+					    
+					    
+					    <div title="化验" style="overflow:auto;padding:20px;display:none;">   
+					        <div class="col-sm-12">
+                                <#input id="liverFunction" name="肝功" type="text" dataOptions="validType:'length[0, 512]'" />
+					        </div>    
+					        <div class="col-sm-12">
+                                <#input id="HBsAg" name="(HBsAg)" type="text" dataOptions="validType:'length[0, 512]'" />
+					        </div>    
+					        <div class="col-sm-12">
+                                <#input id="cholesterol" name="胆固醇" type="text" dataOptions="validType:'length[0, 128]'" />
+					        </div>    
+					        <div class="col-sm-12">
+                                <#input id="triglycerideAlcohol" name="甘油三脂" type="text" dataOptions="validType:'length[0, 128]'" />
+					        </div>    
+					        <div class="col-sm-12">
+                                <#input id="bloodGlucose" name="血糖" type="text" dataOptions="validType:'length[0, 128]'"  />
+					        </div>    
+					        <div class="col-sm-12">
+                                <#input id="bloodRoutine" name="血常规" type="text" dataOptions="validType:'length[0, 128]'" />
+					        </div>    
+					        <div class="col-sm-12">
+                                <#input id="urineRoutine" name="尿常规" type="text" dataOptions="validType:'length[0, 128]'" />
+					        </div>    
+					        <div class="col-sm-12">
+                                <#input id="stoolRoutine" name="便常规" type="text" dataOptions="validType:'length[0, 128]'" />
+					        </div>    
+					        <div class="col-sm-12">
+                                <#input id="assayOther" name="其他" type="text" dataOptions="validType:'length[0, 512]'" />
+					        </div>    
+					    </div>   
+					    
+					    
+					    <div title="眼科" style="padding:20px;display:none;">   
+                            <div class="col-sm-6">   
+                                <#input id="stereoscopicVision" name="立体视觉" type="text" dataOptions="validType:'length[0, 128]'" />
+                            </div>
+                            <div class="col-sm-6">   
+                                <#input id="colourVision" name="色觉" type="text" dataOptions="validType:'length[0, 128]'" />
+                            </div>
+                            <div class="col-sm-2">
+                                <#input id="visionRight" name="视力：右" type="text"  />
+                            </div>
+                            <div class="col-sm-2">
+                                <#input id="visionLeft" name="左" type="text"  />
+                            </div> 
+                            <div class="col-sm-12">
+                                <#input id="ophthalmologyCheckInfo" name="检查所见" type="text" dataOptions="validType:'length[0, 512]'" />
+                            </div>
+                            <div class="col-sm-12">
+                                <#input id="ophthalmologyDiagnosis" name="诊断" type="text" dataOptions="validType:'length[0, 512]'" />
+                            </div>
+                            <div class="col-sm-12">
+                                <#input id="ophthalmologyConclusion" name="结论" type="text" dataOptions="validType:'length[0, 512]'" />
+                            </div>
+                            <div class="col-sm-12">
+                                <#select itemList="${doctorItemList}" emptyValue="true" id="ophthalmologySignatureResponsiblePhysician" name="医师签名" type="text" dataOptions="validType:'length[0, 50]'" />
+                            </div>
+					    </div>   
+					    
+					    
+					    <div title="耳鼻喉科" style="padding:20px;display:none;">   
+					        <div class="col-sm-6">   
+                                <#input id="smell" name="嗅觉" type="text" dataOptions="validType:'length[0, 128]'" />
+                            </div>
+                            <div class="col-sm-6">   
+                                <#input id="otobaricFunction" name="耳气压功能" type="text" dataOptions="validType:'length[0, 128]'" />
+                            </div>
+                            <div class="col-sm-12">
+	                            <#input id="hearingRight" name="听力右" type="text" dataOptions="validType:'length[0, 32]'"  />
+	                            <#input id="hearingLeft" name="听力左" type="text" dataOptions="validType:'length[0, 32]'" />
+                            </div>
+                            <div class="col-sm-12">
+                                <#input id="entCheckInfo" name="检查所见" type="text" dataOptions="validType:'length[0, 256]'" />
+                            </div>
+                            <div class="col-sm-12">
+                                <#input id="entDiagnosis" name="诊断" type="text" dataOptions="validType:'length[0, 256]'" />
+                            </div>
+                            <div class="col-sm-12">
+                                <#input id="entConclusion" name="结论" type="text" dataOptions="validType:'length[0, 256]'" />
+                            </div>
+                            <div class="col-sm-12">
+                                <#select itemList="${doctorItemList}" emptyValue="true" id="entSignatureResponsiblePhysician" name="医师签名" type="text" dataOptions="validType:'length[0, 50]'" />
+                            </div>    
+					    </div>   
+					    <div title="妇产科" style="overflow:auto;padding:20px;display:none;"> 
+                            <div class="col-sm-12">
+                                <#input id="gOIrritabilityHistory" name="既往病史" type="text" dataOptions="validType:'length[0, 1024]'" />
+                            </div>
+                            <div class="col-sm-12">
+                                <#input id="gOCheckInfo" name="检查所见" type="text" dataOptions="validType:'length[0, 1024]'"  />
+                            </div>
+                            <div class="col-sm-12">
+                                <#input id="gODiagnosis" name="诊断" type="text" dataOptions="validType:'length[0, 512]'" />
+                            </div>
+                            <div class="col-sm-12">
+                                <#input id="gOConclusion" name="结论" type="text" dataOptions="validType:'length[0, 512]'" />
+                            </div>
+                            <div class="col-sm-12">
+                                <#select itemList="${doctorItemList}" emptyValue="true" id="gOSignatureResponsiblePhysician" name="医师签名" type="text" dataOptions="validType:'length[0, 50]'" />
+                            </div>
+					    </div> 
+					    
+					      
+					    <div title="口腔科" style="padding:20px;display:none;">   
+                            <div class="col-sm-12">
+                                <#input id="stomatologyIrritabilityHistory" name="既往病史" type="text" dataOptions="validType:'length[0, 1024]'" />
+                            </div>
+                            <div class="col-sm-12">
+                                <#input id="stomatologyCheckInfo" name="检查所见" type="text" dataOptions="validType:'length[0, 1024]'"  />
+                            </div>
+                            <div class="col-sm-12">
+                                <#input id="stomatologyDiagnosis" name="诊断" type="text" dataOptions="validType:'length[0, 512]'" />
+                            </div>
+                            <div class="col-sm-12">
+                                <#input id="stomatologyConclusion" name="结论" type="text" dataOptions="validType:'length[0, 512]'" />
+                            </div>
+                            <div class="col-sm-12">
+                                <#select itemList="${doctorItemList}" emptyValue="true" id="stomatologySignatureResponsiblePhysician" name="医师签名" type="text" dataOptions="validType:'length[0, 50]'" />
+                            </div> 
+					    </div>   
+					</div>  
+                </div>
+            <hr class="col-sm-12">
+                <div class="h4">
+                                            结论
+                </div>
+                <div class="col-sm-12">
+                    <#select itemList="${doctorItemList}" emptyValue="true" id="responsiblePhysician" name="主检医师" type="text" dataOptions="required:true, validType:'length[1, 50]'" />
+                </div>
+                <div class="col-sm-12">
+                    <#select id="recheckConclusion" name="复检结论" type="text" dataOptions="required:true, validType:'length[0, 512]'" itemList="${recheckConclusionDictList}" />
+                </div>
+                <div class="col-sm-12">
+                    <#select itemList="${doctorItemList}" emptyValue="true" id="recheckDoctor" name="复检医师" type="text" dataOptions="validType:'length[0, 50]'" />
+                </div>
+            </div>
+
+            
+            <div class="row btn-group-m-t">
+                <div class="col-sm-12">
+	                <div class="col-sm-4"></div>
+	                <div class="col-sm-4">
+	                    <#button btnCss="info" name="提交" id="ensure" icon="fa-check" clickFun="ExaminationHealthInfoDlg.addSubmit()"/>
+	                    <#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="ExaminationHealthInfoDlg.close()"/>
+	                </div>
+	                <div class="col-sm-4"></div>
+                </div>
+            </div>
+        </form>
+
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/common/patientSearchCommon.js"></script>
+<script src="${ctxPath}/static/modular/common/userSearchCommon.js"></script>
+<script src="${ctxPath}/static/modular/examination/examinationHealth/examinationHealth_info.js"></script>
+@}

@@ -1,0 +1,53 @@
+@layout("/common/_container.html"){
+<div class="ibox float-e-margins">
+	<div class="ibox-content form-horizontal">
+
+		<form id="searchUserForm" class="form-group">
+			<div class="form-group">
+			    <label class="col-sm-2 control-label">姓名</label>
+                <div class="col-sm-8">
+                    <input id="userName" name="userName" placeholder="请输入患者姓名..." class="easyui-combogrid easyui-tooltip" title="请输入患者姓名。。。" />
+                </div>
+			</div>
+		</form>
+		<form id="addForm">
+
+			<input type="hidden" id="id" />
+			<input type="hidden" id="userId" name="userId" />
+			<input type="hidden" id="orgId" name="orgId" />
+            <input type="hidden" id="userCard" name="userCard" />
+			<div class="row">
+				<div class="col-sm-6 b-r">
+					<#input id="userNo" name="编号" underline="true" dataOptions="required:true" />
+					<#input id="userName" name="姓名" underline="true" dataOptions="required:true" />
+					<#select id="userSex" name="性别" underline="true" dataOptions="required:true,editable:false">
+						<option value="男">男</option>
+						<option value="女">女</option>
+					</#select>
+                    <#input id="age" name="年龄" dataOptions="required:true, validType:'number'" />
+
+				</div>
+
+				<div class="col-sm-6">
+					<#input id="userDuty" name="身份" underline="true" dataOptions="required:true" />
+					<#input id="orgName" name="单位" underline="true" readonly="readonly" />
+                    <#input id="enrolDate" name="入伍时间" underline="true"  type="date" clickFun="laydate({istime: true, format: 'YYYY-MM-DD'})" />
+					<#select id="outpatient" name="门诊" itemList="${outpatientDictList}" dataOptions="required:true" />
+				</div>
+			</div>
+
+			<div class="row btn-group-m-t">
+				<div class="col-sm-10">
+					<#button btnCss="info" name="提交" id="ensure" icon="fa-check"
+						clickFun="PatientInfoInfoDlg.addSubmit()" />
+					<#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser"
+						clickFun="PatientInfoInfoDlg.close()" />
+				</div>
+			</div>
+		</form>
+
+	</div>
+</div>
+<script src="${ctxPath}/static/modular/common/userSearchCommon.js"></script>
+<script src="${ctxPath}/static/modular/treatment/patientInfo/patientInfo_info.js"></script>
+@}

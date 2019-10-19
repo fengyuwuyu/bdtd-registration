@@ -1,0 +1,46 @@
+@layout("/common/_container.html"){
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <form id="editForm" class="form-horizontal">
+
+            <input type="hidden" id="id" value="${item.id}">
+
+            <div class="row">
+                <div class="col-sm-6 b-r">
+                           <#input id="id" name="主键" type="hidden" underline="true"   value="${item.id}" />
+                           <#input id="userNo" name="用户编号"  underline="true" dataOptions="required:true, validType:'length[1, 20]'"  value="${item.userNo}" />
+                           <#input id="status" name="状态"  underline="true" dataOptions="required:true, validType:'number'"  value="${item.status}" />
+                           <#input id="fever" name="发热"  underline="true" dataOptions="required:true, validType:'number'"  value="${item.fever}" />
+                           <#input id="diagnosis" name="入院诊断"  underline="true" dataOptions="required:true, validType:'length[1, 1024]'"  value="${item.diagnosis}" />
+                           <#input id="outDiagnosis" name="出院诊断"  underline="true" dataOptions="validType:'length[0, 1024]'"  value="${item.outDiagnosis}" />
+                           <#input id="physicianId" name="主管医师"  underline="true"   value="${item.physicianId}" />
+                           <#input id="physicianName" name="主管医师"  underline="true" dataOptions="validType:'length[0, 50]'"  value="${item.physicianName}" />
+                           <#input id="patientInfoId" name="病患信息id"  underline="true" dataOptions="validType:'number'"  value="${item.patientInfoId}" />
+                            <#input id="sickRoom" name="病室"   dataOptions="validType:'length[0, 128]'"  value="${item.sickRoom}" />
+                </div>
+
+                <div class="col-sm-6">
+                            <#input id="sickBed" name="病床"  underline="true" dataOptions="validType:'length[0, 64]'"  value="${item.sickBed}" />
+                            <#input id="commonDoctorAdvice" name="常规医嘱"  underline="true" dataOptions="validType:'length[0, 1024]'"  value="${item.commonDoctorAdvice}" />
+                            <#input id="longTermDoctorAdvice" name="长期医嘱"  underline="true" dataOptions="validType:'length[0, 1024]'"  value="${item.longTermDoctorAdvice}" />
+                            <#input id="temporaryDoctorAdvice" name="临时医嘱"  underline="true" dataOptions="validType:'length[0, 1024]'"  value="${item.temporaryDoctorAdvice}" />
+                            <#input id="operatorId" name="录入员"  underline="true"   value="${item.operatorId}" />
+                            <#input id="inHospitalDate" name="住院时间" underline="true" dataOptions="required:true" type="datetime" clickFun="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})"  value="${item.inHospitalDate}" />
+                            <#input id="leaveHospitalDate" name="出院时间" underline="true"  type="date" clickFun="laydate({istime: false, format: 'YYYY-MM-DD'})"  value="${item.leaveHospitalDate}" />
+                            <#input id="createDate" name="创建时间" underline="true"  type="datetime" clickFun="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})"  value="${item.createDate}" />
+                            <#input id="updateDate" name="更新时间"   type="datetime" clickFun="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})"  value="${item.updateDate}" />
+                </div>
+            </div>
+
+            <div class="row btn-group-m-t">
+                <div class="col-sm-10">
+                    <#button btnCss="info" name="提交" id="ensure" icon="fa-check" clickFun="PatientInHospitalInfoDlg.editSubmit()"/>
+                    <#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="PatientInHospitalInfoDlg.close()"/>
+                </div>
+            </div>
+        </form>
+
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/treatment/patientInHospital/patientInHospital_info.js"></script>
+@}

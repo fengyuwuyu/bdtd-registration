@@ -1,0 +1,3 @@
+var BDTD = {
+	contextPath: "/yljz"
+}

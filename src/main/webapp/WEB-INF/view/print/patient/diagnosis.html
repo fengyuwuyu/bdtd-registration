@@ -1,0 +1,205 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>就诊管理系统</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link href="${ctxPath}/static/css/reset.css" rel="stylesheet" type="text/css" />
+    <link href="${ctxPath}/static/css/layout.css" rel="stylesheet" type="text/css" />
+    <style type="text/css">
+        caption { font-size: 20px; }
+        #chufangjian { font-size: 30px; font-weight: normal; text-align: center; }
+        td, th { font-weight: normal; overflow: hidden;}
+        /* td, th, tr {
+            box-sizing: border-box;
+            height: 32px;
+            font-size: 14px; 
+        } */
+        .bold { font-weight: bold; }
+        
+        .table-bordered td,.table-bordered th {
+            border:1px solid #ddd!important;
+        }
+        
+        .advice {
+            width: 440px;
+            margin-right: 6px;
+        }
+        
+        .execute-record {
+            width: 300px;
+        }
+        
+        .advice thead tr {
+            box-sizing: border-box;
+            height: 64px !important;
+        }
+        
+        .execute-record thead tr {
+            box-sizing: border-box;
+            height: 32px !important;
+        }
+        
+        
+        .advice th, .advice td {
+            text-align: center;
+        }
+        
+        .bottom-info {
+            position: absolute;
+            display: flex;
+            width: 90%;
+            box-sizing: border-box;
+            bottom: 5px;
+            left: 10px;
+            font-size: 14px;
+        }
+        
+        .bottom-item {
+            flex: 1;
+        }
+        
+        .td-cell {
+            padding-left: 5px;
+        }
+    </style>
+</head>
+<body>
+    <form method="post" id="thisform" class="labelright nomargin">
+        <div class="mainwrapassist notitletoolbar">
+            <table class="wp100">
+                <caption>中国人民解放军66194部队</caption>
+                <tbody>
+                    <tr>
+                        <td colspan="4" id="chufangjian">门诊处置单</td>
+                    </tr>
+                    <tr>
+                        <td><span>姓名：</span>${patientInfo.userName}</td>
+                        <td><span>性别：</span>${patientInfo.userSex}</td>
+                        <td><span>年龄：</span>${patientInfo.age}</td>
+                        <td><span>单位：</span>${patientInfo.orgName}</td>
+                    </tr>
+                    <tr>
+                        <td><span>诊断：${patientInfo.mainDiagnosis}</span></td>
+                        <td><span>时间：${clinicDate}</span></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" style="vertical-align:top;">
+                            <span>医嘱：</span>
+                            <table class="table-bordered advice">
+                                <thead>
+                                    <tr>
+                                        <th>步骤</th>
+                                        <th style="width: 100px;overflow: hidden;">药名</th>
+                                        <th>规格</th>
+                                        <th>用量</th>
+                                        <th>用法</th>
+                                        <th>次/天</th>
+                                        <th>数量</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @for (var i = 1; i <=  size; i++ ) {
+                                    @var key = i + ""; var list = map[key]; var len=list.~size;
+                                        <tr>
+                                            <td rowspan="${len}">${key}</td>
+                                            <td>${list[0].medicalName}</td>
+                                            <td>${list[0].specification}</td>
+                                            <td>${list[0].dosage}</td>
+                                            <td>${list[0].doseWay}</td>
+                                            <td>${list[0].period}</td>
+                                            <td>${list[0].amount}</td>
+                                        </tr>
+                                        @if (len > 0) {
+                                            @for (var j = 1; j <  len; j++ ) {
+                                                <tr>
+		                                            <td>${list[j].medicalName}</td>
+		                                            <td>${list[j].specification}</td>
+		                                            <td>${list[j].dosage}</td>
+		                                            <td>${list[j].doseWay}</td>
+		                                            <td>${list[j].period}</td>
+		                                            <td>${list[j].amount}</td>
+		                                        </tr>
+                                            @}
+                                        @}
+                                    @}
+                                    <tr>
+                                        <td>备注</td>
+                                        <td colspan="6" style="text-align: left; overflow: hidden;">
+	                                        <span class="td-cell">皮试： ${skinTestMedical}</span>  <span style="float:right; padding-right:30px;">军医：${patientInfo.physicianName}</span>
+                                        </td>
+                                        <!-- <td colspan="3" style="text-align: left">皮试： ${skinTestMedical} </td> -->
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                        <td colspan="2" style="vertical-align:top;">
+                            <span class="execute-record">执行记录：</span>
+                            <table class="table-bordered execute-record">
+                                <thead>
+                                    <tr>
+                                        <th rowspan="2" style="width: 40px;">步骤</th>
+                                        <th colspan="3">时间</th>
+                                        <th rowspan="2" style="width: 40px;">操作者</th>
+                                    </tr>
+                                    <tr>
+                                        <th style="width: 30px !important;">月</th>
+                                        <th style="width: 30px !important;">日</th>
+                                        <th style="width: 30px !important;">时：分</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td style="text-align: center;">皮试</td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                    @for (var i=0; i < size; i++) {
+                                    <tr>
+                                        <td style="text-align: center;">${i+1}</td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                    @}
+                                    <tr>
+                                        <td style="text-align: center;">备注</td>
+                                        <td colspan="4">
+                                            <div class="td-cell">皮试结果：(&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)</div>
+                                            <div class="td-cell">签名：</div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr><!-- 
+                   <tr>
+                        <td colspan="2">皮试结果：</td>
+                        <td colspan="2">医生签名：</td>
+                    </tr> -->
+                </tbody>
+            </table>
+            <div class="bottom-info">
+                <div class="bottom-item">医生签名：${patientInfo.physicianName}</div>
+                <div class="bottom-item">开单日期：${now}</div>
+            </div>
+        </div>
+        <div id="statusbar">
+            <button type="button">打印</button>
+        </div>
+    </form>
+    <script src="${ctxPath}/static/js/jquery.min.js?v=2.1.4"></script>
+    <script type="text/javascript">
+        $("#statusbar button").click(function () {
+            $("#statusbar").remove(); 
+            window.print();
+        });
+    </script>
+</body>
+</html>

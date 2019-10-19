@@ -1,0 +1,38 @@
+@layout("/common/_container.html"){
+<div class="row">
+    <div class="col-sm-12">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5>住院管理</h5>
+            </div>
+            <div class="ibox-content">
+                <div class="row row-lg">
+                    <div class="col-sm-12">
+                        <form id="searchForm" class="row">
+                            <div class="col-sm-3">
+                                <#NameCon id="condition" name="名称" />
+                            </div>
+                            <div class="col-sm-3">
+                                <#button name="搜索" icon="fa-search" clickFun="PatientInHospital.search()"/>
+                            </div>
+                        </form>
+                        <div class="hidden-xs" id="PatientInHospitalTableToolbar" role="group">
+                            @if(shiro.hasPermission("/patientInHospital/add")){
+                                <#button name="添加" icon="fa-plus" clickFun="PatientInHospital.openAddPatientInHospital()"/>
+                            @}
+                            @if(shiro.hasPermission("/patientInHospital/update")){
+                                <#button name="修改" icon="fa-edit" clickFun="PatientInHospital.openPatientInHospitalDetail()" space="true"/>
+                            @}
+                            @if(shiro.hasPermission("/patientInHospital/delete")){
+                                <#button name="删除" icon="fa-remove" clickFun="PatientInHospital.delete()" space="true"/>
+                            @}
+                        </div>
+                        <#table id="PatientInHospitalTable"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/treatment/patientInHospital/patientInHospital.js"></script>
+@}

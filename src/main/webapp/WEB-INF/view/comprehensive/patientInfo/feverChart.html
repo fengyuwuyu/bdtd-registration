@@ -1,0 +1,28 @@
+@layout("/common/_container.html"){
+<form id="searchForm">
+    <div class="row">
+        <div class="col-sm-2">
+            <#TimeCon id="beginDate" name="发热时间起" isTime="false" pattern="YYYY-MM-DD" />
+        </div>
+        <div class="col-sm-2">
+            <#TimeCon id="endDate" name="发热时间止" isTime="false" pattern="YYYY-MM-DD" />
+        </div>
+        <div class="col-sm-2">
+            <#button name="搜索" icon="fa-search" clickFun="PatientInHospitalComprehensiveQuery.search()" />
+            <#button name="重置" icon="fa-refresh" clickFun="PatientInHospitalComprehensiveQuery.clearSearchForm()" />
+        </div>
+    </div>
+</form>
+<div id="cylinderShape" style="height:700px"></div>
+<div class="row">
+    <div class="col-md-5">
+    </div>
+    <div class="col-md-2">
+        <#button name="关闭" icon="fa-close" clickFun="PatientInHospitalComprehensiveQuery.close()"/>
+    </div>
+    <div class="col-md-5">
+    </div>
+</div>
+<script src="${ctxPath}/static/js/echarts.js"></script>
+<script src="${ctxPath}/static/modular/comprehensive/patientInfo/feverChart.js"></script>
+@}

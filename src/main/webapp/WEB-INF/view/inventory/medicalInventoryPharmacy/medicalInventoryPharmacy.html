@@ -1,0 +1,51 @@
+@layout("/common/_container.html"){
+<div class="row">
+    <div class="col-sm-12">
+        <div class="ibox float-e-margins">
+            <div class="ibox-content">
+                <div class="row row-lg">
+                    <div class="col-sm-12">
+                        <form id="searchForm" class="row">
+                             <div class="col-sm-2">
+                                <#NameCon id="medicalName" name="名称" />
+                            </div>
+                            <div class="col-sm-2">
+                                <#NameCon id="producer" name="生产企业" />
+                            </div>
+                            <div class="col-sm-2">
+                                <#SelectCon id="inboundChannel" name="进货渠道" itemList="${inboundChannelDictList}" />
+                            </div>
+                            <div class="col-sm-2">
+                                <#TimeCon id="expiredDate" name="有效期至" isTime="false" pattern="YYYY-MM-DD" />
+                            </div>
+                            <div class="col-sm-2">
+                                <#button name="搜索" icon="fa-search" clickFun="MedicalInventoryPharmacy.search()"/>
+                                <#button name="重置" icon="fa-refresh" clickFun="MedicalInventoryPharmacy.resetSearchForm()" />
+                            </div>
+                        </form>
+                        <div class="hidden-xs" id="MedicalInventoryPharmacyTableToolbar" role="group">
+                            @if(shiro.hasPermission("/medicalInventoryPharmacy/delete")){
+                                <#button name="删除" icon="fa-remove" clickFun="MedicalInventoryPharmacy.delete()" space="true"/>
+                            @}
+                            @if(shiro.hasPermission("/medicalInventoryPharmacy/putOffStorage")){
+                                <#button name="出药房" icon="fa-arrow-right" clickFun="MedicalInventoryPharmacy.openPutOffStorage()" space="true"/>
+                            @}
+                            @if(shiro.hasPermission("/medicalInventoryPharmacy/putInDrugStorage")){
+                                <#button name="退药还库" icon="fa-arrow-left" clickFun="MedicalInventoryPharmacy.openPutInDrugStorage()" space="true"/>
+                            @}
+                            @if(shiro.hasPermission("/medicalInventoryPharmacy/storageDetail")){
+                                <#button name="出入库详情" icon="fa-info" clickFun="MedicalInventoryPharmacy.openStorageDetail()" space="true"/>
+                            @}
+                            @if(shiro.hasPermission("/medicalInventoryPharmacy/exportExcel")){
+                                <#button name="导出" icon="fa-print" clickFun="MedicalInventoryPharmacy.exportExcel()" space="true"/>
+                            @}
+                        </div>
+                        <#table id="MedicalInventoryPharmacyTable"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/inventory/medicalInventoryPharmacy/medicalInventoryPharmacy.js"></script>
+@}

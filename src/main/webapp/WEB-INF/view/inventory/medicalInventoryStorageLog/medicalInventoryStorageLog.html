@@ -1,0 +1,45 @@
+@layout("/common/_container.html"){
+<div class="row">
+    <div class="col-sm-12">
+        <div class="ibox float-e-margins">
+            <div class="ibox-content">
+                <div class="row row-lg">
+                    <div class="col-sm-12">
+                        <form id="searchForm" class="row">
+                            <div class="col-sm-3">
+                                <#NameCon id="medicalName" name="药品名称" />
+                            </div>
+                            <div class="col-sm-3">
+                                <#NameCon id="orgName" name="去向" />
+                            </div>
+                            <div class="col-sm-3">
+                                <#SelectCon id="type" name="状态" itemList="${inventoryLogTypeList}" />
+                            </div>
+                            <div class="col-sm-3">
+                                <#NameCon id="operatorName" name="操作员" />
+                            </div>
+                             <div class="col-sm-3">
+                                    <#input id="beginDate" name="开始时间" type="datetime" clickFun="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})" />
+                            </div>
+                            <div class="col-sm-3">
+                                    <#input id="endDate" name="结束时间" type="datetime" clickFun="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})" />
+                           </div>
+                            <div class="col-sm-3">
+                                <#button name="搜索" icon="fa-search" clickFun="MedicalInventoryStorageLog.search()"/>
+                                <#button name="重置" icon="fa-refresh" clickFun="MedicalInventoryStorageLog.resetSearchForm()" />
+                            </div>
+                        </form>
+                         <div class="hidden-xs" id="MedicalInventoryPharmacyTableToolbar" role="group">
+                            @if(shiro.hasPermission("/medicalInventoryStorageLog/exportExcel")){
+                                <#button name="导出" icon="fa-print" clickFun="MedicalInventoryStorageLog.exportExcel()" space="true"/>
+                            @}
+                        </div>
+                        <#table id="MedicalInventoryStorageLogTable"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/inventory/medicalInventoryStorageLog/medicalInventoryStorageLog.js"></script>
+@}

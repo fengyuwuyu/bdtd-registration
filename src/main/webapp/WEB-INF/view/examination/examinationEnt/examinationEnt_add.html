@@ -1,0 +1,36 @@
+@layout("/common/_container.html"){
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <form id="addForm" class="form-horizontal">
+
+            <input type="hidden" id="entId" name="entId">
+
+            <div class="row">
+                <div class="col-sm-6 b-r">
+                            <#input id="healthExaminationId" name="体检信息id" type="text" dataOptions="required:true, validType:'number'" underline="true" />
+                            <#input id="smell" name="嗅觉" type="text" dataOptions="validType:'length[0, 128]'" underline="true" />
+                            <#input id="otobaricFunction" name="耳气压功能" type="text" dataOptions="validType:'length[0, 128]'" underline="true" />
+                            <#input id="hearingRight" name="听力右" type="text" dataOptions="validType:'length[0, 32]'"  />
+                </div>
+
+                <div class="col-sm-6">
+                            <#input id="hearingLeft" name="听力左" type="text" dataOptions="validType:'length[0, 32]'" underline="true" />
+                            <#input id="entCheckInfo" name="检查所见" type="text" dataOptions="validType:'length[0, 256]'" underline="true" />
+                            <#input id="entDiagnosis" name="诊断" type="text" dataOptions="validType:'length[0, 256]'" underline="true" />
+                            <#input id="entConclusion" name="结论" type="text" dataOptions="validType:'length[0, 256]'" underline="true" />
+                            <#input id="entSignatureResponsiblePhysician" name="医师签名" type="text" dataOptions="validType:'length[0, 50]'" underline="true" />
+                </div>
+            </div>
+
+            <div class="row btn-group-m-t">
+                <div class="col-sm-10">
+                    <#button btnCss="info" name="提交" id="ensure" icon="fa-check" clickFun="ExaminationEntInfoDlg.addSubmit()"/>
+                    <#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="ExaminationEntInfoDlg.close()"/>
+                </div>
+            </div>
+        </form>
+
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/examination/examinationEnt/examinationEnt_info.js"></script>
+@}

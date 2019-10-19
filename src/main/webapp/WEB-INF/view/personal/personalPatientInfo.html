@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>门诊信息</title>
+
+    <link rel="stylesheet" type="text/css" href="${ctxPath}/static/css/common-reset.css">
+    <link rel="stylesheet" type="text/css" href="${ctxPath}/static/css/border.css">
+    <link rel="stylesheet" type="text/css" href="${ctxPath}/static/css/bootstrap.min.bak.css">
+    <link rel="stylesheet" type="text/css" href="${ctxPath}/static/css/personal.css">
+</head>
+<body>
+<input type="hidden" id="userNo" value="${userNo}">
+<div id="container">
+    <div id="header"></div>
+    <div id="content">
+        <div id="list">
+            <div id="user-info">
+                <span v-cloak>编号：${user.userNo}</span>
+                <span v-cloak>姓名：${user.userLname}</span>
+                <span v-cloak>性别：${user.userSex}</span>
+                <span v-cloak>单位：${user.userDepname}</span>
+                <span v-cloak>身份：${user.userDuty}</span>
+            </div>
+            <div id="patient-title">
+                <span>门诊信息</span>
+            </div>
+            <div id="patient-table">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>序号</th>
+                            <th style="width: 150px !important;">就诊时间</th>
+                            <th>主要诊断</th>
+                            <th>住院</th>
+                            <th>转诊</th>
+                            <th>训练伤</th>
+                            <th>发热</th>
+                            <th>病休</th>
+                            <th>医生</th>
+                            <!-- <th>操作</th> -->
+                        </tr>
+                    </thead>
+
+                    <tbody>
+				           <tr v-for="item in list">
+				            <td v-cloak>{{item.index}}</td>
+				            <td style="width: 80px !important;" v-cloak>{{item.clinicDate}}</td>
+				            <td v-cloak>{{item.mainDiagnosis}}</td>
+				            <td v-cloak>{{item.inHospital}}</td>
+				            <td v-cloak>{{item.transferTreament}}</td>
+				            <td v-cloak>{{item.trainWound}}</td>
+				            <td v-cloak>{{item.fever}}</td>
+				            <td v-cloak>{{item.sickRest}}</td>
+				            <td v-cloak>{{item.physicianName}}</td>
+                            <!-- <td v-on:click="showDetail(item.id, 2);">查看详情</td> -->
+				          </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div id="btn-footer">
+		        <div class="btn-item return-btn">
+		          <a href="#" v-on:click="goUserInfoChoose()">
+		            <img src="${ctxPath}/static/img/personal/btn/btn_return_list.png">
+		          </a>
+		        </div>
+		        <div class="btn-item next-page">
+		          <a href="#" v-on:click="nextPage()">
+		            <img id="next-page" src="${ctxPath}/static/img/personal/btn/btn_nextPage.png">
+		          </a>
+		        </div>
+		        <div class="btn-item pre-page">
+		          <a href="#" v-on:click="prePage()">
+		            <img id="pre-page" src="${ctxPath}/static/img/personal/btn/btn_prePage.png">
+		          </a>
+		        </div>
+		      </div>
+      
+        </div>
+    </div>
+    <div id="footer">
+        <div id="footer-time">
+        </div>
+    </div>
+</div>
+
+<script src="${ctxPath}/static/js/jquery.min.js?v=2.1.4"></script>
+<script type="text/javascript" src="${ctxPath}/static/js/vue.js"></script>
+<script type="text/javascript" src="${ctxPath}/static/modular/personal/commonPersonal.js"></script>
+<script type="text/javascript" src="${ctxPath}/static/modular/personal/showDate.js"></script>
+<script type="text/javascript" src="${ctxPath}/static/modular/personal/personalVueList.js"></script>
+
+<script type="text/javascript">
+    window.onload = function() {
+        PersonalVueList.init('/personal/patientInfoList');
+        showDate();
+    };
+</script>
+
+</body>
+</html>

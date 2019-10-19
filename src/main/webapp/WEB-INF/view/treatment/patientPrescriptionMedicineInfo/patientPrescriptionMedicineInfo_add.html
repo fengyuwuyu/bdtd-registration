@@ -1,0 +1,35 @@
+@layout("/common/_container.html"){
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <form id="addForm" class="form-horizontal">
+
+            <input type="hidden" id="id" value="">
+            <input type="hidden" id="medicineId" name="medicineId" />
+
+            <div class="row">
+                <div class="col-sm-6 b-r">
+                            <#input id="medicalName" name="药品名称" class="easyui-combogrid" underline="true" dataOptions="required:true, validType:'length[1, 64]'" style="width:283px;height:34px" />
+                            <#input id="amount" name="数量"  underline="true" dataOptions="required:true, validType:'amount'" />
+                            <#select id="usage" name="用法" itemList="${usageDictList}"  dataOptions="required:true, validType:'number'" />
+                </div>
+
+                <div class="col-sm-6">
+                            <#select id="period" name="周期" itemList="${periodDictList}"  underline="true" dataOptions="required:true, validType:'number'" />
+                            <#select id="dosage" name="用量" itemList="${dosageDictList}" dataOptions="required:true, validType:'number'" />
+                </div>
+            </div>
+
+            <div class="row btn-group-m-t">
+                <div class="col-sm-10">
+                    <#button btnCss="info" name="提交" id="ensure" icon="fa-check" clickFun="PatientPrescriptionMedicineInfoInfoDlg.addSubmit()"/>
+                    <#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="PatientPrescriptionMedicineInfoInfoDlg.close()"/>
+                </div>
+            </div>
+        </form>
+
+    </div>
+</div>
+
+<script src="${ctxPath}/static/modular/common/medicalCommon.js"></script>
+<script src="${ctxPath}/static/modular/treatment/patientPrescriptionMedicineInfo/patientPrescriptionMedicineInfo_info.js"></script>
+@}

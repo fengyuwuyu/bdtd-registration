@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>挂号界面</title>
+
+  <link rel="stylesheet" type="text/css" href="${ctxPath}/static/css/common-reset.css">
+  <link rel="stylesheet" type="text/css" href="${ctxPath}/static/css/border.css">
+  <link rel="stylesheet" type="text/css" href="${ctxPath}/static/css/bootstrap.min.bak.css">
+  <link rel="stylesheet" type="text/css" href="${ctxPath}/static/css/personal.css">
+
+  <style>
+    /* #container {
+         height: 100%;
+         width: 100%;
+         background-color: #cacaca;
+     }*/
+    #header{
+      height: 0;
+      padding-bottom: 9.45%;
+      background: url("${ctxPath}/static/img/personal/header.png") no-repeat;
+      -moz-background-size:100% 100%;
+      background-size:100% 100%;
+    }
+
+    #content {
+      position: relative;
+      height: 0;
+      padding-bottom: 64.53%;
+      background: url("${ctxPath}/static/img/personal/content.png") no-repeat;
+      -moz-background-size:100% 100%;
+      background-size:100% 100%;
+      box-sizing: border-box;
+    }
+
+    #icons{
+      width: 1060px;
+      height: 580px;
+      display: flex;
+      margin: 0 auto;
+      padding-top: 12%;
+    }
+
+    #icons:first-child {
+
+    }
+
+    .icon{
+      width: 280px;
+      height: 410px;
+      flex: 1;
+      box-sizing: border-box;
+    }
+    
+    .icon > a {
+        width: 100%;
+        height: 100%;
+        display: inline-block;
+    }
+
+    .icon:nth-of-type(-n + 2) {
+      margin-right: 110px;
+    }
+  </style>
+</head>
+<body>
+<input type="hidden" id="userNo" value="${userNo}">
+<div id="container">
+  <div id="header"></div>
+  <div id="content">
+    <div id="icons">
+      <div class="icon"><a href="#" onclick="Personal.goCommonOutpatient();"><img src="${ctxPath}/static/img/personal/registration/commonOutpatient.png"></a></div>
+      <div class="icon"><a href="#" onclick="Personal.goFeverOutpatient();"><img src="${ctxPath}/static/img/personal/registration/feverOutpatient.png"></a></div>
+      <div class="icon"><a href="#" onclick="Personal.goPersonalQuery();"><img src="${ctxPath}/static/img/personal/registration/personalQuery.png"></a></div>
+    </div>
+    
+        <div id="btn-footer">
+            <div class="btn-item-large cancel-btn">
+                <a href="javascript:void(0)" onclick="Personal.goHomePage();">
+                    <img src="${ctxPath}/static/img/personal/btn/btn_quit.png">
+                </a>
+            </div>
+        </div>
+  </div>
+  <div id="footer">
+    <div id="footer-time">
+    </div>
+  </div>
+</div>
+<script type="text/javascript" src="${ctxPath}/static/modular/personal/commonPersonal.js"></script>
+<script type="text/javascript" src="${ctxPath}/static/modular/personal/showDate.js"></script>
+</body>
+</html>

@@ -1,0 +1,406 @@
+@layout("/common/_container.html"){
+<style>
+    .hidden-xs {
+        position: relative;
+        text-align: center;
+    }
+</style>
+
+<div class="row">
+	<div class="col-sm-12">
+		<div class="ibox float-e-margins"  style="margin-top:5px;">
+			<div id="registration-left" class="col-md-3">
+			<div class="hidden-xs" id="PatientInHospitalTableToolbar" role="group">
+			    <#button name="无卡就诊" icon="fa-user-md" clickFun="PatientInfo.openAddPatientInfo()" space="true" />
+                <#button name="叫号" icon="fa-user-md" clickFun="PatientInfo.callNumber()" space="true" />
+			</div>
+ <!-- icon="fa-user-md" -->
+				<input type="hidden" name="outpatient" value="1" />
+				<input type="hidden" id="wsServer" value="${wsServer}" />
+				<div id="clinic" class="easyui-tabs"
+					style="width: '100%'; height: '100%'">
+					<div title="普通门诊" style="padding: 0; display: none;">
+						<div style="">待诊病号</div>
+						<#table id="registrationCommonTable" />
+						<div>已诊病号</div>
+						<#table id="diagnosisedCommonTable" />
+					</div>
+					<div title="发热门诊" style="padding: 0; display: none; overflow: hidden;">
+						<div>待诊病号</div>
+						<#table id="registrationFeverTable" />
+						<div>已诊病号</div>
+						<#table id="diagnosisedFeverTable" />
+					</div>
+				</div>
+			</div>
+			<div id="registration-right" class="col-md-9">
+				<!-- <div class="col-md-12"> -->
+				    <span class="h4">基本信息</span>
+	                <form action="" id="userForm">
+	                    <table class="table table-bordered">
+	                        <tr>
+	                            <td><#input id="userName" name="姓名" readonly="readonly"/>
+	                                    </td>
+	                            <td><#input id="userSex" name="性别" readonly="readonly" /></td>
+	                            <td><#input id="userNo" name="编号" readonly="readonly" /></td>
+	                            <td><#input id="userDuty" name="身份" readonly="readonly" /></td>
+	                        </tr>
+	                        <tr>
+	                            <td><#input id="age" name="年龄" readonly="readonly" /></td>
+	                            <td><#input id="orgName" name="单位" readonly="readonly"/></td>
+	                            <td><#input id="enrolDate" name="入伍时间" type="date" clickFun="laydate({istime: true, format: 'YYYY-MM-DD'})" /></td>
+	                            <td><#input id="inTreatmentCount" name="就诊次数" readonly="readonly" /></td>
+	                        </tr>
+	                        <tr>
+	                            <td colspan="4" >
+	                                <div class="input-group col-md-12">
+	                                    <div class="input-group-btn" >
+	                                        <button data-toggle="dropdown" class="btn btn-white dropdown-toggle" type="button">
+	                                                            过敏史
+	                                        </button>
+	                                    </div>
+	                                    <input id="irritabilityHistory" name="irritabilityHistory" style="color:red !important;" class="form-control easyui-validatebox" data-options="validType:'length[0, 512]'"  />
+	                                </div>
+	                            </td>
+	                        </tr>
+	                    </table>
+	                </form>
+	
+	                <span class="h4">病情诊断</span>
+	                <form action="" id="patientInfoForm">
+	                    <table class="table table-bordered">
+	                        <tr>
+	                            <td>
+	                                <div class="input-group">
+	                                    <div class="input-group-btn" >
+	                                        <button data-toggle="dropdown" style="height:54px" class="btn btn-white dropdown-toggle" type="button">
+	                                                            <b>病情摘要</b>
+	                                        </button>
+	                                    </div>
+	                                    <textarea id="abstractIllness" name="abstractIllness" class="form-control easyui-validatebox" data-options="required:true, validType:'length[1, 512]'" rows="2" ></textarea>
+	                                </div>
+	                            </td>
+	                        </tr>
+	                        <tr>
+	                            <td><#select id="mainDiagnosis" name="主要诊断"
+	                                    itemList="${mainDiagnosisDictList}" emptyValue="true" dataOptions="required:true, validType:'number'" /></td>
+	                        </tr>
+	                        <tr>
+	                            <td>
+	                                <#input id="minorDiagnosis" name="次要诊断" data-options="validType:'length[1, 512]'" />
+	                            </td>
+	                        </tr>
+	                        
+	                    </table>
+	                    <table class="table table-bordered">
+	                        <tr>
+	                            <td><#SelectCon id="fever" name="发热" 
+	                                    dataOptions="validType:'number'">
+	                                <option value="1">是</option>
+	                                <option value="0" selected="selected">否</option>
+	                                </#SelectCon></td>
+	                            <td><#SelectCon id="trainWound" name="训练伤" 
+	                                    dataOptions="validType:'number'">
+	                                <option value="1">是</option>
+	                                <option value="0" selected="selected">否</option>
+	                                </#SelectCon></td>
+	                        </tr>
+	                    </table>
+	                </form>
+				<!-- </div> -->
+                <!-- <div class="col-md-12"> -->
+					<div id="handleTypeTab" class="easyui-tabs" style="width: 100%;">
+					
+						<div title="处方" style="padding: 0 5px 0 5px; display: none;" >
+							<form id="prescriptionForm" class="form-horizontal">
+								
+								<table class="table">
+	                                <tr> <td>
+	                                    <div class="input-group">
+	                                    <div class="input-group-btn" >
+	                                        <button data-toggle="dropdown" style="height:54px" class="btn btn-white dropdown-toggle" type="button">
+	                                                                                                            备注
+	                                        </button>
+	                                    </div>
+	                                    <textarea name="remark" class="form-control" rows="2" ></textarea>
+	                                </div>
+	                                </td>
+	                        </tr>
+	                    </table>
+	                     <div class="hidden-xs" id="PatientPrescriptionMedicineInfoTableToolbar" role="group">
+	                                <#button name="添加" icon="fa-plus" clickFun="PatientPrescriptionMedicineInfo.openAddPatientPrescriptionMedicineInfo()"/>
+	                                <#button name="修改" icon="fa-edit" clickFun="PatientPrescriptionMedicineInfo.openPatientPrescriptionMedicineInfoDetail()" space="true"/>
+	                                <#button name="删除" icon="fa-remove" clickFun="PatientPrescriptionMedicineInfo.delete()" space="true"/>
+	                        </div>
+	                        <#table id="PatientPrescriptionMedicineInfoTable"/>
+	                        
+	                        <div class="col-md-12">
+	                               <div class="row btn-group-m-t">
+	                                       
+	                                   <div class="col-md-3"></div>
+	                                    <div class="col-sm-2">
+	                                        <#button btnCss="info" name="提交" id="ensure" icon="fa-check" clickFun="PatientInfo.submitPrescriptionForm()" />
+	                                    </div>
+	                                    <div class="col-sm-2">
+	                                        <#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="PatientInfo.cancelPrescription()" />
+	                                    </div>
+	                                    <div class="col-sm-2">
+	                                        <#button btnCss="info" name="打印" id="print" icon="fa-print" clickFun="PatientInfoPrint.openPrintPrescription()"/>
+	                                    </div>
+	                                   <div class="col-md-3"></div>
+	                               </div>
+	                           </div>
+							</form>
+						</div>
+						
+						
+						<div title="门诊处置" style="padding: 0 5px 0 5px; display: none;">
+						   <div class="row" style="width:100%; padding: 0 5px 0 15px;">
+						       <div class="hidden-xs" id="PatientMedicalUsageStepTableToolbar" role="group">
+	                                <#button name="添加" icon="fa-plus" clickFun="PatientMedicalUsageStep.openUsageStepMedicalIndex()"/>
+	                                <#button name="修改" icon="fa-edit" clickFun="PatientMedicalUsageStep.openUsageStepMedicalEdit()" space="true"/>
+	                                <#button name="删除" icon="fa-remove" clickFun="PatientMedicalUsageStep.delete()" space="true"/>
+	                        </div>
+	                        <#table id="PatientMedicalUsageStepTable"/>
+	                        
+	                        <form id="clinicDisgnosisForm"  class="form-horizontal">
+	                            
+	                                <div class="row">
+	                                    <div class="col-md-3">
+	                                    <!-- <div class="input-group">
+	                                        <div class="input-group-btn">
+	                                            <button data-toggle="dropdown" class="btn btn-white dropdown-toggle"
+	                                                type="button">皮试</button>
+	                                        </div>
+	                                        <input  class="form-control" id="skinTestMedicalId" name="skinTestMedicalId" style="width:200px;!important"  />
+	                                        </div> -->
+	                                         <#input id="skinTestMedicalId" name="皮试" />
+	                                    </div>
+	                                <div class="col-md-9"><#input id="remark" name="备注"  dataOptions="validType:'length[0, 256]'" /></div>
+	                                </div>
+	                            
+	                        </form>
+	                        
+	                        <div class="col-md-12">
+	                               <div class="row btn-group-m-t">
+	                                       
+	                                   <div class="col-md-3"></div>
+	                                    <div class="col-sm-2">
+	                                        <#button btnCss="info" name="提交" id="ensure" icon="fa-check" clickFun="PatientClinicDisposisInfoDlg.addSubmit()"/>
+	                                    </div>
+	                                    <div class="col-sm-2">
+	                                        <#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="PatientClinicDisposisInfoDlg.cancelDisposis()"/>
+	                                    </div>
+	                                    <div class="col-sm-2">
+	                                        <#button btnCss="info" name="打印" id="print" icon="fa-print" clickFun="PatientInfoPrint.openDiagnosis()"/>
+	                                    </div>
+	                                   <div class="col-md-3"></div>
+	                               </div>
+	                           </div>
+						   </div>
+						</div>
+						
+						
+						<div title="放射检查" style="padding: 0; display: none;">
+	                       <div class="row" style="width:100%; padding: 0 5px 0 20px;">
+	                            <div class="hidden-xs" id="PatientRadiateExamineTableToolbar" role="group">
+	                                <#button name="添加" icon="fa-plus" clickFun="PatientRadiateExamine.openAddPatientRadiateExamine()"/>
+	                                <#button name="修改" icon="fa-edit" clickFun="PatientRadiateExamine.openPatientRadiateExamineDetail()" space="true"/>
+	                                <#button name="删除" icon="fa-remove" clickFun="PatientRadiateExamine.delete()" space="true"/>
+	                        </div>
+	                        <#table id="PatientRadiateExamineTable"/>
+	                        
+	                        <div class="col-md-12">
+	                               <div class="row btn-group-m-t">
+	                                       
+	                                   <div class="col-md-3"></div>
+	                                    <div class="col-sm-2">
+	                                        <#button btnCss="info" name="提交" id="ensure" icon="fa-check" clickFun="PatientRadiateExamine.updateHandleType()"/>
+	                                    </div>
+	                                    <div class="col-sm-2">
+	                                        <#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="PatientRadiateExamine.cancelHandleType()"/>
+	                                    </div>
+	                                    <div class="col-sm-2">
+	                                        <#button btnCss="info" name="打印" id="print" icon="fa-print" clickFun="PatientInfoPrint.openRadiateCheck()"/>
+	                                    </div>
+	                                   <div class="col-md-3"></div>
+	                               </div>
+	                           </div>
+	                       </div>
+						</div>
+						
+						
+						<div title="住院" style="padding: 0; display: none;">
+						   <div id="confirmInhospital" class="row" style="width:90%">
+						       <div class="col-md-12" style="text-align: center"><h1>确认要将该病号住院？</h1></div>
+						       
+						       <div class="col-md-12">
+						           <div class="row btn-group-m-t">
+						                   
+		                               <div class="col-md-4"></div>
+			                            <div class="col-sm-2">
+			                                <#button btnCss="info" name="提交" id="ensure" icon="fa-check" clickFun="PatientInfo.submitInHospital()"/>
+			                            </div>
+		                               <div class="col-md-4"></div>
+		                           </div>
+						       </div>
+						   </div>
+						   
+						   <div id="cancelInhospital" class="row" style="width:90%; ">
+	                           <div class="col-md-12" style="text-align: center"><h1>已住院！</h1></div>
+	                           
+	                           <div class="col-md-12">
+	                               <div class="row btn-group-m-t">
+	                                       
+	                                   <div class="col-md-4"></div>
+	                                    <div class="col-sm-2">
+	                                        <#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="PatientInfo.cancelInHospital(8)"/>
+	                                    </div>
+	                                   <div class="col-md-4"></div>
+	                               </div>
+	                           </div>
+	                       </div>
+						</div>
+						
+						<div title="转诊" style="padding: 0; display: none;">
+						   <div id="confirmTransfer" class="row" style="width:90%">
+	                           <div class="col-md-12" style="text-align: center"><h1>确认要将此患者转诊吗？</h1></div>
+	                           
+	                           <div class="col-md-12">
+	                               <div class="row btn-group-m-t">
+	                                       
+	                                   <div class="col-md-5"></div>
+	                                    <div class="col-sm-2">
+	                                        <#button btnCss="info" name="提交" id="ensure" icon="fa-check" clickFun="PatientInfo.submitTransfer()"/>
+	                                    </div>
+	                                   <div class="col-md-5"></div>
+	                               </div>
+	                           </div>
+	                       </div>
+						   <div id="cancelTransfer" class="row" style="width:90%">
+	                           <div class="col-md-12" style="text-align: center"><h1>已转诊！</h1></div>
+	                           
+	                           <div class="col-md-12">
+	                               <div class="row btn-group-m-t">
+	                                   <div class="col-md-5"></div>
+	                                    <div class="col-sm-2">
+	                                        <#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="PatientInfo.cancelTransfer()"/>
+	                                    </div>
+	                                   <div class="col-md-5"></div>
+	                               </div>
+	                           </div>
+	                       </div>
+						</div>
+						
+						
+						<div title="病休" style="padding: 0; display: none;">
+						    <div class="row" style="width:100%; padding: 0 5px 0 15px;">
+						       <form id="sickRestForm" class="form-horizontal">
+						           <input type="hidden" name="id"> 
+						           <input type="hidden" name="patientInfoId"> 
+						            <div class="row">
+						                <div class="col-md-12">
+	    					                <div class="col-md-4">
+							                    <#SelectCon id="sickRestType" name="病休方式" dataOptions="required:true" itemList="${sickRestTypeItemList}" emptyValue="true" />
+	    					                </div>
+	    					                <div class="col-md-4">
+							                    <#SelectCon id="sickRestDay" name="病休天数"   dataOptions="required:true, validType:'number'" >
+							                      <option></option>
+							                      <option value="1">1</option>
+							                      <option value="2">2</option>
+							                      <option value="3">3</option>
+							                      <option value="4">4</option>
+							                      <option value="5">5</option>
+							                      <option value="6">6</option>
+							                      <option value="7">7</option>
+							                    </#SelectCon>
+	    					                </div>
+	    					                <div class="col-md-4">
+	    					                    <#input id="beginDate" name="开始时间" dataOptions="required:true" type="date" clickFun="laydate({istime: false, format: 'YYYY-MM-DD'})" />
+	    					                </div>
+						                       
+						                </div>
+						
+						                <div class="col-md-12" style="padding-left: 30px">
+						                    <#input id="noticeInfo" name="注意事项" dataOptions="validType:'length[0, 256]'" />
+						                </div>
+						            </div>
+						            
+						            <div class="col-md-12">
+	                               <div class="row btn-group-m-t">
+	                                       
+	                                   <div class="col-md-3"></div>
+	                                    <div class="col-sm-2">
+	                                        <#button btnCss="info" name="提交" id="ensure" icon="fa-check" clickFun="PatientSickRestInfoDlg.addSubmit()"/>
+	                                    </div>
+	                                    <div class="col-sm-2">
+	                                        <#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="PatientSickRestInfoDlg.cancelSickRest()"/>
+	                                    </div>
+	                                    <div class="col-sm-2">
+	                                        <#button btnCss="info" name="打印" id="print" icon="fa-print" clickFun="PatientInfoPrint.openDiagnosisProve()"/>
+	                                    </div>
+	                                   <div class="col-md-3"></div>
+	                               </div>
+	                           </div>
+	                            </form>
+						    </div>
+						</div>
+						
+						
+						<div title="理疗" style="padding: 0; display: none;">
+						   <div class="row" style="width:100%; padding: 0 5px 0 15px;">
+						       <div class="hidden-xs" id="PatientPhysicalTherapyTableToolbar" role="group">
+	                              <#button name="添加" icon="fa-plus" clickFun="PatientPhysicalTherapy.openAddPatientPhysicalTherapy()"/>
+	                              <#button name="修改" icon="fa-edit" clickFun="PatientPhysicalTherapy.openPatientPhysicalTherapyDetail()" space="true"/>
+	                              <#button name="删除" icon="fa-remove" clickFun="PatientPhysicalTherapy.delete()" space="true"/>
+	                        </div>
+	                        <#table id="PatientPhysicalTherapyTable"/>
+	                        
+	                        <div class="col-md-12">
+	                               <div class="row btn-group-m-t">
+	                                       
+	                                   <div class="col-md-3"></div>
+	                                    <div class="col-sm-2">
+	                                        <#button btnCss="info" name="提交" id="ensure" icon="fa-check" clickFun="PatientPhysicalTherapy.submitPhysicalTherapy()"/>
+	                                    </div>
+	                                    <div class="col-sm-2">
+	                                        <#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="PatientPhysicalTherapy.cancelPhysicalTherapy()"/>
+	                                    </div>
+	                                    <div class="col-sm-2">
+	                                        <#button btnCss="info" name="打印" id="print" icon="fa-print" clickFun="PatientInfoPrint.openPhysicalTherapy()"/>
+	                                    </div>
+	                                   <div class="col-md-3"></div>
+	                               </div>
+	                           </div>
+	                           
+						   </div>
+						</div>
+					</div>
+				<!-- </div> -->
+			</div>
+
+		</div>
+	</div>
+</div>
+
+<script>
+    /* $(function() {
+    	console.log(document.body.clientHeight)
+    	if (document.body.clientHeight > 800) {
+    		$('#registration-left').removeClass('col-md-3');
+    		$('#registration-left').addClass('col-md-2');
+    		$('#registration-right').removeClass('col-md-9');
+    		$('#registration-right').addClass('col-md-10');
+    	}
+    }) */
+</script>
+<script src="${ctxPath}/static/js/vue.js"></script>
+<script src="${ctxPath}/static/modular/treatment/patientInfo/patientInfo.js"></script>
+<script src="${ctxPath}/static/modular/treatment/patientInfo/patientInfo_print.js"></script>
+<script src="${ctxPath}/static/modular/treatment/patientPrescriptionMedicineInfo/patientPrescriptionMedicineInfo.js"></script>
+<script src="${ctxPath}/static/modular/treatment/patientClinicDisposis/patientClinicDisposis_info.js"></script>
+<script src="${ctxPath}/static/modular/treatment/patientMedicalUsageStep/patientMedicalUsageStep.js"></script>
+<script src="${ctxPath}/static/modular/treatment/patientRadiateExamine/patientRadiateExamine.js"></script>
+<script src="${ctxPath}/static/modular/treatment/patientSickRest/patientSickRest_info.js"></script>
+<script src="${ctxPath}/static/modular/treatment/patientPhysicalTherapy/patientPhysicalTherapy.js"></script>
+@}

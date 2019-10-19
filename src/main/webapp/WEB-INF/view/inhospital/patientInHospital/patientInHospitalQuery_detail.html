@@ -1,0 +1,97 @@
+@layout("/common/_container.html"){
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <form id="editForm" class="form-horizontal">
+
+            <input type="hidden" id="id" name="id" value="${item.id}">
+            
+            <div class="row">
+                <div class="col-sm-12">
+	                <!-- <div class="col-sm-2">
+	                    <#input id="userId" name="编号" value="${item.userId}" underline="true"/>
+	                </div> -->
+	                <div class="col-sm-3">
+                       <#input id="userName" name="姓名" value="${item.userName}" underline="true"/>
+                    </div>
+	                <div class="col-sm-3">
+                       <#input id="userSex" name="性别" value="${item.userSex}" underline="true"/>
+                    </div>
+	                <div class="col-sm-3">
+                       <#input id="orgName" name="单位" value="${item.orgName}" underline="true"/>
+                    </div>
+	                <div class="col-sm-3">
+                       <#input id="userDuty" name="身份" value="${item.userDuty}" underline="true"/>
+                    </div>
+                </div>         
+                  
+                <div class="col-sm-12">
+                    <div class="col-sm-6">
+                           <#select id="fever" name="发热" value="${item.fever}" itemList="${feverItemList}" underline="true"/>
+                    </div>                    
+                    <div class="col-sm-6">
+                            <#input id="physicianName" name="主管医师" type="text" dataOptions="validType:'length[0, 50]'"  value="${item.physicianName}" underline="true" />
+                    </div>                    
+                </div>    
+                
+                <div class="col-sm-12">
+	                <div class="col-sm-6">
+	                       <#select id="mainDiagnosis" name="入院诊断" itemList="${mainDiagnosisDictList}" value="${item.mainDiagnosis}" underline="true"/>
+                    </div>                    
+	                <div class="col-sm-6">
+	                        <#input id="inHospitalDate" name="入院时间" type="date" clickFun="laydate({istime: false, format: 'YYYY-MM-DD'})"   value="${item.inHospitalDate}" underline="true" />
+                    </div>                    
+                </div>       
+                
+                <div class="col-sm-12">
+	                <div class="col-sm-4">
+	                       <#input id="sickRoom" name="病室" type="text" dataOptions="validType:'length[0, 128]'"  value="${item.sickRoom}" underline="true" />
+                    </div>                    
+	                <div class="col-sm-4">
+	                        <#input id="sickBed" name="病床" type="text" dataOptions="validType:'length[0, 64]'"  value="${item.sickBed}" underline="true" />
+                    </div>                    
+	                <div class="col-sm-4">
+	                        <#input id="physicianName" name="主管医师" type="text" dataOptions="validType:'length[0, 50]'"  value="${item.physicianName}" underline="true" />
+                    </div>                    
+                </div>     
+                  
+                <div class="col-sm-12">
+	                <div class="col-sm-6">
+	                       <#select id="commonAdvice" name="常规医嘱" type="text" dataOptions="validType:'number'" itemList="${commonAdviceDictList}"  value="${item.commonAdvice}" underline="true" />
+                    </div>                    
+	                <div class="col-sm-6">
+	                        <#input id="commonAdvicePhysicianName" name="军医1" type="text" dataOptions="validType:'length[0, 20]'"  value="${item.commonAdvicePhysicianName}" underline="true" />
+                    </div>                    
+                </div>   
+                <div class="col-sm-12">
+	                <div class="col-sm-6">
+	                        <#input id="leaveHospitalDate" underline="true" name="出院时间" type="date" clickFun="laydate({istime: false, format: 'YYYY-MM-DD'})"   value="${item.leaveHospitalDate}" />
+                    </div>   
+                    <div class="col-sm-6">
+                           <#input id="operatorName" underline="true" name="录入员" type="text" dataOptions="validType:'length[0, 50]'"  value="${item.operatorName}" />
+                    </div>                   
+                </div>     
+                <div class="col-sm-12">
+                    <div class="col-sm-12">
+                        <div class="input-group">
+                            <div class="input-group-btn" >
+                               <button data-toggle="dropdown" style="height:94px" class="btn btn-white dropdown-toggle" type="button">出院诊断</button>
+                            </div>
+                            <textarea id="outDiagnosis" name="outDiagnosis" class="form-control easyui-validatebox" underline="true" data-options="required:true, validType:'length[1, 512]'" rows="4" >${item.outDiagnosis}</textarea>
+                       </div>
+                    </div>   
+                </div>     
+            </div>
+
+            <div class="row btn-group-m-t">
+                <div class="col-sm-5"></div>
+                <div class="col-sm-2">
+                    <#button btnCss="info" name="确定" id="cancel" icon="fa-eraser" clickFun="PatientInHospitalInfoDlg.close()"/>
+                </div>
+                <div class="col-sm-5"></div>
+            </div>
+        </form>
+
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/inhospital/patientInHospital/patientInHospital_info.js"></script>
+@}

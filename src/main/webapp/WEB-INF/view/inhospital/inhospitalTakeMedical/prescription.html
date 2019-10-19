@@ -1,0 +1,127 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>就诊管理系统</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link href="${ctxPath}/static/css/reset.css" rel="stylesheet" type="text/css" />
+    <link href="${ctxPath}/static/css/layout.css" rel="stylesheet" type="text/css" />
+    <style type="text/css">
+        td { font-size: 14px;}
+        caption { font-size: 20px; }
+        tr.wp20 td { width: 16%; }
+        #chufangjian { font-size: 30px; font-weight: normal; text-align: center; }
+        .top td { vertical-align: top; }
+        #chufangwrap { position: relative; }
+        #chufangwrap > b { position: absolute; left: 0; bottom: 5px; font-weight: normal; width:100%; }
+        #chufangwrap b > i { position: absolute; right: 10px; font-style:normal; }
+        .yaoitem { text-align: center; margin-bottom:20px; }
+        .yaoitem th { width: 75px; font-weight: normal; }
+        .yaoitem th:first-child { width: auto; }
+        .yaoitem td:first-child { text-align: left; padding-left: 5px; cursor: pointer; }
+
+        #amount { text-align: center; }
+        #yaoappendbtn { border: solid 1px gray; padding: 1px 8px; }
+        [delete] { cursor: pointer; }
+
+        #yaoappwrap { margin-top: 10px; padding: 5px 1px; background-color: whitesmoke; overflow-y: auto; margin-bottom: 20px; }
+        #yaolist td { border: none; }
+        .wp20 input { border: none; border-bottom: solid 1px gray; width: 60px; }
+        td span { font-weight: normal; }
+        .bold { font-weight: bold; }
+    </style>
+</head>
+<body>
+    <form method="post" id="thisform" class="labelright nomargin">
+        <div class="mainwrapassist notitletoolbar">
+            <table class="wp100">
+                <caption>中国人民解放军66194部队</caption>
+                <tbody>
+                    <tr>
+                        <td><span>医疗机构编码：</span></td>
+                        <td colspan="3" rowspan="2" id="chufangjian">处方笺</td>
+                        <td><span>费别：</span></td>
+                    </tr>
+                    <tr>
+                        <td><span>单位：</span>${patientInfo.orgName}</td>
+                        <td><span>编号：</span>${patientInfo.userNo}</td>
+                    </tr>
+                    <tr class="wp20">
+                        <td><span>姓名：</span>${patientInfo.userName}</td>
+                        <td><span>性别：</span>${patientInfo.userSex}</td>
+                        <td><span>年龄：</span>${patientInfo.age}</td>
+                        <td><span>科室：</span>${patientInfo.outpatient}</td>
+                        <td><span>住院号：</span></td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="wp100 cellbor h300 top">
+                <tbody>
+                    <tr>
+                        <td class="w200"><span>诊断：</span>
+                            <div>${patientInfo.mainDiagnosis}</div>
+                        </td>
+                        <td rowspan="2" id="chufangwrap"><span class="bold">R:</span>
+                            <table class="wp100 yaoitem">
+                                <thead>
+                                    <tr>
+                                        <th>药名</th>
+                                        <th>数量</th>
+                                        <th>单位</th>
+                                        <th>用法</th>
+                                        <th>周期</th>
+                                        <th>用量</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="yaolist">
+                                    
+                                    @for (medical in medicalList) {
+	                                    <tr>
+	                                        <td>${medical.medicalName}</td>
+	                                        <td>${medical.amount}</td>
+	                                        <td>${medical.unit}</td>
+	                                        <td>${medical.usage}</td>
+	                                        <td>${medical.period}</td>
+	                                        <td>${medical.dosage}</td>
+	                                    </tr>
+                                     @}
+                                </tbody>
+                            </table>
+                            <div class="bottom-info">
+				                <div class="bottom-item">医师：${patientInfo.physicianName}&nbsp;&nbsp;(签章)</div>
+				                <div class="bottom-item">日期：${now}</div>
+				            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><span>备注：</span>
+                            ${patientInfo.remark}
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="wp100">
+                <tr class="wp20">
+                    <td><span>金额：<span class="bold">${money}</span>元</span></td>
+                    <td><span>审核：</span></td>
+                    <td><span>调配：</span></td>
+                    <td><span>核对：</span></td>
+                    <td><span>发药：</span></td>
+                </tr>
+            </table>
+        </div>
+        <div id="statusbar">
+            <button type="button">打印</button>
+        </div>
+    </form>
+    <script src="${ctxPath}/static/js/jquery.min.js?v=2.1.4"></script>
+    <script type="text/javascript">
+        $("#statusbar button").click(function () {
+        	$("#statusbar").remove(); 
+            window.print();
+            parent.layer.close(window.parent.InHospitalPrescriptionDetail.layerIndex);
+        });
+    </script>
+</body>
+</html>

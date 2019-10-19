@@ -1,0 +1,30 @@
+@layout("/common/_container.html"){
+<input type="hidden" name="inHospitalId" id="inHospitalId" value="${item.id}" />
+<div class="row">
+    <div class="col-md-12"><h3>入院日期： ${item.inHospitalDate}</h3></div>
+    <div class="col-md-12">
+        <div class="col-md-1">
+            <h3> 姓名：${item.userName}</h3>
+        </div>    
+        <div class="col-md-1">
+            <h3> 单位：${item.orgName}</h3>
+        </div>    
+        <div class="col-md-1">
+            <h3> 病房：${item.sickRoom}</h3>
+        </div>    
+        <div class="col-md-1">
+            <h3>  病床：${item.sickBed}</h3>
+        </div>    
+    </div>
+</div>
+<div id="cylinderShape" style="height:700px"></div>
+<div class="row">
+    <div class="col-md-5">
+    </div>
+    <div class="col-md-2">
+        <#button name="关闭" icon="fa-close" clickFun="InHospitalTemperatureRecordShowChart.close()"/>
+    </div>
+</div>
+<script src="${ctxPath}/static/js/echarts.js"></script>
+<script src="${ctxPath}/static/modular/inhospital/inHospitalTemperatureRecord/inHospitalTemperatureRecord_showChart.js"></script>
+@}

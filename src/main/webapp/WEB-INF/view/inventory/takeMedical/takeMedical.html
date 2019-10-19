@@ -1,0 +1,48 @@
+@layout("/common/_container.html"){
+<div class="row">
+	<div class="col-sm-12">
+		<div class="ibox float-e-margins">
+			<div class="ibox-content">
+				<div class="row row-lg">
+					<div class="col-sm-12">
+						<form id="searchForm" class="row">
+							<div class="col-sm-12">
+								<div class="col-sm-2">
+									<#SelectCon id="status" name="状态" itemList="${patientInfoStatusItemList}" />
+								</div>
+								<div class="col-sm-2">
+									<#NameCon id="userName" name="姓名" />
+								</div>
+								<div class="col-sm-2">
+    <#SelectCon id="orgId" name="单位" itemList="${dtDepItemList}" />
+								</div>
+	                            <div class="col-sm-2">
+	                                <#input id="beginDate" name="开始时间" type="datetime" clickFun="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})" />
+	                            </div>
+	                            <div class="col-sm-2">
+	                                <#input id="endDate" name="结束时间" type="datetime" clickFun="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})" />
+	                            </div>
+	                            <div class="col-sm-2">
+	                                <#button name="搜索" icon="fa-search" clickFun="TakeMedical.search()" />
+	                                <#button name="重置" icon="fa-refresh" clickFun="TakeMedical.clearSearchForm()" />
+	                            </div>
+							</div>
+						</form>
+						<div class="hidden-xs" id="PatientInHospitalTableToolbar" role="group">
+                            @if(shiro.hasPermission("/patientInfo/takeMedical")){
+                                <#button name="取药" icon="fa-detail" clickFun="TakeMedical.openTakeMedical()"/>
+                            @}
+                            @if(shiro.hasPermission("/patientInfo/prescriptionDetail")){
+                                <#button name="查看处方" icon="fa-detail" clickFun="TakeMedical.openPrescriptionDetail()"/>
+                            @}
+                        </div>
+						<#table id="PatientInfoTable" />
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<script
+	src="${ctxPath}/static/modular/inventory/takeMedical/takeMedical.js"></script>
+@}

@@ -1,0 +1,51 @@
+@layout("/common/_container.html"){
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <div class="form-horizontal">
+
+            <input type="hidden" id="id" value="">
+
+            <div class="row">
+                <div class="col-sm-6 b-r">
+                            <#input id="userId" name="编号" underline="true"/>
+                            <#input id="userName" name="姓名" underline="true"/>
+                            <#input id="userSex" name="性别" underline="true"/>
+                            <#input id="userCard" name="卡号" underline="true"/>
+                            <#input id="age" name="年龄" underline="true"/>
+                            <#input id="identity" name="身份" underline="true"/>
+                            <#input id="orgId" name="单位id" underline="true"/>
+                            <#input id="orgName" name="单位" underline="true"/>
+                            <#input id="handleType" name="处理方式" underline="true"/>
+                            <#input id="doctorOpinion" name="军医意见" underline="true"/>
+                            <#input id="clinicDate" name="就诊时间" underline="true"/>
+                            <#input id="createDate" name="创建时间"/>
+                </div>
+
+                <div class="col-sm-6">
+                            <#input id="updateDate" name="更新时间" underline="true"/>
+                            <#input id="irritabilityHistory" name="过敏史" underline="true"/>
+                            <#input id="abstractIllness" name="病情摘要" underline="true"/>
+                            <#input id="mainDiagnosis" name="主要诊断" underline="true"/>
+                            <#input id="minorDiagnosis" name="次要诊断" underline="true"/>
+                            <#input id="dispose" name="处置" underline="true"/>
+                            <#input id="sickRest" name="病休" underline="true"/>
+                            <#input id="fever" name="发热" underline="true"/>
+                            <#input id="trainWound" name="训练伤" underline="true"/>
+                            <#input id="patientPrescriptionInfoId" name="患者处方表id" underline="true"/>
+                            <#input id="physicianId" name="军医id" underline="true"/>
+                            <#input id="physicianName" name="医生" underline="true"/>
+                </div>
+            </div>
+
+            <div class="row btn-group-m-t">
+                <div class="col-sm-10">
+                    <#button btnCss="info" name="提交" id="ensure" icon="fa-check" clickFun="PatientInfoInfoDlg.addSubmit()"/>
+                    <#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="PatientInfoInfoDlg.close()"/>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/treatment/patientInfo/patientInfo_info.js"></script>
+@}

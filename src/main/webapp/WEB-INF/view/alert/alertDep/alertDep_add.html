@@ -1,0 +1,28 @@
+@layout("/common/_container.html"){
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <form id="addForm" class="form-horizontal">
+
+            <!-- <input type="hidden" id="depName" name="depName">
+            <input type="hidden" id="depNo" name="depNo"> -->
+
+            <div class="row">
+
+                <div class="col-sm-12">
+                            <#input id="depSerial" name="部门" type="text" dataOptions="required:true, validType:'length[1, 50]'" />
+                            <!-- <#input id="parentName" name="上级部门" type="text" dataOptions="required:true, validType:'length[1, 50]'" underline="true" /> -->
+                </div>
+            </div>
+
+            <div class="row btn-group-m-t">
+                <div class="col-sm-10">
+                    <#button btnCss="info" name="提交" id="ensure" icon="fa-check" clickFun="AlertDepInfoDlg.addSubmit()"/>
+                    <#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="AlertDepInfoDlg.close()"/>
+                </div>
+            </div>
+        </form>
+
+    </div>
+<script src="${ctxPath}/static/modular/common/dtDepTreeCommon.js"></script>
+<script src="${ctxPath}/static/modular/alert/alertDep/alertDep_info.js"></script>
+@}

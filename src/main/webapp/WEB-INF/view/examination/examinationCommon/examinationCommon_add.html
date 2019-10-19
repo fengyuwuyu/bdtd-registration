@@ -1,0 +1,40 @@
+@layout("/common/_container.html"){
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+
+            <input type="hidden" id="id" >
+
+            <div class="row">
+                
+                <div class="col-sm-12">
+                    <div class="col-sm-4">
+                        <#input id="upgrowthSituation" name="发育情况" type="text" dataOptions="required:true, validType:'number'" underline="true" />
+                    </div>
+                    <div class="col-sm-4">
+                        <#input id="stature" name="身高" type="text" dataOptions="validType:'number'" underline="true" />
+                    </div>
+                    <div class="col-sm-4">
+                        <#input id="weight" name="体重" type="text"  underline="" />
+                    </div>
+                </div>
+                <div class="col-sm-12">
+	                <div class="col-sm-6">
+                        <#input id="bloodPressure" name="血压" type="text" dataOptions="validType:'number'" underline="true" />
+                    </div>                    
+	                <div class="col-sm-6">
+                        <#input id="married" name="婚否" type="text" dataOptions="required:true, validType:'number'" underline="true" />
+                    </div>                    
+                </div>
+                <div class="col-sm-12">
+                    <#input id="commonIrritabilityHistory" name="既往病史" type="text" dataOptions="validType:'length[0, 1024]'" underline="true" />
+                </div>
+                <br class="col-sm-12">
+                <div class="col-sm-12">
+                    <#input id="commonSignatureResponsiblePhysician" name="医师签名" type="text" dataOptions="validType:'length[0, 50]'" underline="true" />
+                </div>
+            </div>
+
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/examination/examinationCommon/examinationCommon_info.js"></script>
+@}

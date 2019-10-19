@@ -1,0 +1,116 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>就诊管理系统</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link href="${ctxPath}/static/css/reset.css" rel="stylesheet" type="text/css" />
+    <link href="${ctxPath}/static/css/layout.css" rel="stylesheet" type="text/css" />
+    <style type="text/css">
+        caption { font-size: 20px; }
+        #chufangjian { font-size: 30px; font-weight: normal; text-align: center; }
+        td, th { font-weight: normal; }
+        td, th, tr {
+            box-sizing: border-box;
+            height: 32px;
+            font-size: 14px; 
+        }
+        .bold { font-weight: bold; }
+        
+        .table-bordered td,.table-bordered th {
+            border:1px solid #ddd!important;
+        }
+        
+        .impression {
+            height: 200px;
+            border: 1px solid #ddd!important;
+            font-size: 14px; 
+            padding: 5px 0 0 5px;
+        }
+        
+        .advice, .impression {
+            width: 365px;
+            margin-right: 6px;
+        }
+        
+        thead tr {
+            box-sizing: border-box;
+            height: 50px !important;
+        }
+        
+        .advice th, .advice td {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <form method="post" id="thisform" class="labelright nomargin">
+        <div class="mainwrapassist notitletoolbar">
+            <table class="wp100">
+                <caption>中国人民解放军66194部队</caption>
+                <tbody>
+                    <tr>
+                        <td colspan="4" id="chufangjian">放射检查单</td>
+                    </tr>
+                    <tr>
+                        <td><span>姓名：</span>${patientInfo.userName}</td>
+                        <td><span>性别：</span>${patientInfo.userSex}</td>
+                        <td><span>年龄：</span>${patientInfo.age}</td>
+                        <td><span>单位：</span>${patientInfo.orgName}</td>
+                    </tr>
+                    <tr>
+                        <td colspan="1"><span>主要诊断：${patientInfo.mainDiagnosis}</span></td>
+                        <td colspan="3"><span>病情摘要：${patientInfo.abstractIllness}</span></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" style="vertical-align:top;">
+                            <table class="table-bordered advice">
+                                <thead>
+                                    <tr>
+                                        <th>序号</th>
+                                        <th>部位</th>
+                                        <th>体位</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @for (var i = 0; i <  radiateCheck.~size; i++ ) {
+                                        <tr>
+                                            <td>${i+1}</td>
+                                            <td>${radiateCheck[i].bodyPart}</td>
+                                            <td>${radiateCheck[i].position}</td>
+                                        </tr>
+                                    @}
+                                </tbody>
+                            </table>
+                        </td>
+                        <td colspan="2">
+                            <div class="impression">
+                                <p>印象：</p>
+                            </div>
+                        </td>
+                    </tr>
+                   <!-- <tr style="">
+                        <td colspan="2">医生签名：</td>
+                        <td colspan="2">开单日期：</td>
+                    </tr> -->
+                </tbody>
+            </table>
+            <div class="bottom-info">
+                <div class="bottom-item">医生签名：${patientInfo.physicianName}</div>
+                <div class="bottom-item">开单日期：${now}</div>
+            </div>
+        </div>
+        <div id="statusbar">
+            <button type="button">打印</button>
+        </div>
+    </form>
+    <script src="${ctxPath}/static/js/jquery.min.js?v=2.1.4"></script>
+    <script type="text/javascript">
+        $("#statusbar button").click(function () {
+        	$("#statusbar").remove(); 
+            window.print();
+        });
+    </script>
+</body>
+</html>

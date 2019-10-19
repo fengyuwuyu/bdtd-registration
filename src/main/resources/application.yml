@@ -6,7 +6,7 @@
 guns:
   swagger-open: true #是否开启swagger (true/false)
   kaptcha-open: false #是否开启登录时验证码 (true/false)
-  #file-upload-path: d:/tmp  #文件上传目录(不配置的话为java.io.tmpdir目录)
+  file-upload-path: d:/bdtd/upload  #文件上传目录(不配置的话为java.io.tmpdir目录)
   muti-datasource-open: false #是否开启多数据源(true/false)
   spring-session-open: false #是否开启spring session,如果是多机环境需要开启(true/false)
   session-invalidate-time: 1800 #session失效时间(只在单机环境下生效，多机环境在SpringSessionConfig类中配置) 单位：秒
@@ -14,16 +14,31 @@ guns:
 
 ###################  项目启动端口  ###################
 server:
-  port: 80
+  port: 8080
+  context-path: /yljz
+
+################### bdtd配置  ########################
+bdtd:
+  photoPath: D:/SCM_V1.07_20160812_66194/wwwroot
+  auth: true
+  modules: registration
+  refreshDtDepTime: 3600000
+  ip: 21.31.48.240
+  inhospital-dict-ids:
+    - 656
 
 ###################  beetl配置  ###################
 beetl:
-  delimiter-statement-start: \@   #开始结束标签(yaml不允许@开头)
+  delimiter-statement-start: \@   #开始结束标签(yml不允许@开头)
   delimiter-statement-end: null
   resource-tagroot: common/tags   #自定义标签文件Root目录和后缀
   resource-tagsuffix: tag
   resource-auto-check: true #是否检测文件变化,开发用true合适，但线上要改为false
 
+restart:
+  include:
+    beetl: /beetl-2.7.15.jar
+    beetlsql: /beetlsql-2.7.15.jar
 
 ###################  spring配置  ###################
 spring:
@@ -50,6 +65,7 @@ spring:
       exclude: static/**,WEB-INF/view/**
   aop:
     proxy-target-class: true #false为启用jdk默认动态代理,true为cglib动态代理
+    
 ###################  mybatis-plus配置  ###################
 mybatis-plus:
   mapper-locations: classpath*:com/stylefeng/guns/**/mapping/*.xml, classpath*:com.bdtd.card.registration/**/mapping/*.xml
@@ -78,15 +94,15 @@ spring:
   datasource:
     url: jdbc:mysql://127.0.0.1:3306/card_medical?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false
     username: root
-    password: root
+    password: BDtd1234!
     db-name: card_medical
     filters: log4j,wall,mergeStat
 
 card:
   datasource:
       username: sa
-      password: BDtd1234!
-      url:  jdbc:sqlserver://172.16.2.118:1433;DatabaseName=scm_main
+      password: BDtd1234
+      url:  jdbc:sqlserver://127.0.0.1:1433;DatabaseName=scm_main
       driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
       
 #flowable数据源和多数据源配置
@@ -95,16 +111,19 @@ guns:
     datasource:
       url: jdbc:mysql://127.0.0.1:3306/card_flowable?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false
       username: root
-      password: root
+      password: BDtd1234!
   muti-datasource:
     default-dataSource-name: dataSourceGuns #默认的数据源名称
     url: jdbc:mysql://127.0.0.1:3306/card_medical?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false
     username: root
-    password: root
+    password: BDtd1234!
 
 logging:
   level.root: info
   level.com.bdtd.card: debug
+  level.com.stylefeng.guns.modular.system.dao: debug
+  level.com.stylefeng.guns.core.aop.FileLogAop: debug
+#  level.org.springframework.web: info
   path: logs/
   file: registration.log
 
@@ -118,7 +137,7 @@ spring:
   datasource:
       url: jdbc:mysql://127.0.0.1:3306/card_medical?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false
       username: root
-      password: root
+      password: BDtd1234!
       filters: log4j,wall,mergeStat
 
 logging:

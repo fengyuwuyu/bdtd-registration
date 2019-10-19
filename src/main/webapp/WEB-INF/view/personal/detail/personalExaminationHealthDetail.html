@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>体检信息详情</title>
+
+  <link rel="stylesheet" type="text/css" href="${ctxPath}/static/css/common-reset.css">
+  <link rel="stylesheet" type="text/css" href="${ctxPath}/static/css/border.css">
+  <link rel="stylesheet" type="text/css" href="${ctxPath}/static/css/tab.css">
+  <link rel="stylesheet" type="text/css" href="${ctxPath}/static/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="${ctxPath}/static/css/flex-layout.css">
+  <link rel="stylesheet" type="text/css" href="${ctxPath}/static/css/personal.css">
+
+  <style>
+    /* #container {
+         height: 100%;
+         width: 100%;
+         background-color: #cacaca;
+     }*/
+
+    .info-bg {
+      position: absolute;
+      width: 91.7%;
+      height: 92.18%;
+      top: 30px;
+      left: 53px;
+      /*background-color: #c4e2c7;*/
+      background-image: url("${ctxPath}/static/img/personal/list_bg.png");
+      -moz-background-size:100% 100%;
+      background-size:100% 100%;
+      border-radius: 12px;
+      box-shadow: 5px 5px 10px #5fa0c4;
+      color: rgb(38, 95, 145);
+    }
+
+    .title {
+      height: 80px;
+      line-height: 80px;
+      width: 100%;
+      text-align: center;
+      font-weight: bold;
+      font-size: 36px;
+      color: rgb(38, 95, 145);
+    }
+
+    .tab {
+      height: 370px;
+      width: 98%;
+      padding-left: 25px;
+      box-sizing: border-box;
+    }
+
+    .btn-footer {
+      position: relative;
+      width: 100%;
+      height: 80px;
+      bottom: -30px;
+      right: 20px;
+    }
+
+    .btn-item {
+      position: relative;
+      float: right;
+      /*padding: 0 25px 10px 0;*/
+    }
+
+    .conclusion {
+      font-size: 22px;
+    }
+
+    img{
+      border-radius: 10px;
+    }
+  </style>
+</head>
+<body>
+<input type="hidden" id="userNo" value="${userNo}">
+<div id="container">
+  <div id="header"></div>
+  <div id="content">
+    <div class="info-bg">
+      <div class="title">
+        <span>体检信息详情</span>
+      </div>
+
+      <div class="tab">
+        <div class="tab-menu">
+          <ul>
+            <li class="active">一般检查</li>
+            <li>外科</li>
+            <li>内科</li>
+            <li>B超</li>
+            <li>化验</li>
+            <li>眼科</li>
+            <li>耳鼻喉科</li>
+            <li>妇产科</li>
+            <li>口腔科</li>
+          </ul>
+        </div>
+        <div class="tab-box">
+          <div class="active">
+            <span class="row-detail">
+              <span class="col-detail-6 underline">发育情况： ${item.upgrowthSituation}</span>
+              <span class="col-detail-6 underline">血压： ${item.bloodPressure}</span>
+            </span>
+            <span class="row-detail">
+              <span class="col-detail-4 underline">身高： ${item.stature}</span>
+              <span class="col-detail-4 underline">体重： ${item.weight}</span>
+              <span class="col-detail-4 underline">婚否： ${item.married}</span>
+            </span>
+            <span class="row-detail">
+              <span class="col-detail-1 underline">既往病史： ${item.commonIrritabilityHistory}</span>
+            </span>
+            <span class="row-detail">
+              <span class="col-detail-1 underline">医师签名： ${item.commonSignatureResponsiblePhysician}</span>
+            </span>
+          </div>
+          <div>
+            <span class="row-detail">
+              <span class="col-detail-1 underline">既往病史： ${item.surgeryIrritabilityHistory}</span>
+            </span>
+            <span class="row-detail">
+              <span class="col-detail-1 underline">检查所见： ${item.surgeryCheckInfo}</span>
+            </span>
+            <span class="row-detail">
+              <span class="col-detail-1 underline">诊断： ${item.surgeryDiagnosis}</span>
+            </span>
+            <span class="row-detail">
+              <span class="col-detail-1 underline">结论： ${item.surgeryConclusion}</span>
+            </span>
+            <span class="row-detail">
+              <span class="col-detail-1 underline">医师签名： ${item.surgerySignatureResponsiblePhysician}</span>
+            </span>
+          </div>
+          <div>
+            <span class="row-detail">
+              <span class="col-detail-6 underline">胸部透视： ${item.chestFluoroscopy}</span>
+              <span class="col-detail-6 underline">医师签名： ${item.cfDoctor}</span>
+            </span>
+            <span class="row-detail">
+              <span class="col-detail-1 underline">既往病史： ${item.internalIrritabilityHistory}</span>
+            </span>
+            <span class="row-detail">
+              <span class="col-detail-1 underline">检查所见： ${item.internalCheckInfo}</span>
+            </span>
+            <span class="row-detail">
+              <span class="col-detail-1 underline">诊断： ${item.internalDiagnosis}</span>
+            </span>
+            <span class="row-detail">
+              <span class="col-detail-1 underline">结论： ${item.internalConclusion}</span>
+            </span>
+            <span class="row-detail">
+              <span class="col-detail-1 underline">医师签名： ${item.internalSignatureResponsiblePhysician}</span>
+            </span>
+          </div>
+          <div>
+             <span class="row-detail">
+              <span class="col-detail-1 underline">肝： ${item.liver}</span>
+            </span>
+            <span class="row-detail">
+              <span class="col-detail-1 underline">胆： ${item.gallbladder}</span>
+            </span>
+            <span class="row-detail">
+              <span class="col-detail-1 underline">肾：${item.kidney}</span>
+            </span>
+            <span class="row-detail">
+              <span class="col-detail-1 underline">脾： ${item.spleen}</span>
+            </span>
+            <span class="row-detail">
+              <span class="col-detail-1 underline">其他： ${item.bUltrasonicOther}</span>
+            </span>
+          </div>
+          <div>
+            <span class="row-detail">
+              <span class="col-detail-1 underline">肝功： ${item.liverFunction}</span>
+              <span class="col-detail-1 underline">(HBsAg)： ${item.HBsAg}</span>
+            </span>
+            <span class="row-detail">
+              <span class="col-detail-1 underline">胆固醇： ${item.cholesterol}</span>
+              <span class="col-detail-1 underline">甘油三醇： ${item.triglycerideAlcohol}</span>
+            </span>
+            <span class="row-detail">
+              <span class="col-detail-1 underline">血糖： ${item.bloodGlucose}</span>
+              <span class="col-detail-1 underline">血常规：${item.bloodRoutine}</span>
+            </span>
+            <span class="row-detail">
+              <span class="col-detail-1 underline">尿常规： ${item.urineRoutine}</span>
+              <span class="col-detail-1 underline">便常规： ${item.stoolRoutine}</span>
+            </span>
+            <span class="row-detail">
+              <span class="col-detail-1 underline">其他： ${item.assayOther}</span>
+            </span>
+          </div>
+          <div>
+            <span class="row-detail">
+              <span class="col-detail-1 underline">立体视觉： ${item.stereoscopicVision}</span>
+              <span class="col-detail-1 underline">色觉： ${item.colourVision}</span>
+            </span>
+            <span class="row-detail">
+              <span class="col-detail-1 underline">视力  右：${item.visionRight}</span>
+              <span class="col-detail-1 underline">视力  左： ${item.visionLeft}</span>
+            </span>
+            <span class="row-detail">
+              <span class="col-detail-1 underline">检查所见： ${item.ophthalmologyCheckInfo}</span>
+            </span>
+            <span class="row-detail">
+              <span class="col-detail-1 underline">诊断： ${item.ophthalmologyDiagnosis}</span>
+            </span>
+            <span class="row-detail">
+              <span class="col-detail-1 underline">结论： ${item.ophthalmologyConclusion}</span>
+            </span>
+            <span class="row-detail">
+              <span class="col-detail-1 underline">医师签名： ${item.ophthalmologySignatureResponsiblePhysician}</span>
+            </span>
+          </div>
+          <div>
+            <span class="row-detail">
+              <span class="col-detail-1 underline">嗅觉： ${item.smell}</span>
+              <span class="col-detail-1 underline">耳气压功能： ${item.otobaricFunction}</span>
+            </span>
+            <span class="row-detail">
+              <span class="col-detail-1 underline">听力  右： ${item.hearingRight}</span>
+              <span class="col-detail-1 underline">听力  左： ${item.hearingLeft}</span>
+            </span>
+            <span class="row-detail">
+              <span class="col-detail-1 underline">检查所见： ${item.entCheckInfo}</span>
+            </span>
+            <span class="row-detail">
+              <span class="col-detail-1 underline">诊断： ${item.entDiagnosis}</span>
+            </span>
+            <span class="row-detail">
+              <span class="col-detail-1 underline">结论： ${item.entConclusion}</span>
+            </span>
+            <span class="row-detail">
+              <span class="col-detail-1 underline">医师签名： ${item.entSignatureResponsiblePhysician}</span>
+            </span>
+          </div>
+          <div>
+            <span class="row-detail">
+              <span class="col-detail-1 underline">既往病史： ${item.gOIrritabilityHistory}</span>
+            </span>
+            <span class="row-detail">
+              <span class="col-detail-1 underline">检查所见： ${item.gOCheckInfo}</span>
+            </span>
+            <span class="row-detail">
+              <span class="col-detail-1 underline">诊断： ${item.gODiagnosis}</span>
+            </span>
+            <span class="row-detail">
+              <span class="col-detail-1 underline">结论： ${item.gOConclusion}</span>
+            </span>
+            <span class="row-detail">
+              <span class="col-detail-1 underline">医师签名： ${item.gOSignatureResponsiblePhysician}</span>
+            </span>
+          </div>
+          <div>
+            <span class="row-detail">
+              <span class="col-detail-1 underline">既往病史： ${item.stomatologyIrritabilityHistory}</span>
+            </span>
+            <span class="row-detail">
+              <span class="col-detail-1 underline">检查所见： ${item.stomatologyCheckInfo}</span>
+            </span>
+            <span class="row-detail">
+              <span class="col-detail-1 underline">诊断： ${item.stomatologyDiagnosis}</span>
+            </span>
+            <span class="row-detail">
+              <span class="col-detail-1 underline">结论： ${item.stomatologyConclusion}</span>
+            </span>
+            <span class="row-detail">
+              <span class="col-detail-1 underline">医师签名：${item.stomatologySignatureResponsiblePhysician}</span>
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="conclusion">
+        <span class="row-detail">
+              <span class="col-detail-1 underline-bold detail-title">结论</span>
+            </span>
+        <span class="row-detail">
+              <span class="col-detail-1 underline">主检医师： ${item.responsiblePhysician}</span>
+            </span>
+        <span class="row-detail">
+              <span class="col-detail-1 underline">复检结论： ${item.recheckConclusion}</span>
+            </span>
+        <span class="row-detail">
+              <span class="col-detail-1 underline">复检医师： ${item.recheckDoctor}</span>
+            </span>
+      </div>
+      <div class="btn-footer">
+        <div class="btn-item btn-return">
+          <a href="#" onclick="Personal.goExaminationRecord();">
+            <img src="${ctxPath}/static/img/personal/btn/btn_return_list.png">
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="footer">
+    <div id="footer-time">
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript" src="${ctxPath}/static/js/tab.js"></script>
+<script type="text/javascript" src="${ctxPath}/static/modular/personal/commonPersonal.js"></script>
+<script type="text/javascript" src="${ctxPath}/static/modular/personal/showDate.js"></script>
+<script type="text/javascript">
+  switchTab.listen('.tab');
+</script>
+</body>
+</html>

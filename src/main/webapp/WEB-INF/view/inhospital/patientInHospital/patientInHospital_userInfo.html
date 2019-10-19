@@ -1,0 +1,37 @@
+@layout("/common/_container.html"){
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <form id="userInfoForm" class="form-horizontal">
+
+            <div class="row">
+                <div class="col-sm-6 b-r">
+                    <#input id="userNo" name="编号" underline="true" dataOptions="required:true" value="${item.userNo}" />
+                    <#select id="userSex" name="性别" underline="true" dataOptions="required:true,editable:false" value="${item.userSex}">
+                        <option value="男">男</option>
+                        <option value="女">女</option>
+                    </#select>
+                    <#input id="userDuty" name="身份" underline="true" dataOptions="required:true" value="${item.userDuty}" />
+                    <#input id="enrolDate" name="入伍时间" value="${item.userWorkday}" />
+
+                </div>
+
+                <div class="col-sm-6">
+                    <#input id="userName" name="姓名" underline="true" dataOptions="required:true" value="${item.userLname}" />
+                    <#input id="orgName" name="单位" underline="true" readonly="readonly" value="${item.userDepname}" />
+                    <#input id="age" name="年龄" dataOptions="required:true, validType:'number'" value="${age}" />
+                </div>
+            </div>
+
+            <div class="row btn-group-m-t">
+                <div class="col-sm-5"></div>
+                <div class="col-sm-2">
+                    <#button btnCss="info" name="确定" id="ensure" icon="fa-check" clickFun="PatientInHospitalInfoDlg.close()"/>
+                </div>
+                <div class="col-sm-5"></div>
+            </div>
+        </form>
+
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/inhospital/patientInHospital/patientInHospital_info.js"></script>
+@}

@@ -1,0 +1,37 @@
+@layout("/common/_container.html"){
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <form id="editForm" class="form-horizontal">
+            <div class="row">
+                <div class="col-sm-12">
+	                <div class="col-sm-12">
+	                   <#input id="billingName" name="开单人" readonly="readonly" value="${item.billingName}" underline="true" />
+	                </div>
+	                <div class="col-sm-12">
+                       <#input id="billingDate" name="开单时间" readonly="readonly"  value="${item.billingDate}" underline="true" />
+	                </div>
+	                <div class="col-sm-12">
+	                   <#input id="collectName" name="汇总人" readonly="readonly" value="${item.collectName}" underline="true" />
+	                </div>
+	                <div class="col-sm-12">
+                        <#input id="collectDate" name="汇总时间" readonly="readonly"  value="${item.collectDate}" />
+	                </div>
+                </div>
+
+            </div>
+
+            <div class="row btn-group-m-t">
+                <div class="col-sm-12">
+                    <div class="col-sm-5"></div>
+                    <div class="col-sm-2">
+                        <#button btnCss="info" name="确定" id="ensure" icon="fa-check" clickFun="PatientTransferReportInfoDlg.close()"/>
+                    </div>
+                    <div class="col-sm-5"></div>
+                </div>
+            </div>
+        </form>
+
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/transfer/patientTransferReport/patientTransferReport_info.js"></script>
+@}

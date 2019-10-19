@@ -1,0 +1,42 @@
+@layout("/common/_container.html"){
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <form id="addForm" class="form-horizontal">
+
+            <input type="hidden" id="id" value="">
+            <input type="hidden" id="orgId" name="orgId" />
+            <input type="hidden" name="enrolDate" />
+            <input type="hidden" name="userSex" />
+
+            <div class="row">
+                <div class="col-sm-6 b-r">
+                            <#input id="userName" name="姓名" type="text" class="easyui-combogrid" dataOptions="required:true, validType:'length[1, 50]'" underline="true" />
+                            <#input id="orgName" name="单位" type="text" dataOptions="required:true, validType:'length[1, 50]'" underline="true" readonly="readonly" />
+                            <#select id="apply" name="是否申请" type="text" dataOptions="required:true" underline="true" itemList="${applyItemList}" />
+                            <#input id="applyDate" name="申请时间" type="date" clickFun="laydate({istime: true, format: 'YYYY-MM-DD'})" dataOptions="required:true" underline="true" />
+                            <#select id="disabilityResult" name="评残结果" type="text" dataOptions="validType:'number'" itemList="${disabilityRateResultItemList}" emptyValue="true" underline="true" />
+                            <#select id="crippleNature" name="评残性质" type="text" dataOptions="validType:'number'" itemList="${crippleNatureItemList}" emptyValue="true" />
+                </div>
+
+                <div class="col-sm-6">
+                            <#input id="userNo" name="编号" type="text" dataOptions="required:true, validType:'length[1, 20]'" underline="true" readonly="readonly" />
+                            <#select id="userDuty" name="身份" type="text" dataOptions="validType:'length[0, 20]'" underline="true" itemList="${userDutyItemList}" emptyValue="true" />
+                            <#input id="disabilityName" name="疾病名称" type="text" dataOptions="required:true, validType:'length[1, 64]'"   underline="true" />
+                            <#select id="applyRating" name="申请等级" type="text" dataOptions="required:true, validType:'number'" underline="true" itemList="${disabilityRateItemList}" emptyValue="true" />
+                            <#input id="resultDate" name="结果时间" type="date" clickFun="laydate({istime: true, format: 'YYYY-MM-DD'})" />
+                </div>
+            </div>
+
+            <div class="row btn-group-m-t">
+                <div class="col-sm-10">
+                    <#button btnCss="info" name="提交" id="ensure" icon="fa-check" clickFun="PatientDisabilityRatingInfoDlg.addSubmit()"/>
+                    <#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="PatientDisabilityRatingInfoDlg.close()"/>
+                </div>
+            </div>
+        </form>
+
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/common/userSearchCommon.js"></script>
+<script src="${ctxPath}/static/modular/comprehensive/patientDisabilityRating/patientDisabilityRating_info.js"></script>
+@}

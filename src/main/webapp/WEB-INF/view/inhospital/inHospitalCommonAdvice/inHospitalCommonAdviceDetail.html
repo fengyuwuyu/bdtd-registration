@@ -1,0 +1,17 @@
+@layout("/common/_container.html"){
+<div class="row">
+    <div class="col-sm-12">
+        <div class="ibox float-e-margins">
+            <div class="ibox-content">
+                <div class="row row-lg">
+                    <div class="col-sm-12">
+                        <input type="hidden" id="inHospitalId" name="inHospitalId" value="${inHospitalId}" />
+                        <#table id="InHospitalCommonAdviceTable"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/inhospital/inHospitalCommonAdvice/inHospitalCommonAdvice.js"></script>
+@}

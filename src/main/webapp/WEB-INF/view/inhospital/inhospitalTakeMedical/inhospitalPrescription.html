@@ -1,0 +1,28 @@
+@layout("/common/_container.html"){
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <form id="addForm" class="form-horizontal">
+
+            <input type="hidden" id="type" name="type" value="${type}">
+            <input type="hidden" id="ids" name="ids" value="${ids}">
+            <input type="hidden" id="inhospitalId" name="inhospitalId" value="${inhospitalId}">
+
+            <div class="row">
+                <div class="col-sm-12">
+                     <#select id="physicianName" name="军医" type="text" dataOptions="required:true, validType:'length[0, 50]'" itemList="${doctorItemList}" value="${physicianName}" underline="true" />
+                     <#input id="remark" name="备注" type="text" dataOptions="validType:'length[0, 255]'" />
+                </div>
+            </div>
+
+            <div class="row btn-group-m-t">
+                <div class="col-sm-10">
+                    <#button btnCss="info" name="提交" id="ensure" icon="fa-check" clickFun="InhospitalTakeMedicalInfoDlg.submitPrescription()"/>
+                    <#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="InhospitalTakeMedicalInfoDlg.close()"/>
+                </div>
+            </div>
+        </form>
+
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/inhospital/inhospitalTakeMedical/inhospitalTakeMedical_info.js"></script>
+@}

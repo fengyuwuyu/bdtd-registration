@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>体检信息详情</title>
+
+  <link rel="stylesheet" type="text/css" href="${ctxPath}/static/css/common-reset.css">
+  <link rel="stylesheet" type="text/css" href="${ctxPath}/static/css/border.css">
+  <link rel="stylesheet" type="text/css" href="${ctxPath}/static/css/tab.css">
+  <link rel="stylesheet" type="text/css" href="${ctxPath}/static/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="${ctxPath}/static/css/flex-layout.css">
+
+  <style>
+    /* #container {
+         height: 100%;
+         width: 100%;
+         background-color: #cacaca;
+     }*/
+    #container {
+      font-family:"Microsoft YaHei";
+    }
+    #header{
+      height: 0;
+      width: 100%;
+      padding-bottom: 9.45%;
+      background: url("${ctxPath}/static/img/personal/header.png") no-repeat;
+      -moz-background-size:100% 100%;
+      background-size:100% 100%;
+    }
+
+    #content {
+      position: relative;
+      height: 0;
+      width: 100%;
+      padding-bottom: 64.53%;
+      background: url("${ctxPath}/static/img/personal/content.png") no-repeat;
+      -moz-background-size:100% 100%;
+      background-size:100% 100%;
+      box-sizing: border-box;
+    }
+
+    .info-bg {
+      position: absolute;
+      width: 91.7%;
+      height: 92.18%;
+      top: 30px;
+      left: 53px;
+      /*background-color: #c4e2c7;*/
+      background-image: url("${ctxPath}/static/img/personal/list_bg.png");
+      -moz-background-size:100% 100%;
+      background-size:100% 100%;
+      border-radius: 12px;
+      box-shadow: 5px 5px 10px #5e9363;
+      color: #477849;
+    }
+
+    #footer {
+      height: 0;
+      width: 100%;
+      line-height: 77px;
+      padding-bottom: 77px;
+      background: url("${ctxPath}/static/img/personal/footer.png") no-repeat;
+      -moz-background-size:100% 100%;
+      background-size:100% 100%;
+      font-size: 26px;
+      color: #eeeeee;
+      box-sizing: border-box;
+    }
+
+    #footer-weather {
+      float: left;
+      padding-left: 53px;
+    }
+
+    #footer-time {
+      float: right;
+      padding-right: 53px;
+    }
+
+    #footer-weather img {
+      padding: 0 8px;
+    }
+
+    .title {
+      height: 115px;
+      line-height: 115px;
+      width: 100%;
+      text-align: center;
+      font-weight: bold;
+      font-size: 36px;
+      color: rgb(6, 84, 12);
+    }
+
+    .tab {
+      height: 535px;
+      width: 98%;
+      padding-left: 25px;
+      box-sizing: border-box;
+    }
+
+    .btn-footer {
+      position: relative;
+      width: 100%;
+      height: 60px;
+      bottom: -40px;
+      right: 20px;
+    }
+
+    .btn-item {
+      position: relative;
+      float: right;
+      /*padding: 0 25px 10px 0;*/
+    }
+
+    img{
+      border-radius: 10px;
+    }
+  </style>
+</head>
+<body>
+<div id="container">
+  <div id="header"></div>
+  <div id="content">
+    <div class="info-bg">
+      <div class="title">
+        <span>体检信息详情</span>
+      </div>
+
+      <div class="tab">
+        <div class="tab-menu">
+          <ul>
+            <li class="active">一般检查</li>
+            <li>外科</li>
+            <li>内科</li>
+            <li>B超</li>
+            <li>化验</li>
+            <li>眼科</li>
+            <li>耳鼻喉科</li>
+            <li>妇产科</li>
+            <li>口腔科</li>
+          </ul>
+        </div>
+        <div class="tab-box">
+          <div class="active">
+            <span class="row-detail">
+              <span class="col-detail-6 underline">发育情况： 良好</span>
+              <span class="col-detail-6 underline">血压： 120/78mmHg</span>
+            </span>
+            <span class="row-detail">
+              <span class="col-detail-4 underline">身高： 180cm</span>
+              <span class="col-detail-4 underline">体重： 70</span>
+              <span class="col-detail-4 underline">婚否： 已婚</span>
+            </span>
+            <span class="row-detail">
+              <span class="col-detail-1 underline">既往病史： 安达市大所大实打实</span>
+            </span>
+            <span class="row-detail">
+              <span class="col-detail-1 underline">医师签名： 陆晔</span>
+            </span>
+            <span class="row-detail">
+              <span class="col-detail-1 underline-bold detail-title">结论</span>
+            </span>
+            <span class="row-detail">
+              <span class="col-detail-1 underline">主检医师： 阿萨德</span>
+            </span>
+            <span class="row-detail">
+              <span class="col-detail-1 underline">复检结论： 啊实打实大实打实大所大师大沙发沙发沙发上否</span>
+            </span>
+            <span class="row-detail">
+              <span class="col-detail-1 underline">复检医师： 王宝强</span>
+            </span>
+          </div>
+          <div>
+            <span class="row-detail">
+              <span class="col-detail-1 underline">既往病史： 安达市大所大实打实</span>
+            </span>
+            <span class="row-detail">
+              <span class="col-detail-1 underline">检查所见： 安达市大所大实打实</span>
+            </span>
+            <span class="row-detail">
+              <span class="col-detail-1 underline">诊断： 安达市大所大实打实</span>
+            </span>
+            <span class="row-detail">
+              <span class="col-detail-1 underline">结论： 安达市大所大实打实</span>
+            </span>
+            <span class="row-detail">
+              <span class="col-detail-1 underline">医师签名： 陆晔</span>
+            </span>
+            <span class="row-detail">
+              <span class="col-detail-1 underline-bold detail-title">结论</span>
+            </span>
+            <span class="row-detail">
+              <span class="col-detail-1 underline">主检医师： 阿萨德</span>
+            </span>
+            <span class="row-detail">
+              <span class="col-detail-1 underline">复检结论： 啊实打实大实打实大所大师大沙发沙发沙发上否</span>
+            </span>
+            <span class="row-detail">
+              <span class="col-detail-1 underline">复检医师： 王宝强</span>
+            </span>
+          </div>
+          <div>
+            <span class="row-detail">
+              <span class="col-detail-6 underline">胸部透视： 良好</span>
+              <span class="col-detail-6 underline">医师签名： 120/78mmHg</span>
+            </span>
+            <span class="row-detail">
+              <span class="col-detail-1 underline">既往病史： 安达市大所大实打实</span>
+            </span>
+            <span class="row-detail">
+              <span class="col-detail-1 underline">检查所见： 安达市大所大实打实</span>
+            </span>
+            <span class="row-detail">
+              <span class="col-detail-1 underline">诊断： 安达市大所大实打实</span>
+            </span>
+            <span class="row-detail">
+              <span class="col-detail-1 underline">结论： 安达市大所大实打实</span>
+            </span>
+            <span class="row-detail">
+              <span class="col-detail-1 underline">医师签名： 陆晔</span>
+            </span>
+            <span class="row-detail">
+              <span class="col-detail-1 underline-bold detail-title">结论</span>
+            </span>
+            <span class="row-detail">
+              <span class="col-detail-1 underline">主检医师： 阿萨德</span>
+            </span>
+            <span class="row-detail">
+              <span class="col-detail-1 underline">复检结论： 啊实打实大实打实大所大师大沙发沙发沙发上否</span>
+            </span>
+            <span class="row-detail">
+              <span class="col-detail-1 underline">复检医师： 王宝强</span>
+            </span>
+          </div>
+          <div>
+             <span class="row-detail">
+              <span class="col-detail-1 underline">肝： 安达市大所大实打实</span>
+            </span>
+            <span class="row-detail">
+              <span class="col-detail-1 underline">胆： 安达市大所大实打实</span>
+            </span>
+            <span class="row-detail">
+              <span class="col-detail-1 underline">肾： 安达市大所大实打实</span>
+            </span>
+            <span class="row-detail">
+              <span class="col-detail-1 underline">脾： 安达市大所大实打实</span>
+            </span>
+            <span class="row-detail">
+              <span class="col-detail-1 underline">其他： 陆晔</span>
+            </span>
+          </div>
+          <div>
+            <span class="row-detail">
+              <span class="col-detail-1 underline">肝功： 安达市大所大实打实</span>
+            </span>
+            <span class="row-detail">
+              <span class="col-detail-1 underline">(HBsAg)： 安达市大所大实打实</span>
+            </span>
+            <span class="row-detail">
+              <span class="col-detail-1 underline">胆固醇： 安达市大所大实打实</span>
+            </span>
+            <span class="row-detail">
+              <span class="col-detail-1 underline">甘油三醇： 安达市大所大实打实</span>
+            </span>
+            <span class="row-detail">
+              <span class="col-detail-1 underline">血糖： 陆晔</span>
+            </span>
+            <span class="row-detail">
+              <span class="col-detail-1 underline">血常规： 安达市大所大实打实</span>
+            </span>
+            <span class="row-detail">
+              <span class="col-detail-1 underline">尿常规： 安达市大所大实打实</span>
+            </span>
+            <span class="row-detail">
+              <span class="col-detail-1 underline">便常规： 安达市大所大实打实</span>
+            </span>
+            <span class="row-detail">
+              <span class="col-detail-1 underline">其他： 安达市大所大实打实</span>
+            </span>
+          </div>
+          <div>
+            <span class="row-detail">
+              <span class="col-detail-1 underline">立体视觉： 安达市大所大实打实</span>
+              <span class="col-detail-1 underline">色觉： 安达市大所大实打实</span>
+            </span>
+            <span class="row-detail">
+              <span class="col-detail-1 underline">视力：右： 1.1</span>
+              <span class="col-detail-1 underline">左： 1.0</span>
+              <span class="col-detail-6 underline"></span>
+            </span>
+            <span class="row-detail">
+              <span class="col-detail-1 underline">检查所见： 安达市大所大实打实</span>
+            </span>
+            <span class="row-detail">
+              <span class="col-detail-1 underline">诊断： 安达市大所大实打实</span>
+            </span>
+            <span class="row-detail">
+              <span class="col-detail-1 underline">结论： 安达市大所大实打实</span>
+            </span>
+            <span class="row-detail">
+              <span class="col-detail-1 underline">医师签名： 安达市大所大实打实</span>
+            </span>
+          </div>
+          <div>
+            <span class="row-detail">
+              <span class="col-detail-1 underline">嗅觉： 安达市大所大实打实</span>
+              <span class="col-detail-1 underline">耳气压功能： 安达市大所大实打实</span>
+            </span>
+            <span class="row-detail">
+              <span class="col-detail-1 underline">听力右： 1.1</span>
+              <span class="col-detail-1 underline">听力左： 1.0</span>
+            </span>
+            <span class="row-detail">
+              <span class="col-detail-1 underline">检查所见： 安达市大所大实打实</span>
+            </span>
+            <span class="row-detail">
+              <span class="col-detail-1 underline">诊断： 安达市大所大实打实</span>
+            </span>
+            <span class="row-detail">
+              <span class="col-detail-1 underline">结论： 安达市大所大实打实</span>
+            </span>
+            <span class="row-detail">
+              <span class="col-detail-1 underline">医师签名： 安达市大所大实打实</span>
+            </span>
+          </div>
+          <div>
+            <span class="row-detail">
+              <span class="col-detail-1 underline">既往病史： 安达市大所大实打实</span>
+            </span>
+            <span class="row-detail">
+              <span class="col-detail-1 underline">检查所见： 安达市大所大实打实</span>
+            </span>
+            <span class="row-detail">
+              <span class="col-detail-1 underline">诊断： 安达市大所大实打实</span>
+            </span>
+            <span class="row-detail">
+              <span class="col-detail-1 underline">结论： 安达市大所大实打实</span>
+            </span>
+            <span class="row-detail">
+              <span class="col-detail-1 underline">医师签名： 安达市大所大实打实</span>
+            </span>
+          </div>
+          <div>
+            <span class="row-detail">
+              <span class="col-detail-1 underline">既往病史： 安达市大所大实打实</span>
+            </span>
+            <span class="row-detail">
+              <span class="col-detail-1 underline">检查所见： 安达市大所大实打实</span>
+            </span>
+            <span class="row-detail">
+              <span class="col-detail-1 underline">诊断： 安达市大所大实打实</span>
+            </span>
+            <span class="row-detail">
+              <span class="col-detail-1 underline">结论： 安达市大所大实打实</span>
+            </span>
+            <span class="row-detail">
+              <span class="col-detail-1 underline">医师签名： 安达市大所大实打实</span>
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="btn-footer">
+        <div class="btn-item btn-return">
+          <a>
+            <img src="${ctxPath}/static/img/personal/btn/btn_return.png">
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="footer">
+    <div id="footer-time">
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript" src="${ctxPath}/static/modular/personal/commonPersonal.js"></script>
+<script type="text/javascript" src="${ctxPath}/static/modular/personal/showDate.js"></script>
+<script type="text/javascript" src="${ctxPath}/static/js/tab.js"></script>
+<script type="text/javascript">
+  switchTab.listen('.tab');
+</script>
+</body>
+</html>

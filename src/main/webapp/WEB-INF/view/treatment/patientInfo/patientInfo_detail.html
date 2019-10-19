@@ -1,0 +1,248 @@
+@layout("/common/_container.html"){
+<div class="row">
+	<div class="col-sm-12">
+		<div class="ibox float-e-margins">
+			<div class="col-md-12">
+				<span class="h4">基本信息</span>
+				<form action="" id="userForm">
+				    <input type="hidden" id="patientInfoId" value="${item.id}">
+				    <input type="hidden" id="handleType" value="${item.handleType}">
+					<table class="table table-bordered">
+						<tr>
+							<td><#input id="userName" name="姓名" readonly="readonly" value="${item.userName}" />
+									</td>
+							<td><#input id="userSex" name="性别" readonly="readonly" value="${item.userSex}" /></td>
+							<td><#input id="userNo" name="编号" readonly="readonly" value="${item.userNo}" /></td>
+							<td><#input id="userDuty" name="身份" readonly="readonly" value="${item.userDuty}" /></td>
+						</tr>
+						<tr>
+							<td><#input id="age" name="年龄" readonly="readonly" value="${item.age}" /></td>
+							<td><#input id="orgName" name="单位" readonly="readonly" value="${item.orgName}" /></td>
+							<td><#input id="enrolDate" name="入伍时间" readonly="readonly" type="date" clickFun="laydate({istime: true, format: 'YYYY-MM-DD'})"  value="${item.enrolDate}" /></td>
+							<td><#input id="inTreatmentCount" name="就诊次数" readonly="readonly" value="${inTreatmentCount}" /></td>
+						</tr>
+                        <tr>
+                            <td colspan="4" >
+                                <div class="input-group col-md-12">
+                                    <div class="input-group-btn" >
+                                        <button data-toggle="dropdown" class="btn btn-white dropdown-toggle" type="button">
+                                                                                                            <b>过敏史</b>
+                                        </button>
+                                    </div>
+                                    <input id="irritabilityHistory" name="irritabilityHistory" readonly="readonly" value="${item.irritabilityHistory}" class="form-control" />
+                                </div>
+                            </td>
+                        </tr>
+					</table>
+				</form>
+
+				<span class="h4">病情诊断</span>
+				<form action="" id="patientInfoForm">
+					<table class="table table-bordered">
+						<tr>
+							<td>
+                                <div class="input-group">
+								    <div class="input-group-btn" >
+								        <button data-toggle="dropdown" style="height:54px" class="btn btn-white dropdown-toggle" type="button">
+								                            <b>病情摘要</b>
+								        </button>
+								    </div>
+                                    <textarea id="abstractIllness" name="abstractIllness" readonly="readonly" class="form-control" rows="2" >${item.abstractIllness}</textarea>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td><#select id="mainDiagnosis" name="主要诊断" readonly="readonly"
+									itemList="${mainDiagnosisDictList}" emptyValue="true" value="${item.mainDiagnosis}" /></td>
+						</tr>
+						<tr>
+							<td>
+                                <#input id="minorDiagnosis" name="次要诊断" data-options="validType:'length[1, 512]'" value="${item.minorDiagnosis}" />
+                            </td>
+						</tr>
+					</table>
+					<table class="table">
+						<tr>
+							<td><#select id="fever" name="发热" itemList="${originMaskItemList}" readonly="readonly" value="${item.fever}" /></td>
+							<td><#select id="trainWound" name="训练伤" itemList="${originMaskItemList}" readonly="readonly" value="${item.trainWound}" /></td>
+						</tr>
+					</table>
+				</form>
+				
+				 @if (item.handleType != 0) {
+				<div id="handleTypeTab" class="easyui-tabs row" style="width: 100%;">
+				
+				   
+                    @if (tool.checkHandleType(item.handleType, 1)) {
+					<div title="处方" style="padding: 0 5px 0 5px; display: none;" >
+						<form id="prescriptionForm" class="form-horizontal">
+							
+							<table class="table">
+                                <tr> <td>
+                                    <div class="input-group">
+                                    <div class="input-group-btn" >
+                                        <button data-toggle="dropdown" style="height:54px" class="btn btn-white dropdown-toggle" type="button">
+                                                                                                            备注
+                                        </button>
+                                    </div>
+                                    <textarea name="remark" class="form-control" readonly="readonly" rows="2" >${prescriptionInfo.remark}</textarea>
+                                </div>
+                                </td>
+                        </tr>
+                    </table>
+                        <#table id="PatientPrescriptionMedicineInfoTable"/>
+						</form>
+						<div class="col-md-12">
+                               <div class="row btn-group-m-t">
+                                       
+                                   <div class="col-md-5"></div>
+                                    <div class="col-sm-2">
+                                        <#button btnCss="info" name="打印" id="print" icon="fa-print" clickFun="PatientInfoPrint.openPrintPrescription()"/>
+                                    </div>
+                                   <div class="col-md-5"></div>
+                               </div>
+                           </div>
+					</div>
+					@}
+					
+                    @if (tool.checkHandleType(item.handleType, 2)) {
+					<div title="门诊处置" style="padding: 0 5px 0 5px; display: none;">
+					   <div class="row" style="width:100%; padding: 0 5px 0 15px;">
+                        <#table id="PatientMedicalUsageStepTable"/>
+                        
+                        <form id="clinicDisgnosisForm"  class="form-horizontal">
+                            <input type="hidden" id="skinTestMedicalId" name="skinTestMedicalId">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                    <div class="input-group">
+                                        <div class="input-group-btn">
+                                            <button data-toggle="dropdown" class="btn btn-white dropdown-toggle"
+                                                type="button">皮试</button>
+                                        </div>
+                                        <input  class="form-control" id="skinTestMedicalId" value="${clinicDisposisMedicalName}" readonly="readonly" name="skinTestMedicalId"  />
+                                        </div>
+                                    </div>
+                                <div class="col-md-9"><#input id="remark" value="${clinicDisposis.remark}" readonly="readonly" name="备注" /></div>
+                                </div>
+                            
+                        </form>
+                        <div class="col-md-12">
+                               <div class="row btn-group-m-t">
+                                       
+                                   <div class="col-md-5"></div>
+                                    <div class="col-sm-2">
+                                        <#button btnCss="info" name="打印" id="print" icon="fa-print" clickFun="PatientInfoPrint.openDiagnosis()"/>
+                                    </div>
+                                   <div class="col-md-5"></div>
+                               </div>
+                           </div>
+                        
+					   </div>
+					</div>
+					
+                    @}
+                    @if (tool.checkHandleType(item.handleType, 4)) {
+					
+					<div title="放射检查" style="padding: 0; display: none;">
+                       <div class="row" style="width:100%; padding: 0 5px 0 20px;">
+                        <#table id="PatientRadiateExamineTable"/>
+                       </div>
+                        <div class="col-md-12">
+                               <div class="row btn-group-m-t">
+                                       
+                                   <div class="col-md-5"></div>
+                                    <div class="col-sm-2">
+                                        <#button btnCss="info" name="打印" id="print" icon="fa-print" clickFun="PatientInfoPrint.openRadiateCheck()"/>
+                                    </div>
+                                   <div class="col-md-5"></div>
+                               </div>
+                           </div>
+					</div>
+					
+                    @}
+                    @if (tool.checkHandleType(item.handleType, 8)) {
+					
+					<div title="住院" style="padding: 0; display: none;">
+					   <div class="row" style="width:90%">
+					       <div class="col-md-12" style="text-align: center"><h1>已住院</h1></div>
+					   </div>
+					</div>
+					
+                    @}
+                    @if (tool.checkHandleType(item.handleType, 16)) {
+					
+					<div title="转诊" style="padding: 0; display: none;">
+					   <div class="row" style="width:90%">
+                           <div class="col-md-12" style="text-align: center"><h1>已转诊</h1></div>
+                       </div>
+					</div>
+					
+                    @}
+                    @if (tool.checkHandleType(item.handleType, 32)) {
+					
+					<div title="病休" style="padding: 0; display: none;">
+					    <div class="row" style="width:100%; padding: 0 5px 0 15px;">
+					       <form id="sickRestForm" class="form-horizontal">
+					           <input type="hidden" name="id"> 
+					           <input type="hidden" name="patientInfoId"> 
+					            <div class="row">
+					                <div class="col-md-12">
+    					                <div class="col-md-4">
+						                    <#select id="sickRestType" readonly="readonly" name="病休方式" value="${sickRest.sickRestType}"  itemList="${sickRestTypeItemList}" emptyValue="true" />
+    					                </div>
+    					                <div class="col-md-4">
+						                    <#select id="sickRestDay" readonly="readonly" name="病休天数" value="${sickRest.sickRestDay}"  itemList="${sickRestDayItemList}" emptyValue="true" />
+    					                </div>
+    					                <div class="col-md-4">
+    					                    <#input id="beginDate" readonly="readonly" value="${sickRest.beginDate}" name="开始时间" type="date" clickFun="laydate({istime: false, format: 'YYYY-MM-DD'})" />
+    					                </div>
+					                       
+					                </div>
+					
+					                <div class="col-md-12" style="padding-left: 30px">
+					                    <#input id="noticeInfo" readonly="readonly" name="注意事项" value="${sickRest.noticeInfo}" />
+					                </div>
+					            </div>
+                            </form>
+                        <div class="col-md-12">
+                               <div class="row btn-group-m-t">
+                                       
+                                   <div class="col-md-5"></div>
+                                    <div class="col-sm-2">
+                                        <#button btnCss="info" name="打印" id="print" icon="fa-print" clickFun="PatientInfoPrint.openDiagnosisProve()"/>
+                                    </div>
+                                   <div class="col-md-5"></div>
+                               </div>
+                           </div>
+					    </div>
+					</div>
+					
+                    @}
+                    @if (tool.checkHandleType(item.handleType, 64)) {
+					
+					<div title="理疗" style="padding: 0; display: none;">
+					   <div class="row" style="width:100%; padding: 0 5px 0 15px;">
+                        <#table id="PatientPhysicalTherapyTable"/>
+					   </div>
+                        <div class="col-md-12">
+                               <div class="row btn-group-m-t">
+                                       
+                                   <div class="col-md-5"></div>
+                                    <div class="col-sm-2">
+                                        <#button btnCss="info" name="打印" id="print" icon="fa-print" clickFun="PatientInfoPrint.openPhysicalTherapy()"/>
+                                    </div>
+                                   <div class="col-md-5"></div>
+                               </div>
+                           </div>
+					</div>
+					@}
+				</div>
+			@}
+			</div>
+
+		</div>
+	</div>
+</div>
+<script src="${ctxPath}/static/modular/treatment/patientInfo/patientInfo_detail.js"></script>
+<script src="${ctxPath}/static/modular/treatment/patientInfo/patientInfoDetail_print.js"></script>
+@}

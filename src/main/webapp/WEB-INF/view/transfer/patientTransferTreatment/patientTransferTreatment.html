@@ -1,0 +1,44 @@
+@layout("/common/_container.html"){
+
+<div class="row">
+    <div class="col-sm-12">
+        <div class="ibox float-e-margins">
+            <div class="ibox-content">
+                <div class="row row-lg">
+                    <div class="col-sm-12">
+                        <form id="searchForm" class="row">
+                            <div class="col-sm-3">
+                                <#NameCon id="userName" name="姓名" />
+                            </div>
+                            <div class="col-sm-3">
+                                <#SelectCon id="orgId" name="单位" itemList="${dtDepItemList}" />
+                            </div>
+                            <div class="col-sm-3">
+                                <#TimeCon id="preTransferDate" name="拟转时间" isTime="false" pattern="YYYY-MM-DD"/>
+                            </div>
+                            <div class="col-sm-3">
+                                <#button name="搜索" icon="fa-search" clickFun="PatientTransferTreatment.search()"/>
+                                    <#button name="重置" icon="fa-refresh" clickFun="PatientTransferTreatment.clearSearchForm()" />
+                            </div>
+                        </form>
+                        <div class="hidden-xs" id="PatientTransferTreatmentTableToolbar" role="group">
+                            @if(shiro.hasPermission("/patientTransferTreatment/delete")){
+                                <#button name="删除" icon="fa-remove" clickFun="PatientTransferTreatment.delete()" space="true"/>
+                            @}
+                            @if(shiro.hasPermission("/patientTransferTreatment/billing")){
+                                <#button name="开单" icon="fa-edit" clickFun="PatientTransferTreatment.openBillingDetail()" space="true"/>
+                            @}
+                            @if(shiro.hasPermission("/patientTransferTreatment/updateRemark")){
+                                <#button name="更新备注" icon="fa-edit" clickFun="PatientTransferTreatment.openUpdateRemark()" space="true"/>
+                            @}
+                        </div>
+                        <#table id="PatientTransferTreatmentTable"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/transfer/patientTransferTreatment/patientTransferTreatment.js"></script>
+<script src="${ctxPath}/static/modular/common/dtDepCommon.js"></script>
+@}

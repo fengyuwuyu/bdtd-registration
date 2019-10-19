@@ -1,0 +1,36 @@
+@layout("/common/_container.html"){
+<div class="row">
+    <div class="col-sm-12">
+        <div class="ibox float-e-margins">
+            <div class="ibox-content">
+                <div class="row row-lg">
+                    <div class="col-sm-12">
+                        <form id="searchForm" class="row">
+                            <div class="col-sm-3">
+                                <#NameCon id="condition" name="名称" />
+                            </div>
+                            <div class="col-sm-3">
+                                <#button name="搜索" icon="fa-search" clickFun="PatientDiabilityRating.search()"/>
+                                <#button name="重置" icon="fa-refresh" clickFun="PatientDiabilityRating.resetSearchForm()"/>
+                            </div>
+                        </form>
+                        <div class="hidden-xs" id="PatientDiabilityRatingTableToolbar" role="group">
+                            @if(shiro.hasPermission("/patientDiabilityRating/add")){
+                                <#button name="添加" icon="fa-plus" clickFun="PatientDiabilityRating.openAddPatientDiabilityRating()"/>
+                            @}
+                            @if(shiro.hasPermission("/patientDiabilityRating/update")){
+                                <#button name="修改" icon="fa-edit" clickFun="PatientDiabilityRating.openPatientDiabilityRatingDetail()" space="true"/>
+                            @}
+                            @if(shiro.hasPermission("/patientDiabilityRating/delete")){
+                                <#button name="删除" icon="fa-remove" clickFun="PatientDiabilityRating.delete()" space="true"/>
+                            @}
+                        </div>
+                        <#table id="PatientDiabilityRatingTable"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/treatment/patientDiabilityRating/patientDiabilityRating.js"></script>
+@}

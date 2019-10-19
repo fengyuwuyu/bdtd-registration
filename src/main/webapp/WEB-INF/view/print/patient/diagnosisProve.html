@@ -1,0 +1,113 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>就诊管理系统</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link href="${ctxPath}/static/css/reset.css" rel="stylesheet" type="text/css" />
+    <link href="${ctxPath}/static/css/layout.css" rel="stylesheet" type="text/css" />
+    <style type="text/css">
+        caption { font-size: 20px; }
+        #chufangjian { font-size: 30px; font-weight: normal; text-align: center; margin-top: 20px; }
+        
+        td { 
+            font-size: 14px; 
+            height: 24px;
+        }
+        td, th { font-weight: normal; }
+        }
+        
+        .td-label {
+            text-align: center;
+        }
+        
+        .td-label-inner {
+            text-align: center;
+        }
+        
+        .td-content p{
+            margin-left: 10px !important;
+        }
+        
+        tr td:first-child {
+            width: 60px !important;
+        }
+        
+        .seal {
+            float: right;
+            margin: 10px 30px 0 0;
+            font-size: 16px;
+        }
+        
+        .bold { font-weight: bold; }
+    </style>
+</head>
+<body>
+    <form method="post" id="thisform" class="labelright nomargin">
+        <div class="mainwrapassist notitletoolbar">
+            <table class="wp100">
+                <caption>中国人民解放军66194部队</caption>
+                <tbody>
+                    <tr>
+                        <td id="chufangjian">诊断证明</td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="wp100 cellbor h300 top">
+                <tbody>
+                    <tr>
+                        <td colspan="2" class="td-label"><span>姓名</span></td>
+	                    <td class="td-label-inner"><span>${patientInfo.userName}</span></td>
+	                    <td class="td-label-inner"><span>性别</span></td>
+	                    <td class="td-label-inner"><span>${patientInfo.userSex}</span></td>
+	                    <td class="td-label-inner"><span>年龄</span></td>
+	                    <td class="td-label-inner"><span>${patientInfo.age}</span></td>
+	                    <td class="td-label-inner"><span>单位</span></td>
+	                    <td colspan="2" class="td-label-inner"><span>${patientInfo.orgName}</span></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="td-label"><span>病情摘要</span></td>
+                        <td colspan="8" class="td-content"><p>${patientInfo.abstractIllness}</p></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="td-label"><span>诊断</span></td>
+                        <td colspan="8" class="td-content"><p>${patientInfo.mainDiagnosis}</p></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="td-label"><span>病休方式</span></td>
+                        <td colspan="2" class="td-label-inner"><span>${sickRest.sickRestType}</span></td>
+                        <td colspan="1" class="td-label-inner"><span>天数</span></td>
+                        <td colspan="2" class="td-label-inner"><span>${sickRest.sickRestDay}</span></td>
+                        <td colspan="1" class="td-label-inner"><span>时间</span></td>
+                        <td colspan="2" class="td-label-inner"><span>${sickRest.beginDate}</span></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="td-label"><span>就诊时间</span></td>
+                        <td colspan="8" class="td-label"><span>${clinicDate}</span></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="td-label"><span>注意事项</span></td>
+                        <td colspan="8" class="td-content"><p>${sickRest.noticeInfo}</p></td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="bottom-info">
+                <div class="bottom-item">医生签名：${patientInfo.physicianName}</div>
+                <div class="bottom-item">开单日期：${now}</div>
+                <div class="bottom-item">66194部队卫生队（盖章）</div>
+            </div>
+        </div>
+        <div id="statusbar">
+            <button type="button">打印</button>
+        </div>
+    </form>
+    <script src="${ctxPath}/static/js/jquery.min.js?v=2.1.4"></script>
+    <script type="text/javascript">
+        $("#statusbar button").click(function () {
+        	$("#statusbar").remove(); 
+            window.print();
+        });
+    </script>
+</body>
+</html>

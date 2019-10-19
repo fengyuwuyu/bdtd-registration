@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>挂号界面</title>
+
+  <link rel="stylesheet" type="text/css" href="${ctxPath}/static/css/common-reset.css">
+  <link rel="stylesheet" type="text/css" href="${ctxPath}/static/css/border.css">
+  <link rel="stylesheet" type="text/css" href="${ctxPath}/static/css/bootstrap.min.bak.css">
+  <link rel="stylesheet" type="text/css" href="${ctxPath}/static/css/personal.css">
+
+  <style>
+    .slot-card {
+      position: relative;
+      width: 710px;
+      height: 260px;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .slot-card img {
+      display: inline-block;
+    }
+  </style>
+</head>
+<body>
+
+<div id="container">
+  <div id="header"></div>
+  <div id="content">
+    <div class="slot-card">
+    
+      <a href="#" onclick="">
+        <img src="${ctxPath}/static/img/personal/registration/slotCardAndRegistration.png">
+      </a>
+        <input type="text" id="userCard" style="height: 0;">
+    </div>
+  </div>
+  <div id="footer">
+    <div id="footer-time">
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript" src="${ctxPath}/static/js/jquery.min.js"></script>
+<script src="${ctxPath}/static/js/common/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="${ctxPath}/static/js/common/Feng.js"></script>
+<script type="text/javascript" src="${ctxPath}/static/modular/personal/commonPersonal.js"></script>
+<script type="text/javascript" src="${ctxPath}/static/modular/personal/showDate.js"></script>
+<script type="text/javascript" src="${ctxPath}/static/modular/personal/homePage.js"></script>
+</body>
+</html>

@@ -1,5 +1,5 @@
 /**
- * 药品管理管理初始化
+ * 管理初始化
  */
 var MedicalInventoryStair = {
     id: "MedicalInventoryStairTable",	//表格id
@@ -14,13 +14,21 @@ var MedicalInventoryStair = {
 MedicalInventoryStair.initColumn = function () {
     return [
         {field: 'selectItem', radio: true},
-            {title: 'ID号', field: 'id', visible: true, align: 'center', valign: 'middle'},
+            {title: '', field: 'id', visible: false, align: 'center', valign: 'middle'},
+            {
+                title: '序号',
+                field: '',
+                align: 'center',
+                formatter: Feng.getTableSerialNumberFunc(MedicalInventoryStair.id)
+            },
             {title: '药品名称', field: 'medicalName', visible: true, align: 'center', valign: 'middle'},
             {title: '拼音', field: 'spell', visible: true, align: 'center', valign: 'middle'},
-            {title: '生产商', field: 'producerStr', visible: true, align: 'center', valign: 'middle'},
-            {title: '规格', field: 'specificationStr', visible: true, align: 'center', valign: 'middle'},
-            {title: '单位', field: 'unitStr', visible: true, align: 'center', valign: 'middle'},
-            {title: '备注', field: 'remark', visible: true, align: 'center', valign: 'middle'}
+            {title: '生产企业', field: 'producer', visible: true, align: 'center', valign: 'middle'},
+            {title: '规格', field: 'specification', visible: true, align: 'center', valign: 'middle'},
+            {title: '单位', field: 'unit', visible: true, align: 'center', valign: 'middle'},
+            {title: '备注', field: 'remark', visible: true, align: 'center', valign: 'middle'},
+            {title: '创建时间', field: 'createDate', visible: true, align: 'center', valign: 'middle'},
+            {title: '更新时间', field: 'updateDate', visible: true, align: 'center', valign: 'middle'}
     ];
 };
 
@@ -39,35 +47,29 @@ MedicalInventoryStair.check = function () {
 };
 
 /**
- * 点击添加药品管理
+ * 点击添加
  */
 MedicalInventoryStair.openAddMedicalInventoryStair = function () {
     var index = layer.open({
         type: 2,
-        title: '添加药品管理',
-        area: ['1000px', '600px'], //宽高
+        title: '添加',
+        area: ['800px', '600px'], //宽高
         fix: false, //不固定
         maxmin: true,
-        content: Feng.ctxPath + '/medicalInventoryStair/medicalInventoryStair_add',
-        full: function() {
-        	Feng.setSelectWidth();
-        },
-        restore: function() {
-        	Feng.setSelectWidth();
-        }
+        content: Feng.ctxPath + '/medicalInventoryStair/medicalInventoryStair_add'
     });
     this.layerIndex = index;
 };
 
 /**
- * 打开查看药品管理详情
+ * 打开查看详情
  */
 MedicalInventoryStair.openMedicalInventoryStairDetail = function () {
     if (this.check()) {
         var index = layer.open({
             type: 2,
-            title: '药品管理详情',
-            area: ['800px', '420px'], //宽高
+            title: '详情',
+            area: ['800px', '600px'], //宽高
             fix: false, //不固定
             maxmin: true,
             content: Feng.ctxPath + '/medicalInventoryStair/medicalInventoryStair_update/' + MedicalInventoryStair.seItem.id
@@ -77,24 +79,7 @@ MedicalInventoryStair.openMedicalInventoryStairDetail = function () {
 };
 
 /**
- * 打开查看药品二级管理详情
- */
-MedicalInventoryStair.medicalInventorySecondLevelDetail = function () {
-    if (this.check()) {
-        var index = layer.open({
-            type: 2,
-            title: '二级药品管理',
-            area: ['1200px', '600px'], //宽高
-            fix: false, //不固定
-            maxmin: true,
-            content: Feng.ctxPath + '/medicalInventorySecondLevel/' + MedicalInventoryStair.seItem.id
-        });
-        this.layerIndex = index;
-    }
-};
-
-/**
- * 删除药品管理
+ * 删除
  */
 MedicalInventoryStair.delete = function () {
     if (this.check()) {
@@ -114,19 +99,24 @@ MedicalInventoryStair.delete = function () {
 };
 
 /**
- * 查询药品管理列表
+ * 查询列表
  */
 MedicalInventoryStair.search = function () {
-    var queryData = {};
-    queryData['condition'] = $("#condition").val();
+    var queryData = $('#searchForm').serializeObject();
     MedicalInventoryStair.table.refresh({query: queryData});
+};
+
+/**
+ * 重置搜索表单，并刷新
+ */
+MedicalInventoryStair.resetSearchForm = function () {
+    Feng.clearSearchForm(function() {
+    	MedicalInventoryStair.search();
+    });
 };
 
 $(function () {
     var defaultColunms = MedicalInventoryStair.initColumn();
     var table = new BSTable(MedicalInventoryStair.id, "/medicalInventoryStair/list", defaultColunms);
-    table.setPaginationType("client");
     MedicalInventoryStair.table = table.init();
-    
-//    Feng.setSelectWidth();
 });

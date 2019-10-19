@@ -1,0 +1,34 @@
+@layout("/common/_container.html"){
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <form id="addForm" class="form-horizontal">
+
+            <input type="hidden" id="id" value="">
+
+            <div class="row">
+                <div class="col-sm-6 b-r">
+                            <#input id="stomatologyId" name="主键" type="hidden"  underline="true" />
+                            <#input id="healthExaminationId" name="体检信息表id" type="text" dataOptions="validType:'number'" underline="true" />
+                            <#input id="stomatologyIrritabilityHistory" name="既往病史" type="text" dataOptions="validType:'length[0, 1024]'" underline="true" />
+                            <#input id="stomatologyCheckInfo" name="检查所见" type="text" dataOptions="validType:'length[0, 1024]'"  />
+                </div>
+
+                <div class="col-sm-6">
+                            <#input id="stomatologyDiagnosis" name="诊断" type="text" dataOptions="validType:'length[0, 512]'" underline="true" />
+                            <#input id="stomatologyConclusion" name="结论" type="text" dataOptions="validType:'length[0, 512]'" underline="true" />
+                            <#input id="stomatologySignatureResponsiblePhysician" name="医师签名" type="text" dataOptions="validType:'length[0, 50]'" underline="true" />
+                </div>
+            </div>
+
+            <div class="row btn-group-m-t">
+                <div class="col-sm-10">
+                    <#button btnCss="info" name="提交" id="ensure" icon="fa-check" clickFun="ExaminationStomatologyInfoDlg.addSubmit()"/>
+                    <#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="ExaminationStomatologyInfoDlg.close()"/>
+                </div>
+            </div>
+        </form>
+
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/examination/examinationStomatology/examinationStomatology_info.js"></script>
+@}

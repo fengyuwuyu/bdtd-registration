@@ -1,0 +1,41 @@
+@layout("/common/_container.html"){
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <form id="editForm" class="form-horizontal">
+            <input type="hidden" name="id" value="${item.id}">
+            <div class="row">
+                <div class="col-sm-12">
+	                <div class="col-sm-12">
+	                   <#input id="operationName" name="手术名称" value="${item.operationName}" underline="true" readonly="readonly" />
+	                </div>
+	                <div class="col-sm-12">
+	                   <#select id="disposition" name="去向" dataOptions="required: true, validType:'length[0, 128]'" itemList="${dispositionDictList}" readonly="readonly"  value="${item.disposition}" underline="true" />
+	                </div>
+	                <div class="col-sm-12">
+	                   <#input id="treatmentVisit" name="治疗随访" value="${item.treatmentVisit}" underline="true" readonly="readonly" />
+	                </div>
+	                <div class="col-sm-12">
+	                   <#input id="inHospitalInfoRemark" name="住院信息" readonly="readonly" value="科室：${item.inHospitalInfoDept}  病区：${item.inHospitalInfoSection}  床位：${item.inHospitalInfoBed}  医师：${item.inHospitalInfoPhysician}" underline="true" />
+	                </div>
+	                <div class="col-sm-12">
+	                   <#input id="leaveHospitalDate" name="出院日期"  readonly="readonly" value="${item.leaveHospitalDate}" />
+	                </div>
+                </div>
+
+            </div>
+
+            <div class="row btn-group-m-t">
+                <div class="col-sm-12">
+                    <div class="col-sm-5"></div>
+                    <div class="col-sm-2">
+                        <#button btnCss="info" name="确定" id="ensure" icon="fa-check" clickFun="PatientTransferReportInfoDlg.close()"/>
+                    </div>
+                    <div class="col-sm-5"></div>
+                </div>
+            </div>
+        </form>
+
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/transfer/patientTransferReport/patientTransferReport_info.js"></script>
+@}

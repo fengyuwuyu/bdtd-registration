@@ -1,0 +1,33 @@
+@layout("/common/_container.html"){
+<div class="ibox float-e-margins">
+	<div class="ibox-content">
+		<form id="userInfoForm" class="form-horizontal">
+
+			<div class="row">
+				<div class="col-sm-12">
+					<#select id="fever" name="发热" value="${item.fever}" itemList="${feverItemList}" underline="true" disable="disable" />
+					<#input id="physicianName" name="门诊军医" value="${item.physicianName}" readonly="readonly" underline="true" />
+					<div class="input-group">
+						<div class="input-group-btn">
+							<button data-toggle="dropdown" style="height: 94px" class="btn btn-white dropdown-toggle" type="button">入院诊断</button>
+						</div>
+						<textarea id="minorDiagnosis" disabled="disabled" name="minorDiagnosis" class="form-control easyui-validatebox" data-options="validType:'length[0, 512]'" rows="4">主要诊断： ${mainDiagnosis}， 次要诊断： ${item.minorDiagnosis}
+						</textarea>
+					</div>
+				</div>
+			</div>
+
+			<div class="row btn-group-m-t">
+				<div class="col-sm-5"></div>
+				<div class="col-sm-2">
+					<#button btnCss="info" name="确定" id="ensure" icon="fa-check"
+						clickFun="PatientInHospitalInfoDlg.close()" />
+				</div>
+				<div class="col-sm-5"></div>
+			</div>
+		</form>
+
+	</div>
+</div>
+<script src="${ctxPath}/static/modular/inhospital/patientInHospital/patientInHospital_info.js"></script>
+@}
